@@ -1,75 +1,73 @@
-import { Canvas, useLoader } from "@react-three/fiber";
-import "./App.css";
 import {
-  Box,
-  OrbitControls,
-  PerspectiveCamera,
+  Environment,
+  GizmoHelper,
+  GizmoViewport,
+  Grid,
+  Helper,
   Plane,
-  Sky,
-  SoftShadows,
 } from "@react-three/drei";
-import { Euler, TextureLoader, Vector3 } from "three";
+import { Canvas } from "@react-three/fiber";
+import { useRef } from "react";
+import {
+  DirectionalLight,
+  DirectionalLightHelper,
+  DoubleSide,
+  Vector3,
+} from "three";
+import "./App.css";
+import { AMCamera } from "./components/camera";
+import RotatingCube from "./visualisations/rotatingCube";
 
 function App() {
-  const sunPosition = new Vector3(0, 3, 0);
-  const aoMap = useLoader(
-    TextureLoader,
-    "/assets/forrest_ground_01/forrest_ground_01_ao_4k.jpg"
-  );
-  const diffMap = useLoader(
-    TextureLoader,
-    "/assets/forrest_ground_01/forrest_ground_01_diff_4k.jpg"
-  );
-  const dispMap = useLoader(
-    TextureLoader,
-    "/assets/forrest_ground_01/forrest_ground_01_disp_4k.jpg"
-  );
-  const roughMap = useLoader(
-    TextureLoader,
-    "/assets/forrest_ground_01/forrest_ground_01_rough_4k.jpg"
-  );
-  const norGlMap = useLoader(
-    TextureLoader,
-    "/assets/forrest_ground_01/forrest_ground_01_nor_gl_4k.jpg"
-  );
+  const sunPosition = new Vector3(15, 10, 10);
+  const light = useRef<DirectionalLight>(null!);
   return (
     <>
-      <Canvas style={{ height: "100vh", width: "100vw" }} shadows>
-        <mesh>
-          <SoftShadows samples={100} />
-          <PerspectiveCamera>
-            <OrbitControls />
-          </PerspectiveCamera>
-          <directionalLight position={sunPosition} castShadow />
-          <Box position={[0, 1, 0]} castShadow>
-            <meshPhysicalMaterial
-              aoMap={aoMap}
-              map={diffMap}
-              displacementMap={dispMap}
-              roughnessMap={roughMap}
-              normalMap={norGlMap}
-            />
-          </Box>
-          <Sky
-            distance={450000}
-            sunPosition={sunPosition}
-            inclination={0}
-            azimuth={0.25}
+      <Canvas style={{ height: "100vh", width: "100vw" }} shadows="percentage">
+        <AMCamera />
+        <directionalLight position={sunPosition} ref={light} castShadow={true}>
+          <Helper type={DirectionalLightHelper} args={[5]} />
+        </directionalLight>
+
+        <group position={[0.5, 1.5, 0.5]}>
+          <RotatingCube />
+        </group>
+
+        <axesHelper position={[0, 0.001, 0]} />
+        <GizmoHelper
+          alignment="bottom-right" // widget alignment within scene
+          margin={[80, 80]} // widget margins (X, Y)
+        >
+          <GizmoViewport
+            axisColors={["red", "green", "blue"]}
+            labelColor="black"
           />
-          <Plane
-            rotation={new Euler(-Math.PI / 2, 0, 0)}
-            scale={[1000, 1000, 1000]}
-            receiveShadow
-          >
-            <meshPhysicalMaterial
-              aoMap={aoMap}
-              map={diffMap}
-              displacementMap={dispMap}
-              roughnessMap={roughMap}
-              normalMap={norGlMap}
-            />
-          </Plane>
-        </mesh>
+        </GizmoHelper>
+        <Grid
+          infiniteGrid={true}
+          followCamera={false}
+          fadeDistance={50}
+          side={DoubleSide}
+          sectionColor={"green"}
+        />
+        <Plane
+          position={[0, -0.0015, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={1000}
+          receiveShadow
+        >
+          <shadowMaterial opacity={0.5} />
+        </Plane>
+        {/*<Sky
+          distance={450000}
+          sunPosition={sunPosition}
+          inclination={0}
+          azimuth={0.25}
+        />*/}
+        <Environment
+          background
+          files="./assets/autumn_field_puresky_2k.hdr"
+        ></Environment>
       </Canvas>
     </>
   );
