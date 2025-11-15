@@ -184,6 +184,15 @@ interface ScenarioStore {
     parameterId: string,
     updates: Partial<ScenarioParameter>
   ) => void;
+
+  // Parameter management functions
+  addParameter: (scenarioId: string, parameter: ScenarioParameter) => void;
+  removeParameter: (scenarioId: string, parameterId: string) => void;
+  updateParameter: (
+    scenarioId: string,
+    parameterId: string,
+    updates: Partial<ScenarioParameter>
+  ) => void;
 }
 
 export const useScenarioStore = create<ScenarioStore>((set, get) => ({
@@ -242,4 +251,39 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
         ),
       };
     }),
+
+  addParameter: (scenarioId, parameter) =>
+    set((state) => ({
+      scenarios: state.scenarios.map((s) =>
+        s.id === scenarioId
+          ? { ...s, parameters: [...s.parameters, parameter] }
+          : s
+      ),
+    })),
+
+  removeParameter: (scenarioId, parameterId) =>
+    set((state) => ({
+      scenarios: state.scenarios.map((s) =>
+        s.id === scenarioId
+          ? {
+              ...s,
+              parameters: s.parameters.filter((p) => p.id !== parameterId),
+            }
+          : s
+      ),
+    })),
+
+  updateParameter: (scenarioId, parameterId, updates) =>
+    set((state) => ({
+      scenarios: state.scenarios.map((s) =>
+        s.id === scenarioId
+          ? {
+              ...s,
+              parameters: s.parameters.map((p) =>
+                p.id === parameterId ? { ...p, ...updates } : p
+              ),
+            }
+          : s
+      ),
+    })),
 }));

@@ -13,57 +13,118 @@ import {
   Separator,
 } from "@react-three/uikit-default";
 import { ChevronDown, ChevronRight, Trash2 } from "@react-three/uikit-lucide";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
 import {
   useScenarioStore,
   type MathDataType,
-  type MathScenario,
   type RepresentationType,
   type ScenarioParameter,
 } from "../stores/scenarioStore";
 
-type ParameterType = "Vector3" | "Quaternion" | "Matrix4" | "Euler" | "number";
+type ParameterType = "Vector3" | "Euler" | "Quaternion" | "Matrix4" | "number";
 
-interface ParameterDraft {
-  id: string;
-  name: string;
-  type: ParameterType;
-  representationType: RepresentationType;
-  color: string;
-  // Type-specific values
-  x?: number;
-  y?: number;
-  z?: number;
-  w?: number;
-  value?: number;
-  order?: string;
-  matrixValues?: number[]; // 16 values for Matrix4
+/**
+ * Helper to extract readable values from a parameter for the UI
+ */
+function getParameterValues(param: ScenarioParameter) {
+  const value = param.value;
+
+  if (value instanceof Vector3) {
+    return {
+      type: "Vector3" as ParameterType,
+      x: value.x,
+      y: value.y,
+      z: value.z,
+    };
+  } else if (value instanceof Quaternion) {
+    return {
+      type: "Quaternion" as ParameterType,
+      x: value.x,
+      y: value.y,
+      z: value.z,
+      w: value.w,
+    };
+  } else if (value instanceof Euler) {
+    return {
+      type: "Euler" as ParameterType,
+      x: value.x,
+      y: value.y,
+      z: value.z,
+      order: value.order,
+    };
+  } else if (value instanceof Matrix4) {
+    return { type: "Matrix4" as ParameterType, matrixValues: value.toArray() };
+  } else if (typeof value === "number") {
+    return { type: "number" as ParameterType, value };
+  }
+
+  return { type: "number" as ParameterType, value: 0 };
 }
 
 /**
  * UI for creating and editing math scenarios
- * Built with @react-three/uikit for in-scene interface
+ * Works directly with the store - creates a temporary scenario on mount
  */
 export function ScenarioCreator() {
   const addScenario = useScenarioStore((state) => state.addScenario);
+  const removeScenario = useScenarioStore((state) => state.removeScenario);
+  const updateScenario = useScenarioStore((state) => state.updateScenario);
   const setCurrentScenario = useScenarioStore(
     (state) => state.setCurrentScenario
   );
+  const addParameter = useScenarioStore((state) => state.addParameter);
+  const removeParameter = useScenarioStore((state) => state.removeParameter);
+  const updateParameter = useScenarioStore((state) => state.updateParameter);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [equation, setEquation] = useState("");
-  const [parameters, setParameters] = useState<ParameterDraft[]>([]);
+  // Subscribe to the current scenario so the component re-renders when it changes
+  const currentScenario = useScenarioStore((state) => {
+    const currentId = state.currentScenarioId;
+    if (!currentId) return null;
+    return state.scenarios.find((s) => s.id === currentId);
+  });
+
+  const [tempScenarioId, setTempScenarioId] = useState<string | null>(null);
+  const savedRef = useRef(false);
   const [collapsedParams, setCollapsedParams] = useState<Set<string>>(
     new Set()
   );
   const [editingField, setEditingField] = useState<{
     type: string;
-    paramId?: string;
-    field?: string;
     value: string;
   } | null>(null);
+
+  // Create temporary scenario on mount
+  useEffect(() => {
+    const tempId = `temp-${Date.now()}`;
+    const tempScenario = {
+      id: tempId,
+      title: "New Scenario",
+      description: "",
+      tags: [],
+      parameters: [],
+      equation: "",
+      answer: {
+        value: 0,
+        representation: {
+          type: "vertex" as RepresentationType,
+          color: "#ffff00",
+        },
+      },
+      timelineProgress: 0,
+    };
+
+    addScenario(tempScenario);
+    setCurrentScenario(tempId);
+    setTempScenarioId(tempId);
+
+    return () => {
+      if (!savedRef.current && tempId) {
+        removeScenario(tempId);
+        setCurrentScenario(null);
+      }
+    };
+  }, [addScenario, removeScenario, setCurrentScenario]);
 
   const toggleParamCollapse = (id: string) => {
     setCollapsedParams((prev) => {
@@ -77,83 +138,82 @@ export function ScenarioCreator() {
     });
   };
 
-  const addParameter = () => {
-    const newParam: ParameterDraft = {
+  const handleAddParameter = () => {
+    if (!tempScenarioId) return;
+
+    const newParam: ScenarioParameter = {
       id: `param-${Date.now()}`,
       name: "New Parameter",
-      type: "Vector3",
-      representationType: "cube",
-      color: "#ff0000",
-      x: 0,
-      y: 0,
-      z: 0,
+      value: new Vector3(0, 0, 0),
+      representation: { type: "cube", color: "#ff0000" },
     };
-    setParameters([...parameters, newParam]);
+
+    addParameter(tempScenarioId, newParam);
   };
 
-  const removeParameter = (id: string) => {
-    setParameters(parameters.filter((p) => p.id !== id));
+  const handleRemoveParameter = (parameterId: string) => {
+    if (!tempScenarioId) return;
+    removeParameter(tempScenarioId, parameterId);
   };
 
-  const updateParameter = (id: string, updates: Partial<ParameterDraft>) => {
-    setParameters(
-      parameters.map((p) => (p.id === id ? { ...p, ...updates } : p))
-    );
-  };
+  const handleUpdateParameterValue = (
+    parameterId: string,
+    type: ParameterType,
+    values: {
+      x?: number;
+      y?: number;
+      z?: number;
+      w?: number;
+      value?: number;
+      order?: string;
+      matrixValues?: number[];
+    }
+  ) => {
+    if (!tempScenarioId) return;
 
-  const convertParameterToScenarioParameter = (
-    draft: ParameterDraft
-  ): ScenarioParameter => {
-    let value: MathDataType;
+    let newValue: MathDataType;
 
-    switch (draft.type) {
+    switch (type) {
       case "Vector3":
-        value = new Vector3(draft.x ?? 0, draft.y ?? 0, draft.z ?? 0);
+        newValue = new Vector3(values.x ?? 0, values.y ?? 0, values.z ?? 0);
         break;
       case "Quaternion":
-        value = new Quaternion(
-          draft.x ?? 0,
-          draft.y ?? 0,
-          draft.z ?? 0,
-          draft.w ?? 1
+        newValue = new Quaternion(
+          values.x ?? 0,
+          values.y ?? 0,
+          values.z ?? 0,
+          values.w ?? 1
         );
         break;
       case "Euler":
-        value = new Euler(
-          draft.x ?? 0,
-          draft.y ?? 0,
-          draft.z ?? 0,
-          (draft.order as "XYZ" | "YZX" | "ZXY" | "XZY" | "YXZ" | "ZYX") ??
+        newValue = new Euler(
+          values.x ?? 0,
+          values.y ?? 0,
+          values.z ?? 0,
+          (values.order as "XYZ" | "YZX" | "ZXY" | "XZY" | "YXZ" | "ZYX") ??
             "XYZ"
         );
         break;
       case "Matrix4":
-        value = new Matrix4();
-        if (draft.matrixValues && draft.matrixValues.length === 16) {
-          value.fromArray(draft.matrixValues);
+        newValue = new Matrix4();
+        if (values.matrixValues && values.matrixValues.length === 16) {
+          newValue.fromArray(values.matrixValues);
         }
         break;
       case "number":
-        value = draft.value ?? 0;
+        newValue = values.value ?? 0;
         break;
       default:
-        value = new Vector3();
+        newValue = new Vector3();
     }
 
-    return {
-      id: draft.id,
-      name: draft.name,
-      value,
-      representation: {
-        type: draft.representationType,
-        color: draft.color,
-      },
-    };
+    updateParameter(tempScenarioId, parameterId, { value: newValue });
   };
 
   const handleCreateScenario = () => {
-    if (parameters.length === 0) {
-      // Show error in UI instead of alert
+    if (!currentScenario) return;
+
+    if (currentScenario.parameters.length === 0) {
       setEditingField({
         type: "error",
         value: "Please add at least one parameter",
@@ -162,41 +222,47 @@ export function ScenarioCreator() {
       return;
     }
 
-    const scenarioParams = parameters.map(convertParameterToScenarioParameter);
+    savedRef.current = true;
 
-    // Default answer (first parameter for now)
-    const defaultAnswer = scenarioParams[0];
-
-    const scenario: MathScenario = {
-      id: `scenario-${Date.now()}`,
-      title: title || "New Scenario",
-      description: description || "A math scenario",
+    // Create new temp scenario for next creation
+    const newTempId = `temp-${Date.now()}`;
+    const newTempScenario = {
+      id: newTempId,
+      title: "New Scenario",
+      description: "",
       tags: [],
-      parameters: scenarioParams,
-      equation: equation || "add",
+      parameters: [],
+      equation: "",
       answer: {
-        value: defaultAnswer.value,
+        value: 0,
         representation: {
-          type: "vertex",
+          type: "vertex" as RepresentationType,
           color: "#ffff00",
         },
       },
       timelineProgress: 0,
     };
 
-    addScenario(scenario);
-    setCurrentScenario(scenario.id);
-
-    // Reset form
-    setTitle("");
-    setDescription("");
-    setEquation("");
-    setParameters([]);
+    addScenario(newTempScenario);
+    setCurrentScenario(newTempId);
+    setTempScenarioId(newTempId);
+    savedRef.current = false;
   };
+
+  /**
+   * Cancel scenario creation and remove it from the store
+   */
+  const handleCancel = () => {
+    if (tempScenarioId) {
+      removeScenario(tempScenarioId);
+      setCurrentScenario(null);
+    }
+  };
+
+  if (!currentScenario) return null;
 
   return (
     <>
-      {/* Error/Success Message */}
       {editingField?.type === "error" && (
         <Alert
           positionType="absolute"
@@ -210,7 +276,6 @@ export function ScenarioCreator() {
         </Alert>
       )}
 
-      {/* Main Form */}
       <Card
         positionType="absolute"
         positionTop={20}
@@ -224,47 +289,57 @@ export function ScenarioCreator() {
             Create Scenario
           </Text>
         </CardHeader>
+
         <Container flexGrow={1} overflow="scroll" flexDirection="column">
           <CardContent flexDirection="column" gap={16} flexShrink={0}>
-            {/* Title Input */}
+            {/* Title */}
             <Container flexDirection="column" gap={4}>
               <Label>
                 <Text>Title</Text>
               </Label>
               <Input
-                value={title}
-                onValueChange={setTitle}
+                value={currentScenario.title}
+                onValueChange={(value) =>
+                  tempScenarioId &&
+                  updateScenario(tempScenarioId, { title: value })
+                }
                 placeholder="Enter scenario title"
               />
             </Container>
 
-            {/* Description Input */}
+            {/* Description */}
             <Container flexDirection="column" gap={4}>
               <Label>
                 <Text>Description</Text>
               </Label>
               <Input
-                value={description}
-                onValueChange={setDescription}
+                value={currentScenario.description}
+                onValueChange={(value) =>
+                  tempScenarioId &&
+                  updateScenario(tempScenarioId, { description: value })
+                }
                 placeholder="Enter scenario description"
               />
             </Container>
 
-            {/* Equation Input */}
+            {/* Equation */}
             <Container flexDirection="column" gap={4}>
               <Label>
                 <Text>Equation (method name)</Text>
               </Label>
               <Input
-                value={equation}
-                onValueChange={setEquation}
+                value={currentScenario.equation}
+                onValueChange={(value) =>
+                  tempScenarioId &&
+                  updateScenario(tempScenarioId, { equation: value })
+                }
                 placeholder="e.g., add, multiply"
               />
             </Container>
 
             <Separator marginY={8} />
 
-            {/* Parameters Section */}
+            {/* Parameters */}
             <Container flexDirection="column" gap={8}>
               <Container
                 flexDirection="row"
@@ -272,226 +347,199 @@ export function ScenarioCreator() {
                 alignItems="center"
               >
                 <Text fontSize={16} fontWeight="bold">
-                  Parameters ({parameters.length})
+                  Parameters ({currentScenario.parameters.length})
                 </Text>
-                <Button onClick={addParameter} size="sm">
+                <Button onClick={handleAddParameter} size="sm">
                   <Text>+ Add Parameter</Text>
                 </Button>
               </Container>
 
-              {/* Parameter List */}
-              {parameters.map((param) => (
-                <Card
-                  key={param.id}
-                  borderWidth={1}
-                  borderColor={colors.border}
-                >
-                  <CardHeader
-                    flexDirection="row"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    padding={8}
+              {currentScenario.parameters.map((param) => {
+                const paramValues = getParameterValues(param);
+
+                return (
+                  <Card
+                    key={param.id}
+                    borderWidth={1}
+                    borderColor={colors.border}
                   >
-                    <Container
-                      flexGrow={1}
+                    <CardHeader
                       flexDirection="row"
-                      gap={8}
+                      justifyContent="space-between"
                       alignItems="center"
+                      padding={8}
                     >
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => toggleParamCollapse(param.id)}
-                        paddingX={4}
+                      <Container
+                        flexGrow={1}
+                        flexDirection="row"
+                        gap={8}
+                        alignItems="center"
                       >
-                        {collapsedParams.has(param.id) ? (
-                          <ChevronRight />
-                        ) : (
-                          <ChevronDown />
-                        )}
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => toggleParamCollapse(param.id)}
+                          paddingX={4}
+                        >
+                          {collapsedParams.has(param.id) ? (
+                            <ChevronRight />
+                          ) : (
+                            <ChevronDown />
+                          )}
+                        </Button>
+                        <Input
+                          value={param.name}
+                          onValueChange={(value) =>
+                            tempScenarioId &&
+                            updateParameter(tempScenarioId, param.id, {
+                              name: value,
+                            })
+                          }
+                          placeholder="Parameter name"
+                        />
+                      </Container>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => handleRemoveParameter(param.id)}
+                      >
+                        <Trash2 />
                       </Button>
-                      <Input
-                        value={param.name}
-                        onValueChange={(value) =>
-                          updateParameter(param.id, { name: value })
-                        }
-                        placeholder="Parameter name"
-                      />
-                    </Container>
-                    <Button
-                      variant="destructive"
-                      size="sm"
-                      onClick={() => removeParameter(param.id)}
-                    >
-                      <Trash2 />
-                    </Button>
-                  </CardHeader>
-                  {!collapsedParams.has(param.id) && (
-                    <CardContent flexDirection="column" gap={16}>
-                      {/* Representation Type */}
-                      <Container flexDirection="column" gap={8}>
-                        <Label>
-                          <Text>Representation</Text>
-                        </Label>
-                        <Container flexDirection="row" gap={8}>
-                          {(["cube", "vertex"] as RepresentationType[]).map(
-                            (type) => (
+                    </CardHeader>
+
+                    {!collapsedParams.has(param.id) && (
+                      <CardContent flexDirection="column" gap={16}>
+                        {/* Representation Type */}
+                        <Container flexDirection="column" gap={8}>
+                          <Label>
+                            <Text>Representation</Text>
+                          </Label>
+                          <Container flexDirection="row" gap={8}>
+                            {(["cube", "vertex"] as RepresentationType[]).map(
+                              (type) => (
+                                <Button
+                                  key={type}
+                                  size="sm"
+                                  variant={
+                                    param.representation.type === type
+                                      ? "default"
+                                      : "outline"
+                                  }
+                                  onClick={() =>
+                                    tempScenarioId &&
+                                    updateParameter(tempScenarioId, param.id, {
+                                      representation: {
+                                        ...param.representation,
+                                        type,
+                                      },
+                                    })
+                                  }
+                                  flexGrow={1}
+                                >
+                                  <Text fontSize={11}>{type}</Text>
+                                </Button>
+                              )
+                            )}
+                          </Container>
+                        </Container>
+
+                        {/* Color */}
+                        <Container flexDirection="column" gap={8}>
+                          <Label>
+                            <Text>Color (hex)</Text>
+                          </Label>
+                          <Container
+                            flexDirection="row"
+                            gap={8}
+                            alignItems="center"
+                          >
+                            <Container
+                              width={40}
+                              height={40}
+                              backgroundColor={param.representation.color}
+                              borderRadius={6}
+                              borderWidth={2}
+                              borderColor={colors.border}
+                            />
+                            <Container flexGrow={1}>
+                              <Input
+                                value={param.representation.color}
+                                onValueChange={(value) =>
+                                  tempScenarioId &&
+                                  updateParameter(tempScenarioId, param.id, {
+                                    representation: {
+                                      ...param.representation,
+                                      color: value,
+                                    },
+                                  })
+                                }
+                                placeholder="#ff0000"
+                              />
+                            </Container>
+                          </Container>
+                        </Container>
+
+                        {/* Type Selection */}
+                        <Container flexDirection="column" gap={8}>
+                          <Label>
+                            <Text>Type</Text>
+                          </Label>
+                          <Container
+                            flexDirection="row"
+                            gap={8}
+                            flexWrap="wrap"
+                          >
+                            {(
+                              [
+                                "Vector3",
+                                "Euler",
+                                "Quaternion",
+                                "Matrix4",
+                                "number",
+                              ] as ParameterType[]
+                            ).map((type) => (
                               <Button
                                 key={type}
                                 size="sm"
                                 variant={
-                                  param.representationType === type
+                                  paramValues.type === type
                                     ? "default"
                                     : "outline"
                                 }
-                                onClick={() =>
-                                  updateParameter(param.id, {
-                                    representationType: type,
-                                  })
-                                }
-                                flexGrow={1}
+                                onClick={() => {
+                                  // Change type with default values
+                                  const defaults: Record<
+                                    ParameterType,
+                                    MathDataType
+                                  > = {
+                                    Vector3: new Vector3(0, 0, 0),
+                                    Euler: new Euler(0, 0, 0),
+                                    Quaternion: new Quaternion(0, 0, 0, 1),
+                                    Matrix4: new Matrix4(),
+                                    number: 0,
+                                  };
+                                  if (tempScenarioId) {
+                                    updateParameter(tempScenarioId, param.id, {
+                                      value: defaults[type],
+                                    });
+                                  }
+                                }}
                               >
                                 <Text fontSize={11}>{type}</Text>
                               </Button>
-                            )
-                          )}
-                        </Container>
-                      </Container>
-
-                      {/* Color */}
-                      <Container flexDirection="column" gap={8}>
-                        <Label>
-                          <Text>Color (hex)</Text>
-                        </Label>
-                        <Container
-                          flexDirection="row"
-                          gap={8}
-                          alignItems="center"
-                        >
-                          <Container
-                            width={40}
-                            height={40}
-                            backgroundColor={param.color}
-                            borderRadius={6}
-                            borderWidth={2}
-                            borderColor={colors.border}
-                          />
-                          <Container flexGrow={1}>
-                            <Input
-                              value={param.color}
-                              onValueChange={(value) =>
-                                updateParameter(param.id, { color: value })
-                              }
-                              placeholder="#ff0000"
-                            />
+                            ))}
                           </Container>
                         </Container>
-                      </Container>
 
-                      {/* Type Selection */}
-                      <Container flexDirection="column" gap={8}>
-                        <Label>
-                          <Text>Type</Text>
-                        </Label>
-                        <Container flexDirection="row" gap={8} flexWrap="wrap">
-                          {(
-                            [
-                              "Vector3",
-                              "Euler",
-                              "Quaternion",
-                              "Matrix4",
-                              "number",
-                            ] as ParameterType[]
-                          ).map((type) => (
-                            <Button
-                              key={type}
-                              size="sm"
-                              variant={
-                                param.type === type ? "default" : "outline"
-                              }
-                              onClick={() =>
-                                updateParameter(param.id, { type })
-                              }
-                            >
-                              <Text fontSize={11}>{type}</Text>
-                            </Button>
-                          ))}
-                        </Container>
-                      </Container>
-
-                      {/* Type-specific values */}
-                      {(param.type === "Vector3" ||
-                        param.type === "Quaternion" ||
-                        param.type === "Euler") && (
-                        <Container flexDirection="column" gap={8}>
-                          <Label>
-                            <Text>Values</Text>
-                          </Label>
-                          <Container flexDirection="row" gap={8}>
-                            <Container
-                              flexGrow={1}
-                              flexDirection="column"
-                              gap={2}
-                            >
-                              <Text
-                                fontSize={11}
-                                color={colors.mutedForeground}
-                              >
-                                X
-                              </Text>
-                              <Input
-                                type="number"
-                                value={String(param.x ?? 0)}
-                                onValueChange={(value) =>
-                                  updateParameter(param.id, {
-                                    x: parseFloat(value) || 0,
-                                  })
-                                }
-                              />
-                            </Container>
-                            <Container
-                              flexGrow={1}
-                              flexDirection="column"
-                              gap={2}
-                            >
-                              <Text
-                                fontSize={11}
-                                color={colors.mutedForeground}
-                              >
-                                Y
-                              </Text>
-                              <Input
-                                type="number"
-                                value={String(param.y ?? 0)}
-                                onValueChange={(value) =>
-                                  updateParameter(param.id, {
-                                    y: parseFloat(value) || 0,
-                                  })
-                                }
-                              />
-                            </Container>
-                            <Container
-                              flexGrow={1}
-                              flexDirection="column"
-                              gap={2}
-                            >
-                              <Text
-                                fontSize={11}
-                                color={colors.mutedForeground}
-                              >
-                                Z
-                              </Text>
-                              <Input
-                                type="number"
-                                value={String(param.z ?? 0)}
-                                onValueChange={(value) =>
-                                  updateParameter(param.id, {
-                                    z: parseFloat(value) || 0,
-                                  })
-                                }
-                              />
-                            </Container>
-                            {param.type === "Quaternion" && (
+                        {/* Type-specific values */}
+                        {(paramValues.type === "Vector3" ||
+                          paramValues.type === "Quaternion" ||
+                          paramValues.type === "Euler") && (
+                          <Container flexDirection="column" gap={8}>
+                            <Label>
+                              <Text>Values</Text>
+                            </Label>
+                            <Container flexDirection="row" gap={8}>
                               <Container
                                 flexGrow={1}
                                 flexDirection="column"
@@ -501,98 +549,202 @@ export function ScenarioCreator() {
                                   fontSize={11}
                                   color={colors.mutedForeground}
                                 >
-                                  W
+                                  X
                                 </Text>
                                 <Input
                                   type="number"
-                                  value={String(param.w ?? 1)}
+                                  value={String(paramValues.x ?? 0)}
                                   onValueChange={(value) =>
-                                    updateParameter(param.id, {
-                                      w: parseFloat(value) || 1,
-                                    })
+                                    handleUpdateParameterValue(
+                                      param.id,
+                                      paramValues.type,
+                                      {
+                                        ...paramValues,
+                                        x: parseFloat(value) || 0,
+                                      }
+                                    )
                                   }
                                 />
                               </Container>
-                            )}
-                          </Container>
-                        </Container>
-                      )}
-
-                      {param.type === "number" && (
-                        <Container flexDirection="column" gap={8}>
-                          <Label>
-                            <Text>Value</Text>
-                          </Label>
-                          <Input
-                            type="number"
-                            value={String(param.value ?? 0)}
-                            onValueChange={(value) =>
-                              updateParameter(param.id, {
-                                value: parseFloat(value) || 0,
-                              })
-                            }
-                          />
-                        </Container>
-                      )}
-
-                      {param.type === "Matrix4" && (
-                        <Container flexDirection="column" gap={8}>
-                          <Label>
-                            <Text>Matrix Values (4x4)</Text>
-                          </Label>
-                          <Container flexDirection="column" gap={4}>
-                            {[0, 1, 2, 3].map((row) => (
-                              <Container key={row} flexDirection="row" gap={4}>
-                                {[0, 1, 2, 3].map((col) => {
-                                  const index = col * 4 + row;
-                                  const matrixValues = param.matrixValues || [
-                                    1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-                                    1,
-                                  ];
-                                  return (
-                                    <Container
-                                      key={col}
-                                      flexGrow={1}
-                                      flexDirection="column"
-                                      gap={2}
-                                    >
-                                      <Text
-                                        fontSize={10}
-                                        color={colors.mutedForeground}
-                                      >
-                                        [{row},{col}]
-                                      </Text>
-                                      <Input
-                                        type="number"
-                                        value={String(matrixValues[index])}
-                                        onValueChange={(value) => {
-                                          const newMatrix = [...matrixValues];
-                                          newMatrix[index] =
-                                            parseFloat(value) || 0;
-                                          updateParameter(param.id, {
-                                            matrixValues: newMatrix,
-                                          });
-                                        }}
-                                      />
-                                    </Container>
-                                  );
-                                })}
+                              <Container
+                                flexGrow={1}
+                                flexDirection="column"
+                                gap={2}
+                              >
+                                <Text
+                                  fontSize={11}
+                                  color={colors.mutedForeground}
+                                >
+                                  Y
+                                </Text>
+                                <Input
+                                  type="number"
+                                  value={String(paramValues.y ?? 0)}
+                                  onValueChange={(value) =>
+                                    handleUpdateParameterValue(
+                                      param.id,
+                                      paramValues.type,
+                                      {
+                                        ...paramValues,
+                                        y: parseFloat(value) || 0,
+                                      }
+                                    )
+                                  }
+                                />
                               </Container>
-                            ))}
+                              <Container
+                                flexGrow={1}
+                                flexDirection="column"
+                                gap={2}
+                              >
+                                <Text
+                                  fontSize={11}
+                                  color={colors.mutedForeground}
+                                >
+                                  Z
+                                </Text>
+                                <Input
+                                  type="number"
+                                  value={String(paramValues.z ?? 0)}
+                                  onValueChange={(value) =>
+                                    handleUpdateParameterValue(
+                                      param.id,
+                                      paramValues.type,
+                                      {
+                                        ...paramValues,
+                                        z: parseFloat(value) || 0,
+                                      }
+                                    )
+                                  }
+                                />
+                              </Container>
+                              {paramValues.type === "Quaternion" && (
+                                <Container
+                                  flexGrow={1}
+                                  flexDirection="column"
+                                  gap={2}
+                                >
+                                  <Text
+                                    fontSize={11}
+                                    color={colors.mutedForeground}
+                                  >
+                                    W
+                                  </Text>
+                                  <Input
+                                    type="number"
+                                    value={String(paramValues.w ?? 1)}
+                                    onValueChange={(value) =>
+                                      handleUpdateParameterValue(
+                                        param.id,
+                                        paramValues.type,
+                                        {
+                                          ...paramValues,
+                                          w: parseFloat(value) || 1,
+                                        }
+                                      )
+                                    }
+                                  />
+                                </Container>
+                              )}
+                            </Container>
                           </Container>
-                        </Container>
-                      )}
-                    </CardContent>
-                  )}
-                </Card>
-              ))}
+                        )}
+
+                        {paramValues.type === "number" && (
+                          <Container flexDirection="column" gap={8}>
+                            <Label>
+                              <Text>Value</Text>
+                            </Label>
+                            <Input
+                              type="number"
+                              value={String(paramValues.value ?? 0)}
+                              onValueChange={(value) =>
+                                handleUpdateParameterValue(
+                                  param.id,
+                                  paramValues.type,
+                                  {
+                                    value: parseFloat(value) || 0,
+                                  }
+                                )
+                              }
+                            />
+                          </Container>
+                        )}
+
+                        {paramValues.type === "Matrix4" && (
+                          <Container flexDirection="column" gap={8}>
+                            <Label>
+                              <Text>Matrix Values (4x4)</Text>
+                            </Label>
+                            <Container flexDirection="column" gap={4}>
+                              {[0, 1, 2, 3].map((row) => (
+                                <Container
+                                  key={row}
+                                  flexDirection="row"
+                                  gap={4}
+                                >
+                                  {[0, 1, 2, 3].map((col) => {
+                                    const index = col * 4 + row;
+                                    const matrixValues =
+                                      paramValues.matrixValues ||
+                                      Array(16).fill(0);
+                                    matrixValues[0] =
+                                      matrixValues[5] =
+                                      matrixValues[10] =
+                                      matrixValues[15] =
+                                        1;
+
+                                    return (
+                                      <Container
+                                        key={col}
+                                        flexGrow={1}
+                                        flexDirection="column"
+                                        gap={2}
+                                      >
+                                        <Text
+                                          fontSize={10}
+                                          color={colors.mutedForeground}
+                                        >
+                                          [{row},{col}]
+                                        </Text>
+                                        <Input
+                                          type="number"
+                                          value={String(matrixValues[index])}
+                                          onValueChange={(value) => {
+                                            const newMatrix = [...matrixValues];
+                                            newMatrix[index] =
+                                              parseFloat(value) || 0;
+                                            handleUpdateParameterValue(
+                                              param.id,
+                                              "Matrix4",
+                                              {
+                                                matrixValues: newMatrix,
+                                              }
+                                            );
+                                          }}
+                                        />
+                                      </Container>
+                                    );
+                                  })}
+                                </Container>
+                              ))}
+                            </Container>
+                          </Container>
+                        )}
+                      </CardContent>
+                    )}
+                  </Card>
+                );
+              })}
             </Container>
           </CardContent>
         </Container>
 
-        {/* Create Button */}
-        <CardFooter flexShrink={0}>
-          <Button onClick={handleCreateScenario} width="100%">
+        <CardFooter flexShrink={0} gap={8}>
+          <Button onClick={handleCancel} variant="outline" flexGrow={1}>
+            <Text>Cancel</Text>
+          </Button>
+          <Button onClick={handleCreateScenario} flexGrow={1}>
             <Text>Create Scenario</Text>
           </Button>
         </CardFooter>
