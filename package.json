@@ -7,7 +7,10 @@
     "dev": "vite --host --open --base=\"/\" ",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-equations": "tsx scripts/generateEquationDatabase.ts",
+    "generate-from-source": "tsx scripts/generateFromSource.ts",
+    "test-equations": "tsx scripts/testEquationDatabase.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",
@@ -31,6 +34,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "tsx": "^4.20.6",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.3",
     "vite": "^7.2.2"

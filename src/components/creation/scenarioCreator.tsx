@@ -19,6 +19,7 @@ import {
   type RepresentationType,
   type ScenarioParameter,
 } from "../../stores/scenarioStore";
+import { EquationSelector } from "./equationSelector";
 import { ParameterCard } from "./parameterCard";
 import type { ParameterType, ParameterValues } from "./types";
 
@@ -412,16 +413,22 @@ export function ScenarioCreator() {
 
             {/* Equation */}
             <Container flexDirection="column" gap={4}>
-              <Label>
-                <Text>Equation (method name)</Text>
-              </Label>
               <Input
                 value={currentScenario.equation}
                 onValueChange={(value) =>
                   tempScenarioId &&
                   updateScenario(tempScenarioId, { equation: value })
                 }
-                placeholder="e.g., add, multiply"
+                placeholder="e.g., add, multiply, dot"
+              />
+
+              <EquationSelector
+                equation={currentScenario.equation}
+                parameters={currentScenario.parameters}
+                onEquationChange={(methodName) =>
+                  tempScenarioId &&
+                  updateScenario(tempScenarioId, { equation: methodName })
+                }
               />
             </Container>
 
