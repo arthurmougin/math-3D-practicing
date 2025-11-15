@@ -10,9 +10,8 @@ import { Fullscreen } from "@react-three/uikit";
 import { useRef } from "react";
 import { DirectionalLight, DoubleSide, Vector3 } from "three";
 import "./App.css";
-import { AMBox } from "./components/box";
 import { AMCamera } from "./components/camera";
-import { ScenarioCreator } from "./components/scenarioCreator";
+import { ScenarioCreator } from "./components/creation/scenarioCreator";
 import { ScenarioVisualization } from "./components/scenarioVisualization";
 
 function App() {
@@ -33,7 +32,6 @@ function App() {
           castShadow={true}
         ></directionalLight>
 
-        <AMBox />
         <ScenarioVisualization />
 
         <axesHelper position={[0, 0.001, 0]} />
