@@ -33,7 +33,7 @@ function App() {
           castShadow={true}
         ></directionalLight>
 
-        <AMBox />
+        {/*<AMBox />*/}
         <ScenarioVisualization />
 
         <axesHelper position={[0, 0.001, 0]} />

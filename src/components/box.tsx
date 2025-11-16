@@ -1,10 +1,10 @@
 import { useTexture } from "@react-three/drei";
 import type { ThreeElements } from "@react-three/fiber";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef, Suspense } from "react";
 import { Vector3, type Color, type Mesh } from "three";
 import { useCameraStore } from "../stores/cameraStore";
 
-export const AMBox = forwardRef<
+const BoxMesh = forwardRef<
   Mesh,
   ThreeElements["mesh"] & {
     color?: string | Color;
@@ -87,5 +87,26 @@ export const AMBox = forwardRef<
         <meshPhysicalMaterial color={color} {...materialProps} />
       </mesh>
     </>
+  );
+});
+
+export const AMBox = forwardRef<
+  Mesh,
+  ThreeElements["mesh"] & {
+    color?: string | Color;
+    type?: "wall" | "linoleum" | "denim";
+  }
+>((props, ref) => {
+  return (
+    <Suspense
+      fallback={
+        <mesh ref={ref} {...props}>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshStandardMaterial color={props.color || "white"} wireframe />
+        </mesh>
+      }
+    >
+      <BoxMesh ref={ref} {...props} />
+    </Suspense>
   );
 });
