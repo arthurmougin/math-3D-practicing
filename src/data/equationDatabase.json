@@ -1,0 +1,625 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2025-11-15T19:42:50.071Z",
+  "source": "Runtime AB testing",
+  "methods": [
+    {
+      "className": "Vector2",
+      "methodName": "dot",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "dot",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "dot",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "dot",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "cross",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "cross",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "cross",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "cross",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "lengthSq",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "length",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanLength",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "angle",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "angleTo",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceTo",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceTo",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceTo",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceTo",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "equals",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "boolean",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "dot",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "dot",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "dot",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "dot",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "lengthSq",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "length",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanLength",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "angleTo",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceTo",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceTo",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceTo",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceTo",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceToSquared",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanDistanceTo",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "equals",
+      "parameters": [
+        "Vector3"
+      ],
+      "returnType": "boolean",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "dot",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "dot",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "dot",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "dot",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "lengthSq",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "length",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "manhattanLength",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "equals",
+      "parameters": [
+        "Vector4"
+      ],
+      "returnType": "boolean",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "angleTo",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "angleTo",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "angleTo",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "angleTo",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "dot",
+      "parameters": [
+        "Vector2"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "dot",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "dot",
+      "parameters": [
+        "number"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "dot",
+      "parameters": [
+        "boolean"
+      ],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "lengthSq",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "length",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "equals",
+      "parameters": [
+        "Quaternion"
+      ],
+      "returnType": "boolean",
+      "isStatic": false
+    },
+    {
+      "className": "Euler",
+      "methodName": "equals",
+      "parameters": [
+        "Euler"
+      ],
+      "returnType": "boolean",
+      "isStatic": false
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "determinant",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "equals",
+      "parameters": [
+        "Matrix3"
+      ],
+      "returnType": "boolean",
+      "isStatic": false
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "determinant",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "getMaxScaleOnAxis",
+      "parameters": [],
+      "returnType": "number",
+      "isStatic": false
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "equals",
+      "parameters": [
+        "Matrix4"
+      ],
+      "returnType": "boolean",
+      "isStatic": false
+    }
+  ]
+}
