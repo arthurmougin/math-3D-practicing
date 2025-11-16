@@ -1,19 +1,18 @@
 import { useRef } from "react";
+import { extend } from "@react-three/fiber";
 import type { Mesh } from "three";
 import {
-  ArrowHelper,
-  BoxHelper,
   Color,
   Euler,
-  Group,
   Matrix4,
   Quaternion,
   Vector3,
 } from "three";
+import { geometry } from "maath";
 import type { ScenarioParameter } from "../types";
 import { AMBox } from "./box";
-import { Helper } from "@react-three/drei";
-import { VertexNormalsHelper } from "three/examples/jsm/Addons.js";
+import { Billboard, Text } from "@react-three/drei";
+
 
 interface ParameterProps {
   parameter: ScenarioParameter;
@@ -71,11 +70,15 @@ function valueToMatrix4(value: unknown): Matrix4 {
  * Uses Matrix4 under the hood for all transformations regardless of value type
  */
 export function Parameter({ parameter, onClick }: ParameterProps) {
+  
+  extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry });
   const { representation, value } = parameter;
   const meshRef = useRef<Mesh>(null);
+  const textRef = useRef<Mesh>(null);
 
   // Convert value to matrix
   const matrix = valueToMatrix4(value);
+  const computedPosition = new Vector3().setFromMatrixPosition(matrix);
 
   const representationColor = new Color(representation.color);
   const dimmedColor = representationColor.multiplyScalar(0.2);
@@ -83,25 +86,83 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
   const yColor = new Color(0x00ff00).add(dimmedColor);
   const zColor = new Color(0x0000ff).add(dimmedColor);
 
+  //Width by math was the default, but did not handle short letters. And the bounding box is more accurate, but sometime does not update when text is remove.
+  const txtBBx = textRef.current?.geometry.boundingBox?.max.x;
+  const widthByMath = parameter.name.length * 0.09;
+  let textWidth =widthByMath;
+  if(txtBBx && txtBBx *2 < widthByMath){
+    textWidth = txtBBx *2;
+  }
+
+  // Label dimensions
+  const labelWidth =  textWidth +0.2;
+  const labelHeight = 0.25;
+  const borderRadius = 0.03;
+
   // Render based on representation type
   switch (representation.type) {
     case "cube":
       return (
-        <AMBox
-          ref={meshRef}
-          matrix={matrix}
-          matrixAutoUpdate={false}
-          color={representation.color}
-          onClick={onClick}
-          scale={0.5}
-        />
+        <group>
+          <Billboard position={[computedPosition.x, computedPosition.y + 0.8, computedPosition.z]}>
+            <Text
+              fontSize={0.15}
+              ref={textRef}
+              color="black"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {parameter.name}
+            </Text>
+            <mesh position={[0, 0, -0.01]}>
+              {/* @ts-ignore  */}
+              <roundedPlaneGeometry args={[labelWidth, labelHeight, borderRadius]} />
+              <meshBasicMaterial color="white" transparent opacity={0.95} />
+            </mesh>
+            <mesh position={[0, 0, -0.011]}>
+              {/* @ts-ignore  */}
+              <roundedPlaneGeometry args={[labelWidth + 0.02, labelHeight + 0.02, borderRadius]} />
+              <meshBasicMaterial color={representation.color} />
+            </mesh>
+          </Billboard>
+          <AMBox
+            ref={meshRef}
+            matrix={matrix}
+            matrixAutoUpdate={false}
+            color={representation.color}
+            onClick={onClick}
+            scale={0.5}
+          />
+        </group>
       );
 
     case "vertex":
       return (
-        <mesh matrix={matrix} matrixAutoUpdate={false}>
-          <boxGeometry args={[0.1, 0.1, 0.1]} />
-          <meshBasicMaterial color={representation.color} />
+        <group>
+          <Billboard position={[computedPosition.x, computedPosition.y + 0.3, computedPosition.z]}>
+            <Text
+              ref={textRef}
+              fontSize={0.15}
+              color="black"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {parameter.name}
+            </Text>
+            <mesh position={[0, 0, -0.01]}>
+              {/* @ts-ignore  */}
+              <roundedPlaneGeometry args={[labelWidth, labelHeight, borderRadius]} />
+              <meshBasicMaterial color="white" transparent opacity={0.95} />
+            </mesh>
+            <mesh position={[0, 0, -0.011]}>
+              {/* @ts-ignore  */}
+              <roundedPlaneGeometry args={[labelWidth + 0.02, labelHeight + 0.02, borderRadius]} />
+              <meshBasicMaterial color={representation.color} />
+            </mesh>
+          </Billboard>
+          <mesh matrix={matrix} matrixAutoUpdate={false}>
+            <boxGeometry args={[0.1, 0.1, 0.1]} />
+            <meshBasicMaterial color={representation.color} />
           <arrowHelper
             args={[
               new Vector3(1, 0, 0),
@@ -132,7 +193,8 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
               0.05,
             ]}
           />
-        </mesh>
+          </mesh>
+        </group>
       );
 
     default:
