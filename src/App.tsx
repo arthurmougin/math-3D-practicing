@@ -12,7 +12,7 @@ import { DirectionalLight, DoubleSide, Vector3 } from "three";
 import "./App.css";
 import { AMBox } from "./components/box";
 import { AMCamera } from "./components/camera";
-import { ScenarioCreator } from "./components/scenarioCreator";
+import { ScenarioCreator } from "./components/creation/scenarioCreator";
 import { ScenarioVisualization } from "./components/scenarioVisualization";
 
 function App() {

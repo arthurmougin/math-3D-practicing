@@ -1,10 +1,6 @@
 import * as THREE from "three";
 import { create } from "zustand";
-
-interface CameraState {
-  target: THREE.Vector3;
-  setTarget: (target: THREE.Vector3) => void;
-}
+import type { CameraState } from "../types";
 
 const defaultTarget = new THREE.Vector3(0, 0, 0);
 

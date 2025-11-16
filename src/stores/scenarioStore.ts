@@ -1,43 +1,9 @@
-import type { Euler, Matrix4, Quaternion, Vector3 } from "three";
 import { create } from "zustand";
-
-export type MathDataType =
-  | Vector3
-  | Quaternion
-  | Matrix4
-  | Euler
-  | number[]
-  | number;
-
-export type RepresentationType = "vertex" | "cube"; //TODO | 'mesh' | 'line' | 'plane' ;
-
-export interface ParameterRepresentation {
-  type: RepresentationType;
-  color: string;
-}
-
-export interface ScenarioParameter {
-  id: string;
-  name: string;
-  value: MathDataType;
-  representation: ParameterRepresentation;
-}
-
-export interface ScenarioAnswer {
-  value: MathDataType;
-  representation: ParameterRepresentation;
-}
-
-export interface MathScenario {
-  id: string;
-  title: string;
-  description: string;
-  tags: string[];
-  parameters: ScenarioParameter[];
-  equation: string; // Function name or description (e.g., "applyQuaternion", "multiplyMatrices")
-  answer: ScenarioAnswer;
-  timelineProgress: number; // 0 to 1 for lerp visualization
-}
+import type {
+  EquationExecutionMode,
+  MathScenario,
+  ScenarioParameter,
+} from "../types";
 
 /**
  * Helper function to validate if two values have matching types
@@ -65,13 +31,6 @@ function typesMatch(value1: unknown, value2: unknown): boolean {
   }
 
   return false;
-}
-
-export interface EquationExecutionMode {
-  type: "instance" | "static";
-  callerParameterId?: string; // For instance methods, the parameter that owns the method
-  callerParameterName?: string;
-  argumentParameterIds?: string[]; // The other parameters used as arguments
 }
 
 /**
@@ -171,119 +130,91 @@ export function validateScenarioEquation(scenario: MathScenario): {
 }
 
 interface ScenarioStore {
-  scenarios: MathScenario[];
+  scenarios: Map<string, MathScenario>;
   currentScenarioId: string | null;
 
   addScenario: (scenario: MathScenario) => void;
-  removeScenario: (id: string) => void;
-  updateScenario: (id: string, updates: Partial<MathScenario>) => void;
-  setCurrentScenario: (id: string | null) => void;
-  getCurrentScenario: () => MathScenario | undefined;
-  updateTimelineProgress: (id: string, progress: number) => void;
-  updateCurrentScenarioParameter: (
-    parameterId: string,
-    updates: Partial<ScenarioParameter>
-  ) => void;
+  removeScenario: (scenarioId: string) => void;
+  updateScenario: (scenarioId: string, updatedFields: Partial<MathScenario>) => void;
+  setCurrentScenario: (scenarioId: string | null) => void;
+  getCurrentScenario: () => MathScenario | null;
+  getScenario: (scenarioId: string) => MathScenario | undefined;
 
-  // Parameter management functions
   addParameter: (scenarioId: string, parameter: ScenarioParameter) => void;
   removeParameter: (scenarioId: string, parameterId: string) => void;
   updateParameter: (
     scenarioId: string,
     parameterId: string,
-    updates: Partial<ScenarioParameter>
+    updatedFields: Partial<ScenarioParameter>
   ) => void;
 }
 
 export const useScenarioStore = create<ScenarioStore>((set, get) => ({
-  scenarios: [],
+  scenarios: new Map(),
   currentScenarioId: null,
-
   addScenario: (scenario) =>
     set((state) => ({
-      scenarios: [...state.scenarios, scenario],
+      scenarios: new Map(state.scenarios).set(scenario.id, scenario),
     })),
-
-  removeScenario: (id) =>
-    set((state) => ({
-      scenarios: state.scenarios.filter((s) => s.id !== id),
-      currentScenarioId:
-        state.currentScenarioId === id ? null : state.currentScenarioId,
-    })),
-
-  updateScenario: (id, updates) =>
-    set((state) => ({
-      scenarios: state.scenarios.map((s) =>
-        s.id === id ? { ...s, ...updates } : s
-      ),
-    })),
-
-  setCurrentScenario: (id) => set({ currentScenarioId: id }),
-
-  getCurrentScenario: () => {
-    const { scenarios, currentScenarioId } = get();
-    return scenarios.find((s) => s.id === currentScenarioId);
-  },
-
-  updateTimelineProgress: (id, progress) =>
-    set((state) => ({
-      scenarios: state.scenarios.map((s) =>
-        s.id === id
-          ? { ...s, timelineProgress: Math.max(0, Math.min(1, progress)) }
-          : s
-      ),
-    })),
-
-  updateCurrentScenarioParameter: (parameterId, updates) =>
+  removeScenario: (scenarioId) =>
     set((state) => {
-      if (!state.currentScenarioId) return state;
-
+      const newScenarios = new Map(state.scenarios);
+      newScenarios.delete(scenarioId);
+      return { scenarios: newScenarios };
+    }),
+  updateScenario: (scenarioId, updatedFields) =>
+    set((state) => {
+      const scenario = state.scenarios.get(scenarioId);
+      if (!scenario) throw new Error("Scenario not found");
+      const updatedScenario = { ...scenario, ...updatedFields };
       return {
-        scenarios: state.scenarios.map((s) =>
-          s.id === state.currentScenarioId
-            ? {
-                ...s,
-                parameters: s.parameters.map((p) =>
-                  p.id === parameterId ? { ...p, ...updates } : p
-                ),
-              }
-            : s
-        ),
+        scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
       };
     }),
-
+  setCurrentScenario: (scenarioId) => set({ currentScenarioId: scenarioId }),
+  getCurrentScenario: () => {
+    const { currentScenarioId, scenarios } = get();
+    if (!currentScenarioId) return null;
+    return scenarios.get(currentScenarioId) || null;
+  },
+  getScenario: (scenarioId) => get().scenarios.get(scenarioId), 
   addParameter: (scenarioId, parameter) =>
-    set((state) => ({
-      scenarios: state.scenarios.map((s) =>
-        s.id === scenarioId
-          ? { ...s, parameters: [...s.parameters, parameter] }
-          : s
-      ),
-    })),
-
+    set((state) => {
+      const scenario = state.scenarios.get(scenarioId);
+      if (!scenario) throw new Error("Scenario not found");
+      const updatedScenario = {
+        ...scenario,
+        parameters: [...scenario.parameters, parameter],
+      };
+      return {
+        scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
+      };
+    }),
   removeParameter: (scenarioId, parameterId) =>
-    set((state) => ({
-      scenarios: state.scenarios.map((s) =>
-        s.id === scenarioId
-          ? {
-              ...s,
-              parameters: s.parameters.filter((p) => p.id !== parameterId),
-            }
-          : s
-      ),
-    })),
-
-  updateParameter: (scenarioId, parameterId, updates) =>
-    set((state) => ({
-      scenarios: state.scenarios.map((s) =>
-        s.id === scenarioId
-          ? {
-              ...s,
-              parameters: s.parameters.map((p) =>
-                p.id === parameterId ? { ...p, ...updates } : p
-              ),
-            }
-          : s
-      ),
-    })),
+    set((state) => {
+      const scenario = state.scenarios.get(scenarioId);
+      if (!scenario) throw new Error("Scenario not found");
+      const updatedScenario = {
+        ...scenario,
+        parameters: scenario.parameters.filter((p) => p.id !== parameterId),
+      };
+      return {
+        scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
+      };
+    }),
+  updateParameter: (scenarioId, parameterId, updatedFields) =>
+    set((state) => {
+      const scenario = state.scenarios.get(scenarioId);
+      if (!scenario) throw new Error("Scenario not found");
+      const updatedParameters = scenario.parameters.map((p) =>
+        p.id === parameterId ? { ...p, ...updatedFields } : p
+      );
+      const updatedScenario = {
+        ...scenario,
+        parameters: updatedParameters,
+      };
+      return {
+        scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
+      };
+    }),
 }));
