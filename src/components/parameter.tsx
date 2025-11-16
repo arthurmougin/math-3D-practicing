@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
-import type { ScenarioParameter } from "../stores/scenarioStore";
+import type { ScenarioParameter } from  "../types";
 import { AMBox } from "./box";
 
 interface ParameterProps {

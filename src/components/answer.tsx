@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
-import type { ScenarioAnswer } from "../stores/scenarioStore";
 import { AMBox } from "./box";
+import type { ScenarioAnswer } from "../types";
 
 interface AnswerProps {
   answer: ScenarioAnswer;
