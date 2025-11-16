@@ -16,7 +16,9 @@ import {
   type RepresentationType,
 } from "../../types.d";
 import { useScenarioStore } from "../../stores/scenarioStore";
+import { useCameraStore } from "../../stores/cameraStore";
 import { ParameterUI } from "./parameterUI";
+import type { Object3DEventMap } from "three";
 
 /**
  * UI for creating and editing math scenarios
@@ -24,6 +26,7 @@ import { ParameterUI } from "./parameterUI";
  */
 export function ScenarioCreator() {
   const scenarioStore = useScenarioStore();
+  const cameraStore = useCameraStore();
 
   const [tempScenarioId, setTempScenarioId] = useState<string | null>(null);
   const savedRef = useRef(false);
@@ -110,6 +113,21 @@ export function ScenarioCreator() {
       scenarioStore.setCurrentScenario(null);
     }
   };
+
+  const handlePointerEnter = (event: Object3DEventMap['pointerenter'] ) => {
+    // Ignore if any button is pressed (user is dragging)
+    if((event.nativeEvent as PointerEvent).buttons !== 0) return;
+    console.log("Pointer entered ScenarioCreator UI",event);
+    cameraStore.setEnabled(false);
+  };
+
+  const handlePointerLeave = (event: Object3DEventMap['pointerleave']) => {
+    // Ignore if any button is pressed (user is dragging)
+    if((event.nativeEvent as PointerEvent).buttons !== 0) return;
+    console.log("Pointer left ScenarioCreator UI",event);
+    cameraStore.setEnabled(true);
+  };
+
   const currentScenario = scenarioStore.getCurrentScenario();
 
   if (!currentScenario) return null;
@@ -131,11 +149,14 @@ export function ScenarioCreator() {
 
       <Card
         positionType="absolute"
+        id="test"
         positionTop={20}
         positionLeft={20}
         width={400}
         height="90vh"
         flexDirection="column"
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       >
         <CardHeader flexShrink={0}>
           <Text fontSize={20} fontWeight="bold">

@@ -24,9 +24,9 @@ export const AMCamera = () => {
       target={cameraStore.target}
       maxDistance={20}
       minDistance={1.5}
-      enableRotate={true}
-      enablePan={true}
-      enableZoom={true}
+      enableRotate={cameraStore.enabled}
+      enablePan={cameraStore.enabled}
+      enableZoom={cameraStore.enabled}
     />
   );
 };

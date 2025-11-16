@@ -10,4 +10,6 @@ export const useCameraStore = create<CameraState>((set) => ({
     console.log("Camera target changed:", target);
     set({ target });
   },
+  enabled: true,
+  setEnabled: (enabled) => set({ enabled }),
 }));

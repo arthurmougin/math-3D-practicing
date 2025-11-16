@@ -20,6 +20,27 @@ import { useState } from "react";
 import { useScenarioStore } from "../../stores/scenarioStore";
 
 /**
+ * Predefined list of parameter names to cycle through
+ */
+
+
+/**
+ * Predefined list of colors to cycle through
+ */
+const PARAMETER_COLORS = [
+  "#ff0000", // Red
+  "#00ff00", // Green
+  "#0000ff", // Blue
+  "#ffff00", // Yellow
+  "#ff00ff", // Magenta
+  "#00ffff", // Cyan
+  "#ff8800", // Orange
+  "#8800ff", // Purple
+  "#00ff88", // Teal
+  "#ff0088", // Pink
+];
+
+/**
  * Helper to extract readable values from a parameter for the UI
  */
 
@@ -28,6 +49,70 @@ type ParameterValue = {
   list: number[];
   order?: "XYZ" | "YZX" | "ZXY" | "XZY" | "YXZ" | "ZYX";
 };
+
+function findNonOverlappingPosition(parameters: ScenarioParameter[]): Vector3 {
+  const SPACING = 1.5; // Compact spacing between positions
+  const breathingRoom = 1.1; // min space between parameters
+  let shift = 0;
+
+  do {
+    // Predefined positions close to origin for up to 8 parameters
+    const predefinedPositions = [
+      [0 + shift, 0, 0], // First parameter at origin
+      [SPACING + shift, 0, 0], // Second on X axis
+      [0 + shift, SPACING, 0], // Third on Y axis
+      [0 + shift, 0, SPACING], // Fourth on Z axis
+      [SPACING + shift, SPACING, 0], // Fifth diagonal XY
+      [SPACING + shift, 0, SPACING], // Sixth diagonal XZ
+      [0 + shift, SPACING, SPACING], // Seventh diagonal YZ
+      [SPACING + shift, SPACING, SPACING], // Eighth corner
+    ];
+    for (let pos of predefinedPositions) {
+      const position = new Vector3(...pos);
+      const overlapping = parameters.some((param) => {
+        if (param.value instanceof Vector3) {
+          return param.value.distanceTo(position) < breathingRoom;
+        }
+        return false;
+      });
+      if (!overlapping) {
+        return position;
+      }
+    }
+
+    shift += 3; // Increase spacing and try again
+  } while (true);
+}
+
+function findNonOverlappingName(Parameters : ScenarioParameter[]): string {
+  const existingNames = new Set(Parameters.map((param) => param.name));
+  const PARAMETER_NAMES = [
+    "Alpha",
+    "Beta",
+    "Gamma",
+    "Delta",
+    "Epsilon",
+    "Zeta",
+    "Theta",
+    "Lambda",
+    "Sigma",
+    "Omega",
+  ];
+  let increment = 0;
+  do
+  {
+    for (let name of PARAMETER_NAMES) {
+      if (increment > 0) {
+        name = `${name} (${increment})`;
+      }
+      if (!existingNames.has(name)) {
+        return name;
+      }
+    }
+    increment++;
+  } while (true);
+
+}
 
 function getParameterValues(param: ScenarioParameter): ParameterValue {
   const value = param.value;
@@ -58,7 +143,7 @@ function getParameterValues(param: ScenarioParameter): ParameterValue {
 
 export function ParameterUI({ scenarioId }: { scenarioId: string }) {
   const scenarioStore = useScenarioStore();
-
+  const parameters = scenarioStore.getScenario(scenarioId)?.parameters || [];
   const parameterTypes: ParameterType[] = [
     "Vector3",
     "Euler",
@@ -86,11 +171,14 @@ export function ParameterUI({ scenarioId }: { scenarioId: string }) {
   const handleAddParameter = () => {
     if (!scenarioId) return;
 
+    const paramCount = parameters.length ?? 0;
+    const color = PARAMETER_COLORS[paramCount % PARAMETER_COLORS.length];
+
     const newParam: ScenarioParameter = {
       id: `param-${Date.now()}`,
-      name: "New Parameter",
-      value: new Vector3(0, 0, 0),
-      representation: { type: "cube", color: "#ff0000" },
+      name: findNonOverlappingName(parameters),
+      value: findNonOverlappingPosition(parameters),
+      representation: { type: "cube", color },
     };
 
     scenarioStore.addParameter(scenarioId, newParam);
@@ -166,16 +254,14 @@ export function ParameterUI({ scenarioId }: { scenarioId: string }) {
         >
           <Text fontSize={16} fontWeight="bold">
             Parameters (
-            {scenarioStore.getScenario(scenarioId)?.parameters.length ?? 0})
+            {parameters.length ?? 0})
           </Text>
           <Button onClick={handleAddParameter} size="sm">
             <Text>+ Add Parameter</Text>
           </Button>
         </Container>
 
-        {scenarioStore
-          .getScenario(scenarioId)
-          ?.parameters.map((param: ScenarioParameter) => {
+        {parameters.map((param: ScenarioParameter) => {
             const paramValues = getParameterValues(param);
 
             return (

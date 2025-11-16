@@ -50,7 +50,9 @@ export interface EquationExecutionMode {
 }
 
 
-interface CameraState {
+export interface CameraState {
   target: THREE.Vector3;
   setTarget: (target: THREE.Vector3) => void;
+  enabled: boolean;
+  setEnabled: (enabled: boolean) => void;
 }

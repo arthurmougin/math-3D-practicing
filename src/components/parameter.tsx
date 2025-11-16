@@ -1,8 +1,19 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
-import { Euler, Matrix4, Quaternion, Vector3 } from "three";
-import type { ScenarioParameter } from  "../types";
+import {
+  ArrowHelper,
+  BoxHelper,
+  Color,
+  Euler,
+  Group,
+  Matrix4,
+  Quaternion,
+  Vector3,
+} from "three";
+import type { ScenarioParameter } from "../types";
 import { AMBox } from "./box";
+import { Helper } from "@react-three/drei";
+import { VertexNormalsHelper } from "three/examples/jsm/Addons.js";
 
 interface ParameterProps {
   parameter: ScenarioParameter;
@@ -66,6 +77,12 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
   // Convert value to matrix
   const matrix = valueToMatrix4(value);
 
+  const representationColor = new Color(representation.color);
+  const dimmedColor = representationColor.multiplyScalar(0.2);
+  const xColor = new Color(0xff0000).add(dimmedColor);
+  const yColor = new Color(0x00ff00).add(dimmedColor);
+  const zColor = new Color(0x0000ff).add(dimmedColor);
+
   // Render based on representation type
   switch (representation.type) {
     case "cube":
@@ -82,14 +99,39 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
 
     case "vertex":
       return (
-        <mesh
-          ref={meshRef}
-          matrix={matrix}
-          matrixAutoUpdate={false}
-          onClick={onClick}
-        >
-          <sphereGeometry args={[0.1, 16, 16]} />
-          <meshStandardMaterial color={representation.color} />
+        <mesh matrix={matrix} matrixAutoUpdate={false}>
+          <boxGeometry args={[0.1, 0.1, 0.1]} />
+          <meshBasicMaterial color={representation.color} />
+          <arrowHelper
+            args={[
+              new Vector3(1, 0, 0),
+              new Vector3(0, 0, 0),
+              1,
+              xColor,
+              0.1,
+              0.05,
+            ]}
+          />
+          <arrowHelper
+            args={[
+              new Vector3(0, 1, 0),
+              new Vector3(0, 0, 0),
+              1,
+              yColor,
+              0.1,
+              0.05,
+            ]}
+          />
+          <arrowHelper
+            args={[
+              new Vector3(0, 0, 1),
+              new Vector3(0, 0, 0),
+              1,
+              zColor,
+              0.1,
+              0.05,
+            ]}
+          />
         </mesh>
       );
 

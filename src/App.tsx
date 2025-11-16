@@ -36,10 +36,7 @@ function App() {
 
         <axesHelper position={[0, 0.001, 0]} />
         <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
-          <GizmoViewport
-            axisColors={["red", "green", "blue"]}
-            labelColor="black"
-          />
+          <GizmoViewport/>
         </GizmoHelper>
         <Grid
           infiniteGrid={true}
