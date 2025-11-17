@@ -1,18 +1,11 @@
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import { extend } from "@react-three/fiber";
 import type { Mesh } from "three";
-import {
-  Color,
-  Euler,
-  Matrix4,
-  Quaternion,
-  Vector3,
-} from "three";
+import { Color, Euler, Matrix4, Quaternion, Vector3 } from "three";
 import { geometry } from "maath";
 import type { ScenarioParameter } from "../types";
 import { AMBox } from "./box";
 import { Billboard, Text } from "@react-three/drei";
-
 
 interface ParameterProps {
   parameter: ScenarioParameter;
@@ -70,7 +63,6 @@ function valueToMatrix4(value: unknown): Matrix4 {
  * Uses Matrix4 under the hood for all transformations regardless of value type
  */
 export function Parameter({ parameter, onClick }: ParameterProps) {
-  
   extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry });
   const { representation, value } = parameter;
   const meshRef = useRef<Mesh>(null);
@@ -89,13 +81,13 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
   //Width by math was the default, but did not handle short letters. And the bounding box is more accurate, but sometime does not update when text is remove.
   const txtBBx = textRef.current?.geometry.boundingBox?.max.x;
   const widthByMath = parameter.name.length * 0.09;
-  let textWidth =widthByMath;
-  if(txtBBx && txtBBx *2 < widthByMath){
-    textWidth = txtBBx *2;
+  let textWidth = widthByMath;
+  if (txtBBx && txtBBx * 2 < widthByMath) {
+    textWidth = txtBBx * 2;
   }
 
   // Label dimensions
-  const labelWidth =  textWidth +0.2;
+  const labelWidth = textWidth + 0.2;
   const labelHeight = 0.25;
   const borderRadius = 0.03;
 
@@ -104,7 +96,13 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
     case "cube":
       return (
         <group>
-          <Billboard position={[computedPosition.x, computedPosition.y + 0.8, computedPosition.z]}>
+          <Billboard
+            position={[
+              computedPosition.x,
+              computedPosition.y + 0.8,
+              computedPosition.z,
+            ]}
+          >
             <Text
               fontSize={0.15}
               ref={textRef}
@@ -116,12 +114,16 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
             </Text>
             <mesh position={[0, 0, -0.01]}>
               {/* @ts-ignore  */}
-              <roundedPlaneGeometry args={[labelWidth, labelHeight, borderRadius]} />
+              <roundedPlaneGeometry
+                args={[labelWidth, labelHeight, borderRadius]}
+              />
               <meshBasicMaterial color="white" transparent opacity={0.95} />
             </mesh>
             <mesh position={[0, 0, -0.011]}>
               {/* @ts-ignore  */}
-              <roundedPlaneGeometry args={[labelWidth + 0.02, labelHeight + 0.02, borderRadius]} />
+              <roundedPlaneGeometry
+                args={[labelWidth + 0.02, labelHeight + 0.02, borderRadius]}
+              />
               <meshBasicMaterial color={representation.color} />
             </mesh>
           </Billboard>
@@ -139,60 +141,72 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
     case "vertex":
       return (
         <group>
-          <Billboard position={[computedPosition.x, computedPosition.y + 0.3, computedPosition.z]}>
-            <Text
-              ref={textRef}
-              fontSize={0.15}
-              color="black"
-              anchorX="center"
-              anchorY="middle"
-            >
-              {parameter.name}
-            </Text>
-            <mesh position={[0, 0, -0.01]}>
-              {/* @ts-ignore  */}
-              <roundedPlaneGeometry args={[labelWidth, labelHeight, borderRadius]} />
-              <meshBasicMaterial color="white" transparent opacity={0.95} />
-            </mesh>
-            <mesh position={[0, 0, -0.011]}>
-              {/* @ts-ignore  */}
-              <roundedPlaneGeometry args={[labelWidth + 0.02, labelHeight + 0.02, borderRadius]} />
-              <meshBasicMaterial color={representation.color} />
-            </mesh>
+          <Billboard
+            position={[
+              computedPosition.x,
+              computedPosition.y + 0.3,
+              computedPosition.z,
+            ]}
+          >
+            <Suspense>
+              <Text
+                ref={textRef}
+                fontSize={0.15}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                {parameter.name}
+              </Text>
+              <mesh position={[0, 0, -0.01]}>
+                {/* @ts-ignore  */}
+                <roundedPlaneGeometry
+                  args={[labelWidth, labelHeight, borderRadius]}
+                />
+                <meshBasicMaterial color="white" transparent opacity={0.95} />
+              </mesh>
+              <mesh position={[0, 0, -0.011]}>
+                {/* @ts-ignore  */}
+                <roundedPlaneGeometry
+                  args={[labelWidth + 0.02, labelHeight + 0.02, borderRadius]}
+                />
+                <meshBasicMaterial color={representation.color} />
+              </mesh>
+            </Suspense>
           </Billboard>
           <mesh matrix={matrix} matrixAutoUpdate={false}>
             <boxGeometry args={[0.1, 0.1, 0.1]} />
             <meshBasicMaterial color={representation.color} />
-          <arrowHelper
-            args={[
-              new Vector3(1, 0, 0),
-              new Vector3(0, 0, 0),
-              1,
-              xColor,
-              0.1,
-              0.05,
-            ]}
-          />
-          <arrowHelper
-            args={[
-              new Vector3(0, 1, 0),
-              new Vector3(0, 0, 0),
-              1,
-              yColor,
-              0.1,
-              0.05,
-            ]}
-          />
-          <arrowHelper
-            args={[
-              new Vector3(0, 0, 1),
-              new Vector3(0, 0, 0),
-              1,
-              zColor,
-              0.1,
-              0.05,
-            ]}
-          />
+            <arrowHelper
+              args={[
+                new Vector3(1, 0, 0),
+                new Vector3(0, 0, 0),
+                1,
+                xColor,
+                0.1,
+                0.05,
+              ]}
+            />
+            <arrowHelper
+              args={[
+                new Vector3(0, 1, 0),
+                new Vector3(0, 0, 0),
+                1,
+                yColor,
+                0.1,
+                0.05,
+              ]}
+            />
+            <arrowHelper
+              args={[
+                new Vector3(0, 0, 1),
+                new Vector3(0, 0, 0),
+                1,
+                zColor,
+                0.1,
+                0.05,
+              ]}
+            />
           </mesh>
         </group>
       );
