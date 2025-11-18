@@ -8,7 +8,7 @@ import {
   Separator,
   colors,
 } from "@react-three/uikit-default";
-import { Search, X, ChevronDown, ChevronRight, Code, Settings } from "@react-three/uikit-lucide";
+import { Search, X, ChevronDown, ChevronRight, Code, Settings, ArrowLeft, ChevronLeft } from "@react-three/uikit-lucide";
 import { useState, useMemo } from "react";
 import type { Object3DEventMap } from "three";
 import {
@@ -27,15 +27,16 @@ import { useCameraStore } from "../../stores/cameraStore";
  * 
  * @architecture
  * - Sidebar fixe de 320px de large à gauche de l'écran
- * - Liste compacte de méthodes avec scroll indépendant
- * - Tooltip de détails qui apparaît au hover à droite de la sidebar
+ * - Panneau glissant: vue liste ↔ vue détail d'une méthode
+ * - Transition horizontale fluide entre les deux vues
  * 
  * @features
- * - Recherche par nom de méthode ou description
+ * - Recherche par nom de méthode ou description avec bouton clear intégré
  * - Filtres par classe (Vector3, Quaternion, etc.) et type de retour (number, boolean)
  * - Groupement des méthodes par nom (pour gérer les overloads)
- * - Affichage de toute la documentation JSDoc au hover
+ * - Vue détaillée avec documentation JSDoc complète au click
  * - Désactivation automatique de l'OrbitControl pendant l'interaction
+ * - Scrollbars visibles et personnalisées
  * 
  * @data
  * Source: equationDatabase.source.json (généré depuis les sources Three.js)
@@ -50,11 +51,14 @@ export function EquationDatabaseBrowser() {
   const [selectedClass, setSelectedClass] = useState<SupportedType | "all">("all");
   const [selectedReturnType, setSelectedReturnType] = useState<string | "all">("all");
   
-  // État pour gérer le tooltip de détails au hover
-  const [hoveredMethod, setHoveredMethod] = useState<string | null>(null);
+  // État pour gérer la méthode sélectionnée qui affiche le panneau de détails
+  const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   
   // État pour l'expansion du panneau de filtres
   const [filtersExpanded, setFiltersExpanded] = useState(false);
+  
+  // État pour le collapse/expand du panneau entier
+  const [panelCollapsed, setPanelCollapsed] = useState(false);
 
   /**
    * Désactive l'OrbitControl quand le pointeur entre dans la sidebar
@@ -166,48 +170,100 @@ export function EquationDatabaseBrowser() {
   }, [filteredMethods]);
 
   return (
-    <Container
-      flexDirection="column"
-      gap={12}
-      padding={16}
-      width={320}              // Largeur fixe de la sidebar
-      height="100%"            // Prend toute la hauteur disponible
-      backgroundColor={colors.card}
-      borderRightWidth={1}
-      borderColor={colors.border}
-      onPointerEnter={handlePointerEnter}   // Désactive OrbitControl au survol
-      onPointerLeave={handlePointerLeave}   // Réactive OrbitControl quand on sort
-    >
-      {/* En-tête compact avec icône et titre */}
-      <Container flexDirection="row" alignItems="center" gap={8}>
-        <Code width={20} height={20} color={colors.primary} />
-        <Text fontSize={16} fontWeight="bold" lineHeight="100%">
-          Equations
-        </Text>
-      </Container>
+    <>
+      {/* Bouton flottant pour rouvrir le panneau quand il est collapsed */}
+      {panelCollapsed && (
+        <Container
+          positionType="absolute"
+          positionLeft={8}
+          positionTop={8}
+          zIndex={1000}
+          onClick={() => setPanelCollapsed(false)}
+          cursor="pointer"
+          padding={8}
+          borderRadius={8}
+          backgroundColor={colors.card}
+          borderWidth={1}
+          borderColor={colors.border}
+          hover={{ backgroundColor: colors.accent }}
+          opacity={1}
+        >
+          <ChevronRight width={20} height={20} color={colors.primary} />
+        </Container>
+      )}
+
+      {/* Panneau principal */}
+      <Container
+        width={320}
+        height="100%"
+        backgroundColor={colors.card}
+        borderRightWidth={1}
+        borderColor={colors.border}
+        onPointerEnter={handlePointerEnter}   // Désactive OrbitControl au survol
+        onPointerLeave={handlePointerLeave}   // Réactive OrbitControl quand on sort
+        overflow="hidden"        // Cache le débordement pour la transition
+        transformTranslateX={panelCollapsed ? -320 : 0}  // Glisse hors écran quand collapsed
+      >
+      {/* Container principal qui se translate horizontalement entre liste et détail */}
+      <Container
+        flexDirection="row"
+        width="200%"  // Deux vues côte à côte
+        height="100%"
+        transformTranslateX={selectedMethod ? -320 : 0}  // Glisse vers la gauche quand une méthode est sélectionnée
+      >
+        {/* Vue Liste (recherche et méthodes) */}
+        <Container
+          width={320}
+          height="100%"
+          flexDirection="column"
+          gap={12}
+          padding={8}
+          flexShrink={0}
+        >
+          {/* En-tête compact avec icône et titre */}
+          <Container flexDirection="row" alignItems="center" gap={8} minHeight={32}>
+            <Container
+              onClick={() => setPanelCollapsed(!panelCollapsed)}
+              cursor="pointer"
+              padding={4}
+              borderRadius={6}
+              hover={{ backgroundColor: colors.accent }}
+              flexShrink={0}
+            >
+              <Code width={20} height={20} color={colors.primary} />
+            </Container>
+            <Text fontSize={16} fontWeight="bold" lineHeight="100%">
+              Equations
+            </Text>
+          </Container>
 
       <Separator />
 
-      {/* Barre de recherche compacte */}
+      {/* Barre de recherche compacte avec bouton clear intégré */}
       <Container flexDirection="column" gap={6}>
-        <Container gap={6} alignItems="center">
-          <Container flexGrow={1}>
-            <Input
-              value={searchQuery}
-              onValueChange={setSearchQuery}
-              placeholder="Search..."
-              width="100%"
-            />
-          </Container>
-          {/* Bouton clear visible uniquement si une recherche est active */}
+        <Container positionType="relative" width="100%">
+          <Input
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+            placeholder="Search..."
+            width="100%"
+            paddingRight={searchQuery ? 36 : undefined}
+          />
+          {/* Bouton clear visible uniquement si une recherche est active, positionné en absolu à droite */}
           {searchQuery && (
-            <Button
-              variant="ghost"
-              size="icon"
+            <Container
+              positionType="absolute"
+              positionRight={8}
+              positionTop={8}
               onClick={() => setSearchQuery("")}
+              cursor="pointer"
+              padding={4}
+              borderRadius={4}
+              hover={{ backgroundColor: colors.accent }}
+              zIndex={10}
             >
-              <X width={14} height={14} />
-            </Button>
+              <X width={14} height={14} color={colors.mutedForeground} />
+            </Container>
           )}
         </Container>
       </Container>
@@ -316,6 +372,11 @@ export function EquationDatabaseBrowser() {
         overflow="scroll"     // Active le scroll sur cette zone uniquement
         flexGrow={1}          // Prend tout l'espace restant
         height={0}            // Nécessaire avec flexGrow pour activer le scroll (doc UIKit)
+        paddingRight={12}         // Espace pour la scrollbar
+        scrollbarColor="#000000"  // Scrollbar noire
+        scrollbarWidth={8}        // Largeur de 8px
+        scrollbarBorderRadius={4} // Coins arrondis
+        scrollbarZIndex={100}     // Au-dessus des éléments
       >
         {groupedMethods.length === 0 ? (
           // Message affiché si aucune méthode ne correspond aux filtres
@@ -333,12 +394,10 @@ export function EquationDatabaseBrowser() {
               flexDirection="column"
               gap={2}
               flexShrink={0}        // Empêche l'écrasement visuel des éléments
-              onPointerEnter={() => setHoveredMethod(methodName)}   // Affiche le tooltip
-              onPointerLeave={() => setHoveredMethod(null)}         // Cache le tooltip
             >
-              {/* Carte compacte de la méthode */}
+              {/* Carte compacte de la méthode - cliquable pour afficher les détails */}
               <Container
-                backgroundColor={hoveredMethod === methodName ? colors.accent : colors.card}
+                backgroundColor={selectedMethod === methodName ? colors.accent : colors.card}
                 hover={{ backgroundColor: colors.accent }}
                 padding={8}
                 borderRadius={6}
@@ -346,6 +405,7 @@ export function EquationDatabaseBrowser() {
                 flexDirection="column"
                 gap={4}
                 minHeight={48}      // Hauteur minimale pour éviter l'écrasement
+                onClick={() => setSelectedMethod(methodName)}
               >
                 {/* En-tête: nom de la méthode + badge avec nombre d'overloads (si > 1) */}
                 <Container flexDirection="row" justifyContent="space-between" alignItems="center" gap={8}>
@@ -373,189 +433,202 @@ export function EquationDatabaseBrowser() {
                   {methods[0].className}.{methods[0].methodName}(...) → {methods[0].returnType}
                 </Text>
               </Container>
-
             </Container>
           ))
         )}
       </Container>
+        </Container>
 
-      {/* 
-        Tooltip de détails au hover
-        
-        Positionné en absolu à droite de la sidebar (336px = 320px sidebar + 16px gap)
-        Affiche la documentation complète de la méthode survolée
-        
-        Contient pour chaque surcharge:
-        - Badge de classe
-        - Signature complète
-        - Description JSDoc
-        - Liste des paramètres avec descriptions
-        - Type et description du retour
-        - Exemple d'utilisation (si disponible)
-      */}
-      {hoveredMethod && (
+        {/* Vue Détail (documentation complète de la méthode sélectionnée) */}
         <Container
-          positionType="absolute"
-          positionLeft={336}        // Position à droite de la sidebar
-          positionTop={0}
-          width={500}               // Largeur généreuse pour la documentation
-          maxHeight="100%"
-          overflow="scroll"         // Scroll si le contenu dépasse
-          zIndex={1000}             // Au-dessus de tout le reste
+          width={320}
+          height="100%"
+          flexDirection="column"
+          gap={12}
+          padding={8}
+          flexShrink={0}
         >
-          <Card>
-            <CardContent padding={16}>
-              <Container flexDirection="column" gap={16}>
-                {/* Trouve la méthode survolée et affiche toutes ses surcharges */}
-                {groupedMethods
-                  .find(([name]) => name === hoveredMethod)?.[1]
-                  .map((method, idx) => (
-                    <Container key={idx} flexDirection="column" gap={12}>
-                      {/* Séparateur entre les surcharges (sauf pour la première) */}
-                      {idx > 0 && <Separator />}
-                      
-                      {/* Badge indiquant la classe (Vector3, Quaternion, etc.) */}
-                      <Container
-                        backgroundColor={colors.primary}
-                        paddingX={10}
-                        paddingY={5}
-                        borderRadius={6}
-                        alignSelf="flex-start"
-                      >
-                        <Text fontSize={12} fontWeight="bold" color={colors.primaryForeground} lineHeight="100%">
-                          {method.className}
-                        </Text>
-                      </Container>
+          {/* En-tête avec bouton retour */}
+          <Container flexDirection="row" alignItems="center" gap={8} minHeight={32}>
+            <Container
+              onClick={() => setSelectedMethod(null)}
+              cursor="pointer"
+              padding={6}
+              borderRadius={6}
+              hover={{ backgroundColor: colors.accent }}
+              flexShrink={0}
+            >
+              <ArrowLeft width={20} height={20} color={colors.primary} />
+            </Container>
+            <Text fontSize={16} fontWeight="bold" lineHeight="100%" flexGrow={1}>
+              {selectedMethod}
+            </Text>
+          </Container>
 
-                      {/* Signature complète de la méthode */}
+          <Separator />
+
+          {/* Contenu scrollable de la documentation */}
+          <Container
+            overflow="scroll"
+            flexGrow={1}
+            height={0}
+            flexDirection="column"
+            gap={16}
+            paddingRight={12}         // Espace pour la scrollbar
+            scrollbarColor="#000000"  // Scrollbar noire
+            scrollbarWidth={8}        // Largeur de 8px
+            scrollbarBorderRadius={4} // Coins arrondis
+            scrollbarZIndex={100}     // Au-dessus des éléments
+          >
+            {/* Affiche toutes les surcharges de la méthode sélectionnée */}
+            {selectedMethod && groupedMethods
+              .find(([name]) => name === selectedMethod)?.[1]
+              .map((method, idx) => (
+                <Container key={idx} flexDirection="column" gap={12} flexShrink={0}>
+                  {/* Séparateur entre les surcharges (sauf pour la première) */}
+                  {idx > 0 && <Separator />}
+                  
+                  {/* Badge indiquant la classe (Vector3, Quaternion, etc.) */}
+                  <Container
+                    backgroundColor={colors.primary}
+                    paddingX={10}
+                    paddingY={5}
+                    borderRadius={6}
+                    alignSelf="flex-start"
+                  >
+                    <Text fontSize={12} fontWeight="bold" color={colors.primaryForeground} lineHeight="100%">
+                      {method.className}
+                    </Text>
+                  </Container>
+
+                  {/* Signature complète de la méthode */}
+                  <Container
+                    backgroundColor={colors.muted}
+                    padding={12}
+                    borderRadius={8}
+                    flexDirection="column"
+                    gap={4}
+                  >
+                    <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
+                      SIGNATURE
+                    </Text>
+                    <Text fontSize={13} fontFamily="monospace" lineHeight="18px">
+                      {method.methodName}(
+                      {method.parameters.map(p => 
+                        `${p.name}: ${p.type}${p.optional ? "?" : ""}`
+                      ).join(", ")}
+                      ) → {method.returnType}
+                    </Text>
+                  </Container>
+
+                  {/* Description JSDoc de la méthode */}
+                  {method.description && (
+                    <Container flexDirection="column" gap={6}>
+                      <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
+                        DESCRIPTION
+                      </Text>
+                      <Text fontSize={13} lineHeight="18px">{method.description}</Text>
+                    </Container>
+                  )}
+
+                  {/* Liste des paramètres avec leurs descriptions */}
+                  {method.parameters.length > 0 && (
+                    <Container flexDirection="column" gap={8}>
+                      <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
+                        PARAMETERS
+                      </Text>
+                      <Container flexDirection="column" gap={8}>
+                        {method.parameters.map((param, pIdx) => (
+                          <Container
+                            key={pIdx}
+                            flexDirection="column"
+                            gap={4}
+                            backgroundColor={colors.muted}
+                            padding={12}
+                            borderRadius={6}
+                          >
+                            {/* Nom et type du paramètre avec bullet point */}
+                            <Container flexDirection="row" gap={6} alignItems="center">
+                              <Container
+                                height={6}
+                                width={6}
+                                borderRadius={1000}
+                                backgroundColor={colors.primary}
+                              />
+                              <Text fontSize={12} fontFamily="monospace" fontWeight="medium" lineHeight="100%">
+                                {param.name}: {param.type}
+                                {param.optional && " (optional)"}
+                                {param.defaultValue && ` = ${param.defaultValue}`}
+                              </Text>
+                            </Container>
+                            {/* Description JSDoc du paramètre */}
+                            {param.description && (
+                              <Text fontSize={12} color={colors.mutedForeground} lineHeight="16px" paddingLeft={12}>
+                                {param.description}
+                              </Text>
+                            )}
+                          </Container>
+                        ))}
+                      </Container>
+                    </Container>
+                  )}
+
+                  {/* Type de retour avec sa description */}
+                  {method.returnDescription && (
+                    <Container flexDirection="column" gap={6}>
+                      <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
+                        RETURNS
+                      </Text>
                       <Container
                         backgroundColor={colors.muted}
                         padding={12}
-                        borderRadius={8}
-                        flexDirection="column"
-                        gap={4}
+                        borderRadius={6}
+                        flexDirection="row"
+                        gap={8}
+                        alignItems="center"
                       >
-                        <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
-                          SIGNATURE
-                        </Text>
-                        <Text fontSize={14} fontFamily="monospace" lineHeight="20px">
-                          {method.methodName}(
-                          {method.parameters.map(p => 
-                            `${p.name}: ${p.type}${p.optional ? "?" : ""}`
-                          ).join(", ")}
-                          ) → {method.returnType}
+                        {/* Badge avec le type de retour */}
+                        <Container
+                          backgroundColor={colors.primary}
+                          paddingX={8}
+                          paddingY={4}
+                          borderRadius={4}
+                        >
+                          <Text fontSize={11} fontFamily="monospace" fontWeight="bold" color={colors.primaryForeground} lineHeight="100%">
+                            {method.returnType}
+                          </Text>
+                        </Container>
+                        {/* Description de ce qui est retourné */}
+                        <Text fontSize={12} lineHeight="16px">
+                          {method.returnDescription}
                         </Text>
                       </Container>
-
-                      {/* Description JSDoc de la méthode */}
-                      {method.description && (
-                        <Container flexDirection="column" gap={6}>
-                          <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
-                            DESCRIPTION
-                          </Text>
-                          <Text fontSize={14} lineHeight="20px">{method.description}</Text>
-                        </Container>
-                      )}
-
-                      {/* Liste des paramètres avec leurs descriptions */}
-                      {method.parameters.length > 0 && (
-                        <Container flexDirection="column" gap={8}>
-                          <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
-                            PARAMETERS
-                          </Text>
-                          <Container flexDirection="column" gap={8}>
-                            {method.parameters.map((param, pIdx) => (
-                              <Container
-                                key={pIdx}
-                                flexDirection="column"
-                                gap={4}
-                                backgroundColor={colors.muted}
-                                padding={12}
-                                borderRadius={6}
-                              >
-                                {/* Nom et type du paramètre avec bullet point */}
-                                <Container flexDirection="row" gap={6} alignItems="center">
-                                  <Container
-                                    height={6}
-                                    width={6}
-                                    borderRadius={1000}
-                                    backgroundColor={colors.primary}
-                                  />
-                                  <Text fontSize={13} fontFamily="monospace" fontWeight="medium" lineHeight="100%">
-                                    {param.name}: {param.type}
-                                    {param.optional && " (optional)"}
-                                    {param.defaultValue && ` = ${param.defaultValue}`}
-                                  </Text>
-                                </Container>
-                                {/* Description JSDoc du paramètre */}
-                                {param.description && (
-                                  <Text fontSize={13} color={colors.mutedForeground} lineHeight="18px" paddingLeft={12}>
-                                    {param.description}
-                                  </Text>
-                                )}
-                              </Container>
-                            ))}
-                          </Container>
-                        </Container>
-                      )}
-
-                      {/* Type de retour avec sa description */}
-                      {method.returnDescription && (
-                        <Container flexDirection="column" gap={6}>
-                          <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
-                            RETURNS
-                          </Text>
-                          <Container
-                            backgroundColor={colors.muted}
-                            padding={12}
-                            borderRadius={6}
-                            flexDirection="row"
-                            gap={8}
-                            alignItems="center"
-                          >
-                            {/* Badge avec le type de retour */}
-                            <Container
-                              backgroundColor={colors.primary}
-                              paddingX={8}
-                              paddingY={4}
-                              borderRadius={4}
-                            >
-                              <Text fontSize={11} fontFamily="monospace" fontWeight="bold" color={colors.primaryForeground} lineHeight="100%">
-                                {method.returnType}
-                              </Text>
-                            </Container>
-                            {/* Description de ce qui est retourné */}
-                            <Text fontSize={13} lineHeight="18px">
-                              {method.returnDescription}
-                            </Text>
-                          </Container>
-                        </Container>
-                      )}
-
-                      {/* Exemple d'utilisation (si disponible dans les données) */}
-                      {method.example && (
-                        <Container flexDirection="column" gap={6}>
-                          <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
-                            EXAMPLE
-                          </Text>
-                          <Container
-                            backgroundColor={colors.muted}
-                            padding={12}
-                            borderRadius={6}
-                          >
-                            <Text fontSize={13} fontFamily="monospace" lineHeight="18px">
-                              {method.example}
-                            </Text>
-                          </Container>
-                        </Container>
-                      )}
                     </Container>
-                  ))}
-              </Container>
-            </CardContent>
-          </Card>
+                  )}
+
+                  {/* Exemple d'utilisation (si disponible dans les données) */}
+                  {method.example && (
+                    <Container flexDirection="column" gap={6}>
+                      <Text fontSize={11} fontWeight="bold" color={colors.mutedForeground} lineHeight="100%">
+                        EXAMPLE
+                      </Text>
+                      <Container
+                        backgroundColor={colors.muted}
+                        padding={12}
+                        borderRadius={6}
+                      >
+                        <Text fontSize={12} fontFamily="monospace" lineHeight="16px">
+                          {method.example}
+                        </Text>
+                      </Container>
+                    </Container>
+                  )}
+                </Container>
+              ))}
+          </Container>
         </Container>
-      )}
+      </Container>
     </Container>
+    </>
   );
 }

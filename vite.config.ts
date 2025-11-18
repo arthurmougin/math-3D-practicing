@@ -6,4 +6,9 @@ export default defineConfig({
   plugins: [react()],
   environments: {},
   base: "/math-3D-practicing",
+  server: {
+    watch: {
+      ignored: ["**/docs/ia-only/**"]
+    }
+  }
 });
