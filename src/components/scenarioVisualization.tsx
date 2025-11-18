@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { useScenarioStore } from "../stores/scenarioStore";
 import { Answer } from "./answer";
 import { Parameter } from "./parameter";
@@ -30,7 +31,9 @@ export function ScenarioVisualization({
     <group name="scenario-visualization">
       {/* Render all parameters */}
       {parameters.map((parameter) => (
-        <Parameter key={parameter.id} parameter={parameter} />
+        <Suspense key={parameter.id} fallback={null}>
+          <Parameter key={parameter.id} parameter={parameter} />
+        </Suspense>
       ))}
 
       {/* Render answer if enabled */}

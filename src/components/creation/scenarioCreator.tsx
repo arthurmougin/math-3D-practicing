@@ -65,6 +65,7 @@ export function ScenarioCreator() {
   }, []);
 
   const handleCreateScenario = () => {
+    cameraStore.setEnabled(true);
     const currentScenario = scenarioStore.getCurrentScenario();
     if (!currentScenario) return;
 
@@ -108,6 +109,7 @@ export function ScenarioCreator() {
    * Cancel scenario creation and remove it from the store
    */
   const handleCancel = () => {
+    cameraStore.setEnabled(true);
     if (tempScenarioId) {
       scenarioStore.removeScenario(tempScenarioId);
       scenarioStore.setCurrentScenario(null);

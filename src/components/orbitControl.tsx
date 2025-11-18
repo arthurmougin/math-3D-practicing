@@ -4,7 +4,7 @@ import { Vector3 } from "three";
 import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { useCameraStore } from "../stores/cameraStore";
 
-export const AMCamera = () => {
+export const CustomOrbitControl = () => {
   const orbitRef = useRef<OrbitControlsImpl>(null!);
   const defaultPosition = new Vector3(3, 3, 4);
   const cameraStore = useCameraStore();
@@ -27,6 +27,9 @@ export const AMCamera = () => {
       enableRotate={cameraStore.enabled}
       enablePan={cameraStore.enabled}
       enableZoom={cameraStore.enabled}
+      regress={true}
+      enableDamping={false}
+      reverseOrbit={false}
     />
   );
 };

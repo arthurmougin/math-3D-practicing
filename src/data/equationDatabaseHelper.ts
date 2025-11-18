@@ -1,5 +1,6 @@
-import type { MathDataType } from "../stores/scenarioStore";
-import equationDatabase from "./equationDatabase.json";
+
+import type { MathDataType } from "../types";
+import equationDatabase from "./equationDatabase.source.json";
 
 /**
  * Types supported in our system

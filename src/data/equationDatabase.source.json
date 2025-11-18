@@ -1,0 +1,487 @@
+{
+  "version": "2.0.0",
+  "generatedAt": "2025-11-18T21:47:42.238Z",
+  "source": "Three.js source code analysis",
+  "methods": [
+    {
+      "className": "Vector3",
+      "methodName": "getComponent",
+      "description": "Returns the value of the vector component which matches the given index.",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false,
+          "description": "The component index. `0` equals to x, `1` equals to y, `2` equals to z."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A vector component value."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "dot",
+      "description": "Calculates the dot product of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the dot product with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the dot product."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "lengthSq",
+      "description": "Computes the square of the Euclidean length (straight-line length) from",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The square length of this vector."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "length",
+      "description": "Computes the  Euclidean length (straight-line length) from (0, 0, 0) to (x, y, z).",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanLength",
+      "description": "Computes the Manhattan length of this vector.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "angleTo",
+      "description": "Returns the angle between the given vector and this instance in radians.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the angle with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The angle in radians."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceTo",
+      "description": "Computes the distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The distance."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceToSquared",
+      "description": "Computes the squared distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the squared distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The squared distance."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanDistanceTo",
+      "description": "Computes the Manhattan distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the Manhattan distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The Manhattan distance."
+    },
+    {
+      "className": "Vector3",
+      "methodName": "equals",
+      "description": "Returns `true` if this vector is equal with the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this vector is equal with the given one."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "getComponent",
+      "description": "Returns the value of the vector component which matches the given index.",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false,
+          "description": "The component index. `0` equals to x, `1` equals to y."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A vector component value."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "dot",
+      "description": "Calculates the dot product of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the dot product with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the dot product."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "cross",
+      "description": "Calculates the cross product of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the cross product with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the cross product."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "lengthSq",
+      "description": "Computes the square of the Euclidean length (straight-line length) from",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The square length of this vector."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "length",
+      "description": "Computes the  Euclidean length (straight-line length) from (0, 0) to (x, y).",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanLength",
+      "description": "Computes the Manhattan length of this vector.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "angle",
+      "description": "Computes the angle in radians of this vector with respect to the positive x-axis.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The angle in radians."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "angleTo",
+      "description": "Returns the angle between the given vector and this instance in radians.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the angle with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The angle in radians."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceTo",
+      "description": "Computes the distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The distance."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceToSquared",
+      "description": "Computes the squared distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the squared distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The squared distance."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanDistanceTo",
+      "description": "Computes the Manhattan distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the Manhattan distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The Manhattan distance."
+    },
+    {
+      "className": "Vector2",
+      "methodName": "equals",
+      "description": "Returns `true` if this vector is equal with the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this vector is equal with the given one."
+    },
+    {
+      "className": "Vector4",
+      "methodName": "getComponent",
+      "description": "Returns the value of the vector component which matches the given index.",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false,
+          "description": "The component index. `0` equals to x, `1` equals to y,"
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A vector component value."
+    },
+    {
+      "className": "Vector4",
+      "methodName": "dot",
+      "description": "Calculates the dot product of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to compute the dot product with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the dot product."
+    },
+    {
+      "className": "Vector4",
+      "methodName": "lengthSq",
+      "description": "Computes the square of the Euclidean length (straight-line length) from",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The square length of this vector."
+    },
+    {
+      "className": "Vector4",
+      "methodName": "length",
+      "description": "Computes the  Euclidean length (straight-line length) from (0, 0, 0, 0) to (x, y, z, w).",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector."
+    },
+    {
+      "className": "Vector4",
+      "methodName": "manhattanLength",
+      "description": "Computes the Manhattan length of this vector.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector."
+    },
+    {
+      "className": "Vector4",
+      "methodName": "equals",
+      "description": "Returns `true` if this vector is equal with the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this vector is equal with the given one."
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "angleTo",
+      "description": "Returns the angle between this quaternion and the given one in radians.",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The quaternion to compute the angle with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The angle in radians."
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "dot",
+      "description": "Calculates the dot product of this quaternion and the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The quaternion to compute the dot product with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the dot product."
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "lengthSq",
+      "description": "Computes the squared Euclidean length (straight-line length) of this quaternion,",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The squared Euclidean length."
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "length",
+      "description": "Computes the Euclidean length (straight-line length) of this quaternion,",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The Euclidean length."
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "equals",
+      "description": "Returns `true` if this quaternion is equal with the given one.",
+      "parameters": [
+        {
+          "name": "quaternion",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The quaternion to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this quaternion is equal with the given one."
+    },
+    {
+      "className": "Euler",
+      "methodName": "equals",
+      "description": "Returns `true` if this Euler instance is equal with the given one.",
+      "parameters": [
+        {
+          "name": "euler",
+          "type": "Euler",
+          "optional": false,
+          "description": "The Euler instance to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this Euler instance is equal with the given one."
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "determinant",
+      "description": "Computes and returns the determinant of this matrix.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The determinant."
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "getMaxScaleOnAxis",
+      "description": "Gets the maximum scale value of the three axes.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The maximum scale."
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "equals",
+      "description": "Returns `true` if this matrix is equal with the given one.",
+      "parameters": [
+        {
+          "name": "matrix",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The matrix to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this matrix is equal with the given one."
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "determinant",
+      "description": "Computes and returns the determinant of this matrix.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The determinant."
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "equals",
+      "description": "Returns `true` if this matrix is equal with the given one.",
+      "parameters": [
+        {
+          "name": "matrix",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The matrix to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this matrix is equal with the given one."
+    }
+  ]
+}

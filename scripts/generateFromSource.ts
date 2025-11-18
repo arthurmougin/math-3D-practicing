@@ -220,7 +220,7 @@ function isUsefulMethod(method: MethodSignature): boolean {
 async function generateEnhancedDatabase() {
   console.log("🔍 Analyzing Three.js source code...\n");
 
-  const mathFolder = join(process.cwd(), "docs", "threeMathFolder", "math");
+  const mathFolder = join(process.cwd(), "docs", "ia-only", "math");
 
   // Files to analyze
   const classFiles = [
