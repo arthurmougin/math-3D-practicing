@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
+import { enrichDescriptionWithLinks, getTermUsageStats } from "./technicalTerms";
 
 /**
  * Types supported in our system
@@ -27,6 +28,11 @@ interface MethodParameter {
 }
 
 /**
+ * Method type classification
+ */
+type MethodType = 'calculation' | 'transformation' | 'mutation';
+
+/**
  * Represents a method signature with documentation
  */
 interface MethodSignature {
@@ -37,6 +43,8 @@ interface MethodSignature {
   returnType: string;
   returnDescription?: string;
   example?: string;
+  methodType: MethodType;
+  mutatesThis: boolean;
 }
 
 /**
@@ -110,43 +118,106 @@ function extractMethodsFromFile(
   const content = readFileSync(filePath, "utf-8");
   const methods: MethodSignature[] = [];
 
-  // Match JSDoc + method definition
-  const methodRegex = /\/\*\*([\s\S]*?)\*\/\s*(\w+)\s*\(([^)]*)\)\s*\{/g;
+  // For MathUtils, use a different regex to match free functions
+  // For classes, match method definitions
+  const isMathUtils = className === "MathUtils";
+  const methodRegex = isMathUtils
+    ? /\/\*\*([\s\S]*?)\*\/\s*function\s+(\w+)\s*\(([^)]*)\)\s*\{/g
+    : /\/\*\*([\s\S]*?)\*\/\s*(\w+)\s*\(([^)]*)\)\s*\{/g;
 
   let match;
   while ((match = methodRegex.exec(content)) !== null) {
     const [, jsDocContent, methodName] = match;
 
-    // Skip constructor and private methods
-    if (
-      methodName === "constructor" ||
-      methodName.startsWith("_") ||
-      methodName === "set" ||
-      methodName === "copy" ||
-      methodName === "clone" ||
-      methodName === "toJSON" ||
-      methodName === "fromJSON"
-    ) {
-      continue;
+    // Skip constructor and private methods (but not for MathUtils free functions)
+    if (!isMathUtils) {
+      if (
+        methodName === "constructor" ||
+        methodName.startsWith("_") ||
+        methodName === "set" ||
+        methodName === "copy" ||
+        methodName === "clone" ||
+        methodName === "toJSON" ||
+        methodName === "fromJSON"
+      ) {
+        continue;
+      }
+    } else {
+      // For MathUtils, skip private functions and utility functions
+      if (
+        methodName.startsWith("_") ||
+        methodName === "generateUUID" ||
+        methodName === "seededRandom" ||
+        methodName === "setQuaternionFromProperEuler"
+      ) {
+        continue;
+      }
     }
 
     const parsed = parseJSDoc(jsDocContent);
 
-    // Only include methods that return something useful or perform calculations
+    // Determine return type
     const returnType = parsed.returns?.type || "void";
-
-    // Skip if it just returns 'this' (fluent API)
-    if (returnType === className || returnType === "this") {
+    
+    // Classify method type
+    let methodType: MethodType;
+    let mutatesThis = false;
+    
+    // For MathUtils, all functions are calculations (pure functions)
+    if (isMathUtils) {
+      methodType = "calculation";
+      mutatesThis = false;
+    } else if (returnType === "number" || returnType === "boolean") {
+      methodType = "calculation";
+      mutatesThis = false;
+    } else if (returnType === className || returnType === "this") {
+      mutatesThis = true;
+      
+      // Distinguish between mathematical transformations and simple mutations
+      const MATH_OPERATION_PATTERNS = [
+        /^(add|sub|multiply|divide|scale)/i,           // Arithmetic
+        /^(normalize|negate|absolute|floor|ceil|round|abs)/i,  // Normalization
+        /^(clamp|min|max|lerp|slerp)/i,                // Clamping/interpolation
+        /^(apply|transform|project|reflect)/i,         // Transformations
+        /^(cross|dot)/i,                               // Vector operations
+        /^(rotate|lookAt)/i,                           // Rotation
+        /^(setLength|setFromSpherical|setFromCylindrical)/i,  // Special setters
+      ];
+      
+      const isMathOperation = MATH_OPERATION_PATTERNS.some(pattern => 
+        pattern.test(methodName)
+      );
+      
+      if (isMathOperation) {
+        methodType = "transformation";
+      } else {
+        methodType = "mutation";
+        // Skip simple mutations (setters, copy, etc.)
+        continue;
+      }
+    } else if (returnType === "void") {
+      // Skip void methods
       continue;
+    } else {
+      // Methods returning other types (Vector3, Matrix4, etc.) are transformations
+      methodType = "transformation";
+      mutatesThis = false;
     }
 
     methods.push({
       className,
       methodName,
-      description: parsed.description,
-      parameters: parsed.params,
+      description: enrichDescriptionWithLinks(parsed.description, "en"),
+      parameters: parsed.params.map(param => ({
+        ...param,
+        description: param.description ? enrichDescriptionWithLinks(param.description, "en") : undefined
+      })),
       returnType,
-      returnDescription: parsed.returns?.description,
+      returnDescription: parsed.returns?.description 
+        ? enrichDescriptionWithLinks(parsed.returns.description, "en")
+        : undefined,
+      methodType,
+      mutatesThis,
     });
   }
 
@@ -231,6 +302,7 @@ async function generateEnhancedDatabase() {
     { file: "Euler.js", className: "Euler" },
     { file: "Matrix4.js", className: "Matrix4" },
     { file: "Matrix3.js", className: "Matrix3" },
+    { file: "MathUtils.js", className: "MathUtils" },
   ];
 
   const allMethods: MethodSignature[] = [];
@@ -266,7 +338,7 @@ async function generateEnhancedDatabase() {
     process.cwd(),
     "src",
     "data",
-    "equationDatabase.json"
+    "equationDatabase.source.json"
   );
 
   writeFileSync(outputPath, JSON.stringify(database, null, 2));
@@ -274,6 +346,38 @@ async function generateEnhancedDatabase() {
   console.log(`\n✅ Enhanced database generated successfully!`);
   console.log(`   Total useful methods: ${allMethods.length}`);
   console.log(`   Output: ${outputPath}`);
+
+  // Print term usage statistics
+  const allDescriptions = allMethods.flatMap(m => [
+    m.description,
+    ...(m.parameters.map(p => p.description).filter(Boolean) as string[]),
+    m.returnDescription
+  ].filter(Boolean) as string[]);
+  
+  const termStats = getTermUsageStats(allDescriptions);
+  if (termStats.size > 0) {
+    console.log(`\n🔗 Wikipedia links added for ${termStats.size} technical terms:`);
+    Array.from(termStats.entries())
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 10)
+      .forEach(([term, count]) => {
+        console.log(`   "${term}": ${count} occurrence${count > 1 ? 's' : ''}`);
+      });
+  }
+
+  // Print statistics by method type
+  const byType = allMethods.reduce((acc, method) => {
+    acc[method.methodType] = (acc[method.methodType] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  
+  console.log(`\n📊 Statistics by method type:`);
+  Object.entries(byType)
+    .sort(([, a], [, b]) => b - a)
+    .forEach(([type, count]) => {
+      const icon = type === 'calculation' ? '🔢' : type === 'transformation' ? '🔄' : '⚙️';
+      console.log(`   ${icon} ${type}: ${count} methods`);
+    });
 
   // Print statistics by class
   const byClass = allMethods.reduce((acc, method) => {

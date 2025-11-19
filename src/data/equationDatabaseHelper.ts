@@ -28,6 +28,11 @@ export interface MethodParameter {
 }
 
 /**
+ * Method type classification
+ */
+export type MethodType = 'calculation' | 'transformation' | 'mutation';
+
+/**
  * Method signature with documentation (NEW FORMAT)
  */
 export interface MethodSignature {
@@ -38,6 +43,8 @@ export interface MethodSignature {
   returnType: string;
   returnDescription?: string;
   example?: string;
+  methodType: MethodType;
+  mutatesThis: boolean;
 }
 
 /**

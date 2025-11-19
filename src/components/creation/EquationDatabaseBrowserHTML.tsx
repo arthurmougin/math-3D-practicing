@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import {
   type MethodSignature,
+  type MethodType,
   type SupportedType,
   getDatabaseStats,
 } from "../../data/equationDatabaseHelper";
@@ -40,6 +41,9 @@ export function EquationDatabaseBrowserHTML() {
 
   // State for filters panel expansion
   const [filtersExpanded, setFiltersExpanded] = useState(false);
+  
+  // State for method type filter
+  const [selectedMethodType, setSelectedMethodType] = useState<MethodType | "all">("all");
 
   // State for entire panel collapse/expand
   const [panelCollapsed, setPanelCollapsed] = useState(false);
@@ -90,10 +94,13 @@ export function EquationDatabaseBrowserHTML() {
 
       const matchesReturnType =
         selectedReturnType === "all" || method.returnType === selectedReturnType;
+      
+      const matchesMethodType =
+        selectedMethodType === "all" || method.methodType === selectedMethodType;
 
-      return matchesSearch && matchesClass && matchesReturnType;
+      return matchesSearch && matchesClass && matchesReturnType && matchesMethodType;
     });
-  }, [searchQuery, selectedClass, selectedReturnType]);
+  }, [searchQuery, selectedClass, selectedReturnType, selectedMethodType]);
 
   /**
    * Methods grouped by method name
@@ -261,6 +268,34 @@ export function EquationDatabaseBrowserHTML() {
                     ))}
                   </div>
                 </div>
+
+                {/* Method Type Filter */}
+                <div className="equation-browser__filter-group">
+                  <label>Type:</label>
+                  <div className="equation-browser__filter-chips">
+                    <button
+                      className={selectedMethodType === "all" ? "active" : ""}
+                      onClick={() => setSelectedMethodType("all")}
+                      title="Show all method types"
+                    >
+                      All
+                    </button>
+                    <button
+                      className={selectedMethodType === "calculation" ? "active" : ""}
+                      onClick={() => setSelectedMethodType("calculation")}
+                      title="Calculation: Returns a computed value without modifying the object"
+                    >
+                      🔢 Calculation
+                    </button>
+                    <button
+                      className={selectedMethodType === "transformation" ? "active" : ""}
+                      onClick={() => setSelectedMethodType("transformation")}
+                      title="Transformation: Modifies the object's state and returns it"
+                    >
+                      🔄 Transform
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -282,14 +317,31 @@ export function EquationDatabaseBrowserHTML() {
                   </div>
                   {methods.map((method) => {
                     const key = `${method.className}.${method.methodName}`;
+                    const showClass = method.className !== 'MathUtils';
                     return (
                       <button
                         key={key}
                         className="equation-browser__method-item"
                         onClick={() => setSelectedMethod(key)}
                       >
-                        <span className="class-badge">{method.className}</span>
-                        <span className="return-type">{method.returnType}</span>
+                        <div className="method-signature">
+                          {showClass && <span className="signature-class">{method.className}.</span>}
+                          <span className="signature-method">{method.methodName}</span>
+                          <span className="signature-params">(
+                            {method.parameters.length === 0 ? (
+                              <span className="param-empty"></span>
+                            ) : (
+                              method.parameters.map((param, idx) => (
+                                <span key={idx}>
+                                  <span className="param-type-badge">{param.type}</span>
+                                  {idx < method.parameters.length - 1 && ', '}
+                                </span>
+                              ))
+                            )}
+                          )</span>
+                          <span className="signature-separator">:</span>
+                          <span className="return-type-badge">{method.returnType}</span>
+                        </div>
                       </button>
                     );
                   })}
@@ -320,53 +372,114 @@ export function EquationDatabaseBrowserHTML() {
                     <h3>{selectedMethodDetails.methodName}</h3>
                     <div className="equation-browser__detail-meta">
                       <span className="class-badge">{selectedMethodDetails.className}</span>
-                      <span className="return-type">→ {selectedMethodDetails.returnType}</span>
+                      <span className="meta-separator">→</span>
+                      <span className="return-type">{selectedMethodDetails.returnType}</span>
+                    </div>
+
+                    {/* Signature */}
+                    <div className="equation-browser__detail-section">
+                      <h4>Signature</h4>
+                      <div className="section-content method-signature-detail">
+                        {selectedMethodDetails.className !== 'MathUtils' && (
+                          <span className="sig-class">{selectedMethodDetails.className}.</span>
+                        )}
+                        <span className="sig-method">{selectedMethodDetails.methodName}</span>
+                        <span className="sig-paren">(</span>
+                        {selectedMethodDetails.parameters.length === 0 ? (
+                          <span className="sig-empty"></span>
+                        ) : (
+                          selectedMethodDetails.parameters.map((param, idx) => (
+                            <span key={idx} className="sig-param-group">
+                              <span className="sig-param-name">{param.name}</span>
+                              <span className="sig-colon">:</span>
+                              <span className="sig-param-type">{param.type}</span>
+                              {idx < selectedMethodDetails.parameters.length - 1 && <span className="sig-comma">, </span>}
+                            </span>
+                          ))
+                        )}
+                        <span className="sig-paren">)</span>
+                        <span className="sig-colon">:</span>
+                        <span className="sig-return-type">{selectedMethodDetails.returnType}</span>
+                      </div>
                     </div>
 
                     {/* Description */}
                     <div className="equation-browser__detail-section">
                       <h4>Description</h4>
-                      <p>{selectedMethodDetails.description}</p>
+                      <div className="section-content">
+                        <p dangerouslySetInnerHTML={{ __html: selectedMethodDetails.description }} />
+                      </div>
                     </div>
 
                     {/* Parameters */}
-                    {selectedMethodDetails.parameters.length > 0 && (
-                      <div className="equation-browser__detail-section">
-                        <h4>Parameters</h4>
-                        <ul className="equation-browser__params-list">
+                    <div className="equation-browser__detail-section">
+                      <h4>Parameters</h4>
+                      {selectedMethodDetails.parameters.length > 0 ? (
+                        <ul className="section-content equation-browser__params-list">
                           {selectedMethodDetails.parameters.map((param, idx) => (
                             <li key={idx}>
                               <code>{param.name}</code>
                               <span className="param-type">{param.type}</span>
                               {param.optional && <span className="param-optional">optional</span>}
-                              {param.description && <p>{param.description}</p>}
+                              {param.description && (
+                                <p dangerouslySetInnerHTML={{ __html: param.description }} />
+                              )}
                               {param.defaultValue && (
                                 <span className="param-default">Default: {param.defaultValue}</span>
                               )}
                             </li>
                           ))}
                         </ul>
-                      </div>
-                    )}
+                      ) : (
+                        <div className="section-content">
+                          <p className="no-parameters">This method takes no parameters.</p>
+                        </div>
+                      )}
+                    </div>
 
                     {/* Return */}
-                    {selectedMethodDetails.returnDescription && (
-                      <div className="equation-browser__detail-section">
-                        <h4>Returns</h4>
+                    <div className="equation-browser__detail-section">
+                      <h4>Returns</h4>
+                      <div className="section-content return-info">
                         <p>
-                          <code>{selectedMethodDetails.returnType}</code> -{" "}
-                          {selectedMethodDetails.returnDescription}
+                          <code>{selectedMethodDetails.returnType}</code>
+                          {selectedMethodDetails.returnDescription && (
+                            <>
+                              {" - "}
+                              <span dangerouslySetInnerHTML={{ __html: selectedMethodDetails.returnDescription }} />
+                            </>
+                          )}
                         </p>
+                        <span className={`method-type-note ${selectedMethodDetails.methodType}`}>
+                          {selectedMethodDetails.methodType === 'calculation' ? '🔢 Calc' : '🔄 Transform'}
+                        </span>
                       </div>
-                    )}
+                    </div>
 
                     {/* Example */}
                     {selectedMethodDetails.example && (
                       <div className="equation-browser__detail-section">
                         <h4>Example</h4>
-                        <pre><code>{selectedMethodDetails.example}</code></pre>
+                        <div className="section-content">
+                          <pre><code>{selectedMethodDetails.example}</code></pre>
+                        </div>
                       </div>
                     )}
+
+                    {/* Method Type Explanation */}
+                    <div className="equation-browser__detail-section">
+                      <h4>Method Type</h4>
+                      <div className="section-content method-type-explanation">
+                        <span className={`method-type-badge-inline ${selectedMethodDetails.methodType}`}>
+                          {selectedMethodDetails.methodType === 'calculation' ? '🔢 Calculation' : '🔄 Transformation'}
+                        </span>
+                        <p>
+                          {selectedMethodDetails.methodType === 'calculation'
+                            ? 'This is a calculation method. It computes and returns a value without modifying the object itself. The original object remains unchanged.'
+                            : 'This is a transformation method. It modifies the object\'s internal state and returns the object itself (this), allowing method chaining.'}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </>
               )}

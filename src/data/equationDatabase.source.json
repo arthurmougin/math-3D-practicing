@@ -1,418 +1,2043 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2025-11-18T21:47:42.238Z",
+  "generatedAt": "2025-11-19T22:34:26.189Z",
   "source": "Three.js source code analysis",
   "methods": [
     {
       "className": "Vector3",
       "methodName": "getComponent",
-      "description": "Returns the value of the vector component which matches the given index.",
+      "description": "Returns the value of the vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> which matches the given index.",
       "parameters": [
         {
           "name": "index",
           "type": "number",
           "optional": false,
-          "description": "The component index. `0` equals to x, `1` equals to y, `2` equals to z."
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> index. `0` equals to x, `1` equals to y, `2` equals to z."
         }
       ],
       "returnType": "number",
-      "returnDescription": "A vector component value."
+      "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
+      "methodType": "calculation",
+      "mutatesThis": false
     },
     {
       "className": "Vector3",
-      "methodName": "dot",
-      "description": "Calculates the dot product of the given vector with this instance.",
+      "methodName": "add",
+      "description": "Adds the given vector to this instance.",
       "parameters": [
         {
           "name": "v",
           "type": "Vector3",
           "optional": false,
-          "description": "The vector to compute the dot product with."
+          "description": "The vector to add."
         }
       ],
-      "returnType": "number",
-      "returnDescription": "The result of the dot product."
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Vector3",
-      "methodName": "lengthSq",
-      "description": "Computes the square of the Euclidean length (straight-line length) from",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The square length of this vector."
-    },
-    {
-      "className": "Vector3",
-      "methodName": "length",
-      "description": "Computes the  Euclidean length (straight-line length) from (0, 0, 0) to (x, y, z).",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector."
-    },
-    {
-      "className": "Vector3",
-      "methodName": "manhattanLength",
-      "description": "Computes the Manhattan length of this vector.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector."
-    },
-    {
-      "className": "Vector3",
-      "methodName": "angleTo",
-      "description": "Returns the angle between the given vector and this instance in radians.",
+      "methodName": "addScalar",
+      "description": "Adds the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value to all components of this instance.",
       "parameters": [
         {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the angle with."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The angle in radians."
-    },
-    {
-      "className": "Vector3",
-      "methodName": "distanceTo",
-      "description": "Computes the distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the distance to."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The distance."
-    },
-    {
-      "className": "Vector3",
-      "methodName": "distanceToSquared",
-      "description": "Computes the squared distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the squared distance to."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The squared distance."
-    },
-    {
-      "className": "Vector3",
-      "methodName": "manhattanDistanceTo",
-      "description": "Computes the Manhattan distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the Manhattan distance to."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The Manhattan distance."
-    },
-    {
-      "className": "Vector3",
-      "methodName": "equals",
-      "description": "Returns `true` if this vector is equal with the given one.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to test for equality."
-        }
-      ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this vector is equal with the given one."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "getComponent",
-      "description": "Returns the value of the vector component which matches the given index.",
-      "parameters": [
-        {
-          "name": "index",
+          "name": "s",
           "type": "number",
           "optional": false,
-          "description": "The component index. `0` equals to x, `1` equals to y."
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to add."
         }
       ],
-      "returnType": "number",
-      "returnDescription": "A vector component value."
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
-      "className": "Vector2",
-      "methodName": "dot",
-      "description": "Calculates the dot product of the given vector with this instance.",
+      "className": "Vector3",
+      "methodName": "addVectors",
+      "description": "Adds the given vectors and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "sub",
+      "description": "Subtracts the given vector from this instance.",
       "parameters": [
         {
           "name": "v",
-          "type": "Vector2",
+          "type": "Vector3",
           "optional": false,
-          "description": "The vector to compute the dot product with."
+          "description": "The vector to subtract."
         }
       ],
-      "returnType": "number",
-      "returnDescription": "The result of the dot product."
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
-      "className": "Vector2",
-      "methodName": "cross",
-      "description": "Calculates the cross product of the given vector with this instance.",
+      "className": "Vector3",
+      "methodName": "subScalar",
+      "description": "Subtracts the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value from all components of this instance.",
       "parameters": [
         {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the cross product with."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The result of the cross product."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "lengthSq",
-      "description": "Computes the square of the Euclidean length (straight-line length) from",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The square length of this vector."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "length",
-      "description": "Computes the  Euclidean length (straight-line length) from (0, 0) to (x, y).",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "manhattanLength",
-      "description": "Computes the Manhattan length of this vector.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "angle",
-      "description": "Computes the angle in radians of this vector with respect to the positive x-axis.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The angle in radians."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "angleTo",
-      "description": "Returns the angle between the given vector and this instance in radians.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the angle with."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The angle in radians."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "distanceTo",
-      "description": "Computes the distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the distance to."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The distance."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "distanceToSquared",
-      "description": "Computes the squared distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the squared distance to."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The squared distance."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "manhattanDistanceTo",
-      "description": "Computes the Manhattan distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the Manhattan distance to."
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The Manhattan distance."
-    },
-    {
-      "className": "Vector2",
-      "methodName": "equals",
-      "description": "Returns `true` if this vector is equal with the given one.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to test for equality."
-        }
-      ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this vector is equal with the given one."
-    },
-    {
-      "className": "Vector4",
-      "methodName": "getComponent",
-      "description": "Returns the value of the vector component which matches the given index.",
-      "parameters": [
-        {
-          "name": "index",
+          "name": "s",
           "type": "number",
           "optional": false,
-          "description": "The component index. `0` equals to x, `1` equals to y,"
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to subtract."
         }
       ],
-      "returnType": "number",
-      "returnDescription": "A vector component value."
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
-      "className": "Vector4",
-      "methodName": "dot",
-      "description": "Calculates the dot product of the given vector with this instance.",
+      "className": "Vector3",
+      "methodName": "subVectors",
+      "description": "Subtracts the given vectors and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "multiply",
+      "description": "Multiplies the given vector with this instance.",
       "parameters": [
         {
           "name": "v",
-          "type": "Vector4",
+          "type": "Vector3",
           "optional": false,
-          "description": "The vector to compute the dot product with."
+          "description": "The vector to multiply."
         }
       ],
-      "returnType": "number",
-      "returnDescription": "The result of the dot product."
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
-      "className": "Vector4",
-      "methodName": "lengthSq",
-      "description": "Computes the square of the Euclidean length (straight-line length) from",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The square length of this vector."
-    },
-    {
-      "className": "Vector4",
-      "methodName": "length",
-      "description": "Computes the  Euclidean length (straight-line length) from (0, 0, 0, 0) to (x, y, z, w).",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector."
-    },
-    {
-      "className": "Vector4",
-      "methodName": "manhattanLength",
-      "description": "Computes the Manhattan length of this vector.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector."
-    },
-    {
-      "className": "Vector4",
-      "methodName": "equals",
-      "description": "Returns `true` if this vector is equal with the given one.",
+      "className": "Vector3",
+      "methodName": "multiplyScalar",
+      "description": "Multiplies the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value with all components of this instance.",
       "parameters": [
         {
-          "name": "v",
-          "type": "Vector4",
+          "name": "scalar",
+          "type": "number",
           "optional": false,
-          "description": "The vector to test for equality."
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to multiply."
         }
       ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this vector is equal with the given one."
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
-      "className": "Quaternion",
-      "methodName": "angleTo",
-      "description": "Returns the angle between this quaternion and the given one in radians.",
+      "className": "Vector3",
+      "methodName": "multiplyVectors",
+      "description": "Multiplies the given vectors and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "applyEuler",
+      "description": "Applies the given Euler <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> to this vector.",
+      "parameters": [
+        {
+          "name": "euler",
+          "type": "Euler",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euler_angles\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euler angles</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "applyAxisAngle",
+      "description": "Applies a <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> specified by an <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a> and an angle to this vector.",
+      "parameters": [
+        {
+          "name": "axis",
+          "type": "Vector3",
+          "optional": false,
+          "description": "A normalized vector representing the <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>."
+        },
+        {
+          "name": "angle",
+          "type": "number",
+          "optional": false,
+          "description": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "applyMatrix3",
+      "description": "Multiplies this vector with the given 3x3 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The 3x3 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "applyNormalMatrix",
+      "description": "Multiplies this vector by the given normal <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> and normalizes",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The normal <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "applyMatrix4",
+      "description": "Multiplies this vector (with an implicit 1 in the 4th dimension) by m, and",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to apply."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "applyQuaternion",
+      "description": "Applies the given <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a> to this vector.",
       "parameters": [
         {
           "name": "q",
           "type": "Quaternion",
           "optional": false,
-          "description": "The quaternion to compute the angle with."
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "transformDirection",
+      "description": "Transforms the direction of this vector by a <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> (the upper left 3 x 3",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "divide",
+      "description": "Divides this instance by the given vector.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to divide."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "divideScalar",
+      "description": "Divides this vector by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
+      "parameters": [
+        {
+          "name": "scalar",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to divide."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "min",
+      "description": "If this vector's x, y or z value is greater than the given vector's x, y or z",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "max",
+      "description": "If this vector's x, y or z value is less than the given vector's x, y or z",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "clamp",
+      "description": "If this vector's x, y or z value is greater than the max vector's x, y or z",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The minimum x, y and z values."
+        },
+        {
+          "name": "max",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The maximum x, y and z values in the desired range."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "clampScalar",
+      "description": "If this vector's x, y or z values are greater than the max value, they are",
+      "parameters": [
+        {
+          "name": "minVal",
+          "type": "number",
+          "optional": false,
+          "description": "The minimum value the components will be clamped to."
+        },
+        {
+          "name": "maxVal",
+          "type": "number",
+          "optional": false,
+          "description": "The maximum value the components will be clamped to."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "clampLength",
+      "description": "If this vector's length is greater than the max value, it is replaced by",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "optional": false,
+          "description": "The minimum value the vector length will be clamped to."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "optional": false,
+          "description": "The maximum value the vector length will be clamped to."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "floor",
+      "description": "The components of this vector are rounded down to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value.",
+      "parameters": [],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "ceil",
+      "description": "The components of this vector are rounded up to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value.",
+      "parameters": [],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "round",
+      "description": "The components of this vector are rounded to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value",
+      "parameters": [],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "roundToZero",
+      "description": "The components of this vector are rounded towards zero (up if negative,",
+      "parameters": [],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "dot",
+      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> with."
         }
       ],
       "returnType": "number",
-      "returnDescription": "The angle in radians."
+      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "lengthSq",
+      "description": "Computes the square of the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The square length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "length",
+      "description": "Computes the  <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from (0, 0, 0) to (x, y, z).",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanLength",
+      "description": "Computes the Manhattan length of this vector.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "normalize",
+      "description": "Converts this vector to a <a href=\"https://en.wikipedia.org/wiki/Unit_vector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">unit vector</a> - that is, sets it equal to a vector",
+      "parameters": [],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "lerp",
+      "description": "Linearly interpolates between the given vector and this instance, where",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to interpolate towards."
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor, typically in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "lerpVectors",
+      "description": "Linearly interpolates between the given vectors, where alpha is the percent",
+      "parameters": [
+        {
+          "name": "v1",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "v2",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The second vector."
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor, typically in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "cross",
+      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a> of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a> with."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "crossVectors",
+      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a> of the given vectors and stores the result",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "projectOnVector",
+      "description": "Projects this vector onto the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to project to."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "projectOnPlane",
+      "description": "Projects this vector onto a <a href=\"https://en.wikipedia.org/wiki/Plane_(geometry)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">plane</a> by subtracting this",
+      "parameters": [
+        {
+          "name": "planeNormal",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The plane <a href=\"https://en.wikipedia.org/wiki/Normal_(geometry)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">normal</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "angleTo",
+      "description": "Returns the angle between the given vector and this instance in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the angle with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceTo",
+      "description": "Computes the distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The distance.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "distanceToSquared",
+      "description": "Computes the squared distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the squared distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The squared distance.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "manhattanDistanceTo",
+      "description": "Computes the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "equals",
+      "description": "Returns `true` if this vector is equal with the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The vector to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this vector is equal with the given one.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "getComponent",
+      "description": "Returns the value of the vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> which matches the given index.",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> index. `0` equals to x, `1` equals to y."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "add",
+      "description": "Adds the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to add."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "addScalar",
+      "description": "Adds the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value to all components of this instance.",
+      "parameters": [
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to add."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "addVectors",
+      "description": "Adds the given vectors and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "addScaledVector",
+      "description": "Adds the given vector scaled by the given factor to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector."
+        },
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The factor that scales `v`."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "sub",
+      "description": "Subtracts the given vector from this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to subtract."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "subScalar",
+      "description": "Subtracts the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value from all components of this instance.",
+      "parameters": [
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to subtract."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "subVectors",
+      "description": "Subtracts the given vectors and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "multiply",
+      "description": "Multiplies the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to multiply."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "multiplyScalar",
+      "description": "Multiplies the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value with all components of this instance.",
+      "parameters": [
+        {
+          "name": "scalar",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to multiply."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "divide",
+      "description": "Divides this instance by the given vector.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to divide."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "divideScalar",
+      "description": "Divides this vector by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
+      "parameters": [
+        {
+          "name": "scalar",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to divide."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "applyMatrix3",
+      "description": "Multiplies this vector (with an implicit 1 as the 3rd <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a>) by",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to apply."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "min",
+      "description": "If this vector's x or y value is greater than the given vector's x or y",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "max",
+      "description": "If this vector's x or y value is less than the given vector's x or y",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "clamp",
+      "description": "If this vector's x or y value is greater than the max vector's x or y",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The minimum x and y values."
+        },
+        {
+          "name": "max",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The maximum x and y values in the desired range."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "clampScalar",
+      "description": "If this vector's x or y values are greater than the max value, they are",
+      "parameters": [
+        {
+          "name": "minVal",
+          "type": "number",
+          "optional": false,
+          "description": "The minimum value the components will be clamped to."
+        },
+        {
+          "name": "maxVal",
+          "type": "number",
+          "optional": false,
+          "description": "The maximum value the components will be clamped to."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "clampLength",
+      "description": "If this vector's length is greater than the max value, it is replaced by",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "optional": false,
+          "description": "The minimum value the vector length will be clamped to."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "optional": false,
+          "description": "The maximum value the vector length will be clamped to."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "floor",
+      "description": "The components of this vector are rounded down to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value.",
+      "parameters": [],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "ceil",
+      "description": "The components of this vector are rounded up to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value.",
+      "parameters": [],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "round",
+      "description": "The components of this vector are rounded to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value",
+      "parameters": [],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "roundToZero",
+      "description": "The components of this vector are rounded towards zero (up if negative,",
+      "parameters": [],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "dot",
+      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "cross",
+      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a> of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a> with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "lengthSq",
+      "description": "Computes the square of the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The square length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "length",
+      "description": "Computes the  <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from (0, 0) to (x, y).",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanLength",
+      "description": "Computes the Manhattan length of this vector.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "normalize",
+      "description": "Converts this vector to a <a href=\"https://en.wikipedia.org/wiki/Unit_vector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">unit vector</a> - that is, sets it equal to a vector",
+      "parameters": [],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "angle",
+      "description": "Computes the angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a> of this vector with respect to the positive x-<a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "angleTo",
+      "description": "Returns the angle between the given vector and this instance in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the angle with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceTo",
+      "description": "Computes the distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The distance.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "distanceToSquared",
+      "description": "Computes the squared distance from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the squared distance to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The squared distance.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "manhattanDistanceTo",
+      "description": "Computes the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> from the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "lerp",
+      "description": "Linearly interpolates between the given vector and this instance, where",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to interpolate towards."
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor, typically in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "lerpVectors",
+      "description": "Linearly interpolates between the given vectors, where alpha is the percent",
+      "parameters": [
+        {
+          "name": "v1",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "v2",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The second vector."
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor, typically in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
+      "methodName": "equals",
+      "description": "Returns `true` if this vector is equal with the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The vector to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this vector is equal with the given one.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "rotateAround",
+      "description": "Rotates this vector around the given center by the given angle.",
+      "parameters": [
+        {
+          "name": "center",
+          "type": "Vector2",
+          "optional": false,
+          "description": "The point around which to rotate."
+        },
+        {
+          "name": "angle",
+          "type": "number",
+          "optional": false,
+          "description": "The angle to rotate, in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "getComponent",
+      "description": "Returns the value of the vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> which matches the given index.",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> index. `0` equals to x, `1` equals to y,"
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "add",
+      "description": "Adds the given vector to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to add."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "addScalar",
+      "description": "Adds the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value to all components of this instance.",
+      "parameters": [
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to add."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "addVectors",
+      "description": "Adds the given vectors and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "addScaledVector",
+      "description": "Adds the given vector scaled by the given factor to this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector."
+        },
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The factor that scales `v`."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "sub",
+      "description": "Subtracts the given vector from this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to subtract."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "subScalar",
+      "description": "Subtracts the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value from all components of this instance.",
+      "parameters": [
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to subtract."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "subVectors",
+      "description": "Subtracts the given vectors and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "b",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The second vector."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "multiply",
+      "description": "Multiplies the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to multiply."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "multiplyScalar",
+      "description": "Multiplies the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value with all components of this instance.",
+      "parameters": [
+        {
+          "name": "scalar",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to multiply."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "applyMatrix4",
+      "description": "Multiplies this vector with the given 4x4 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The 4x4 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "divide",
+      "description": "Divides this instance by the given vector.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to divide."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "divideScalar",
+      "description": "Divides this vector by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
+      "parameters": [
+        {
+          "name": "scalar",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to divide."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "min",
+      "description": "If this vector's x, y, z or w value is greater than the given vector's x, y, z or w",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "max",
+      "description": "If this vector's x, y, z or w value is less than the given vector's x, y, z or w",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "clamp",
+      "description": "If this vector's x, y, z or w value is greater than the max vector's x, y, z or w",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The minimum x, y and z values."
+        },
+        {
+          "name": "max",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The maximum x, y and z values in the desired range."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "clampScalar",
+      "description": "If this vector's x, y, z or w values are greater than the max value, they are",
+      "parameters": [
+        {
+          "name": "minVal",
+          "type": "number",
+          "optional": false,
+          "description": "The minimum value the components will be clamped to."
+        },
+        {
+          "name": "maxVal",
+          "type": "number",
+          "optional": false,
+          "description": "The maximum value the components will be clamped to."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "clampLength",
+      "description": "If this vector's length is greater than the max value, it is replaced by",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "number",
+          "optional": false,
+          "description": "The minimum value the vector length will be clamped to."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "optional": false,
+          "description": "The maximum value the vector length will be clamped to."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "floor",
+      "description": "The components of this vector are rounded down to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value.",
+      "parameters": [],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "ceil",
+      "description": "The components of this vector are rounded up to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value.",
+      "parameters": [],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "round",
+      "description": "The components of this vector are rounded to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value",
+      "parameters": [],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "roundToZero",
+      "description": "The components of this vector are rounded towards zero (up if negative,",
+      "parameters": [],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "dot",
+      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "lengthSq",
+      "description": "Computes the square of the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The square length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "length",
+      "description": "Computes the  <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from (0, 0, 0, 0) to (x, y, z, w).",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "manhattanLength",
+      "description": "Computes the Manhattan length of this vector.",
+      "parameters": [],
+      "returnType": "number",
+      "returnDescription": "The length of this vector.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Vector4",
+      "methodName": "normalize",
+      "description": "Converts this vector to a <a href=\"https://en.wikipedia.org/wiki/Unit_vector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">unit vector</a> - that is, sets it equal to a vector",
+      "parameters": [],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "lerp",
+      "description": "Linearly interpolates between the given vector and this instance, where",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to interpolate towards."
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor, typically in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "lerpVectors",
+      "description": "Linearly interpolates between the given vectors, where alpha is the percent",
+      "parameters": [
+        {
+          "name": "v1",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The first vector."
+        },
+        {
+          "name": "v2",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The second vector."
+        },
+        {
+          "name": "alpha",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor, typically in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "equals",
+      "description": "Returns `true` if this vector is equal with the given one.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector4",
+          "optional": false,
+          "description": "The vector to test for equality."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether this vector is equal with the given one.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "angleTo",
+      "description": "Returns the angle between this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> and the given one in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> to compute the angle with."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "rotateTowards",
+      "description": "Rotates this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> by a given angular step to the given <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The target <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>."
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "optional": false,
+          "description": "The angular step in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        }
+      ],
+      "returnType": "Quaternion",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Quaternion",
       "methodName": "dot",
-      "description": "Calculates the dot product of this quaternion and the given one.",
+      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> and the given one.",
       "parameters": [
         {
           "name": "v",
           "type": "Quaternion",
           "optional": false,
-          "description": "The quaternion to compute the dot product with."
+          "description": "The quaternion to compute the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> with."
         }
       ],
       "returnType": "number",
-      "returnDescription": "The result of the dot product."
+      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
     },
     {
       "className": "Quaternion",
       "methodName": "lengthSq",
-      "description": "Computes the squared Euclidean length (straight-line length) of this quaternion,",
+      "description": "Computes the squared Euclidean length (straight-line length) of this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>,",
       "parameters": [],
       "returnType": "number",
-      "returnDescription": "The squared Euclidean length."
+      "returnDescription": "The squared <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length.",
+      "methodType": "calculation",
+      "mutatesThis": false
     },
     {
       "className": "Quaternion",
       "methodName": "length",
-      "description": "Computes the Euclidean length (straight-line length) of this quaternion,",
+      "description": "Computes the Euclidean length (straight-line length) of this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>,",
       "parameters": [],
       "returnType": "number",
-      "returnDescription": "The Euclidean length."
+      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "normalize",
+      "description": "Normalizes this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> - that is, calculated the <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> that performs",
+      "parameters": [],
+      "returnType": "Quaternion",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "multiply",
+      "description": "Multiplies this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> by the given one.",
+      "parameters": [
+        {
+          "name": "q",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>."
+        }
+      ],
+      "returnType": "Quaternion",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "multiplyQuaternions",
+      "description": "Multiplies the given quaternions and stores the result in this instance.",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The first <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>."
+        },
+        {
+          "name": "b",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The second <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>."
+        }
+      ],
+      "returnType": "Quaternion",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Quaternion",
       "methodName": "equals",
-      "description": "Returns `true` if this quaternion is equal with the given one.",
+      "description": "Returns `true` if this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> is equal with the given one.",
       "parameters": [
         {
           "name": "quaternion",
           "type": "Quaternion",
           "optional": false,
-          "description": "The quaternion to test for equality."
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> to test for equality."
         }
       ],
       "returnType": "boolean",
-      "returnDescription": "Whether this quaternion is equal with the given one."
+      "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> is equal with the given one.",
+      "methodType": "calculation",
+      "mutatesThis": false
     },
     {
       "className": "Euler",
@@ -427,61 +2052,583 @@
         }
       ],
       "returnType": "boolean",
-      "returnDescription": "Whether this Euler instance is equal with the given one."
+      "returnDescription": "Whether this Euler instance is equal with the given one.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "multiply",
+      "description": "Post-multiplies this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given 4x4 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to multiply with."
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "multiplyMatrices",
+      "description": "Multiples the given 4x4 matrices and stores the result",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The first <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        },
+        {
+          "name": "b",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The second <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "multiplyScalar",
+      "description": "Multiplies every <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> of the matrix by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
+      "parameters": [
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>."
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Matrix4",
       "methodName": "determinant",
-      "description": "Computes and returns the determinant of this matrix.",
+      "description": "Computes and returns the <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a> of this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "parameters": [],
       "returnType": "number",
-      "returnDescription": "The determinant."
+      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "scale",
+      "description": "Multiplies the columns of this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given vector.",
+      "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The scale vector."
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Matrix4",
       "methodName": "getMaxScaleOnAxis",
-      "description": "Gets the maximum scale value of the three axes.",
+      "description": "Gets the maximum scale value of the three <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axes</a>.",
       "parameters": [],
       "returnType": "number",
-      "returnDescription": "The maximum scale."
+      "returnDescription": "The maximum scale.",
+      "methodType": "calculation",
+      "mutatesThis": false
     },
     {
       "className": "Matrix4",
       "methodName": "equals",
-      "description": "Returns `true` if this matrix is equal with the given one.",
+      "description": "Returns `true` if this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
       "parameters": [
         {
           "name": "matrix",
           "type": "Matrix4",
           "optional": false,
-          "description": "The matrix to test for equality."
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to test for equality."
         }
       ],
       "returnType": "boolean",
-      "returnDescription": "Whether this matrix is equal with the given one."
+      "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "multiply",
+      "description": "Post-multiplies this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given 3x3 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to multiply with."
+        }
+      ],
+      "returnType": "Matrix3",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "multiplyMatrices",
+      "description": "Multiples the given 3x3 matrices and stores the result",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The first <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        },
+        {
+          "name": "b",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The second <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>."
+        }
+      ],
+      "returnType": "Matrix3",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "multiplyScalar",
+      "description": "Multiplies every <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> of the matrix by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
+      "parameters": [
+        {
+          "name": "s",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>."
+        }
+      ],
+      "returnType": "Matrix3",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Matrix3",
       "methodName": "determinant",
-      "description": "Computes and returns the determinant of this matrix.",
+      "description": "Computes and returns the <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a> of this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "parameters": [],
       "returnType": "number",
-      "returnDescription": "The determinant."
+      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "scale",
+      "description": "Scales this matrix with the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> values.",
+      "parameters": [
+        {
+          "name": "sx",
+          "type": "number",
+          "optional": false,
+          "description": "The amount to scale in the X <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>."
+        },
+        {
+          "name": "sy",
+          "type": "number",
+          "optional": false,
+          "description": "The amount to scale in the Y <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>."
+        }
+      ],
+      "returnType": "Matrix3",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Matrix3",
+      "methodName": "rotate",
+      "description": "Rotates this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given angle.",
+      "parameters": [
+        {
+          "name": "theta",
+          "type": "number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        }
+      ],
+      "returnType": "Matrix3",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "methodType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Matrix3",
       "methodName": "equals",
-      "description": "Returns `true` if this matrix is equal with the given one.",
+      "description": "Returns `true` if this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
       "parameters": [
         {
           "name": "matrix",
           "type": "Matrix3",
           "optional": false,
-          "description": "The matrix to test for equality."
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to test for equality."
         }
       ],
       "returnType": "boolean",
-      "returnDescription": "Whether this matrix is equal with the given one."
+      "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "clamp",
+      "description": "Clamps the given value between min and max.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": "The value to <a href=\"https://en.wikipedia.org/wiki/Clamping_(graphics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">clamp</a>."
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "optional": false,
+          "description": "The min value."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "optional": false,
+          "description": "The max value."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The clamped value.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "euclideanModulo",
+      "description": "Computes the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> modulo of the given parameters that",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "number",
+          "optional": false,
+          "description": "The first parameter."
+        },
+        {
+          "name": "m",
+          "type": "number",
+          "optional": false,
+          "description": "The second parameter."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> modulo.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "inverseLerp",
+      "description": "Returns the percentage in the closed interval `[0, 1]` of the given value",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": "The start point"
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": "The end point."
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": "A value between start and end."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The interpolation factor.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "lerp",
+      "description": "Returns a value linearly interpolated from two known points based on the given interval -",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": "The start point"
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": "The end point."
+        },
+        {
+          "name": "t",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The interpolated value.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "pingpong",
+      "description": "Returns a value that alternates between `0` and the given `length` parameter.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": "The value to pingpong."
+        },
+        {
+          "name": "length=1",
+          "type": "number",
+          "optional": false,
+          "description": "The positive value the function will pingpong to."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The alternated value.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "smoothstep",
+      "description": "Returns a value in the range `[0,1]` that represents the percentage that `x` has",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": "The value to evaluate based on its position between min and max."
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "optional": false,
+          "description": "The min value. Any x value below min will be `0`."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "optional": false,
+          "description": "The max value. Any x value above max will be `1`."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The alternated value.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "smootherstep",
+      "description": "A [variation on smoothstep](https://en.wikipedia.org/wiki/Smoothstep#Variations)",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": "The value to evaluate based on its position between min and max."
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "optional": false,
+          "description": "The min value. Any x value below min will be `0`."
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "optional": false,
+          "description": "The max value. Any x value above max will be `1`."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The alternated value.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "randInt",
+      "description": "Returns a random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> from `<low, high>` interval.",
+      "parameters": [
+        {
+          "name": "low",
+          "type": "number",
+          "optional": false,
+          "description": "The lower value boundary."
+        },
+        {
+          "name": "high",
+          "type": "number",
+          "optional": false,
+          "description": "The upper value boundary"
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "randFloat",
+      "description": "Returns a random float from `<low, high>` interval.",
+      "parameters": [
+        {
+          "name": "low",
+          "type": "number",
+          "optional": false,
+          "description": "The lower value boundary."
+        },
+        {
+          "name": "high",
+          "type": "number",
+          "optional": false,
+          "description": "The upper value boundary"
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A random float.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "randFloatSpread",
+      "description": "Returns a random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> from `<-range/2, range/2>` interval.",
+      "parameters": [
+        {
+          "name": "range",
+          "type": "number",
+          "optional": false,
+          "description": "Defines the value range."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A random float.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "degToRad",
+      "description": "Converts degrees to <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "parameters": [
+        {
+          "name": "degrees",
+          "type": "number",
+          "optional": false,
+          "description": "A value in <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The converted value in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "radToDeg",
+      "description": "Converts <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a> to <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
+      "parameters": [
+        {
+          "name": "radians",
+          "type": "number",
+          "optional": false,
+          "description": "A value in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The converted value in <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "isPowerOfTwo",
+      "description": "Returns `true` if the given number is a <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a>.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": "The value to check."
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether the given number is a <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> or not.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "ceilPowerOfTwo",
+      "description": "Returns the smallest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is greater than or equal to the given number.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": "The value to find a POT for."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The smallest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is greater than or equal to the given number.",
+      "methodType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "floorPowerOfTwo",
+      "description": "Returns the largest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is less than or equal to the given number.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "number",
+          "optional": false,
+          "description": "The value to find a POT for."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The largest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is less than or equal to the given number.",
+      "methodType": "calculation",
+      "mutatesThis": false
     }
   ]
 }

@@ -268,8 +268,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   background: white;
   border: 1px solid hsl(0 0% 93%);
   border-radius: 6px;
@@ -284,20 +283,76 @@
   background: hsl(222 47% 97%);
 }
 
-.equation-browser__method-item .class-badge {
+/* Method Signature Display */
+.method-signature {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-wrap: wrap;
   font-size: 11px;
-  padding: 2px 6px;
-  background: hsl(142 76% 36%);
-  color: white;
-  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  line-height: 1.4;
+}
+
+.signature-class {
+  color: hsl(142 76% 36%);
+  font-weight: 600;
+}
+
+.signature-method {
+  color: hsl(0 0% 20%);
+  font-weight: 600;
+}
+
+.signature-params {
+  color: hsl(0 0% 40%);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.signature-separator {
+  color: hsl(0 0% 60%);
+  margin: 0 2px;
+}
+
+.param-type-badge,
+.return-type-badge {
+  font-size: 9px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.param-type-badge {
+  background: hsl(210 100% 95%);
+  color: hsl(210 100% 35%);
+  border: 1px solid hsl(210 100% 85%);
+}
+
+.return-type-badge {
+  background: hsl(280 100% 95%);
+  color: hsl(280 60% 40%);
+  border: 1px solid hsl(280 100% 85%);
+}
+
+/* Wikipedia links in descriptions */
+.equation-browser__detail-section .wiki-link {
+  color: hsl(222 47% 41%);
+  text-decoration: none;
+  border-bottom: 1px dotted hsl(222 47% 41%);
+  transition: all 0.2s;
   font-weight: 500;
 }
 
-.equation-browser__method-item .return-type {
-  font-size: 12px;
-  color: hsl(0 0% 50%);
-  margin-left: auto;
-  font-family: 'Courier New', monospace;
+.equation-browser__detail-section .wiki-link:hover {
+  color: hsl(222 47% 31%);
+  border-bottom-style: solid;
+  background: hsl(222 47% 97%);
+  padding: 0 2px;
+  border-radius: 2px;
 }
 
 .equation-browser__empty {
@@ -388,21 +443,127 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.method-type-badge-large {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.method-type-badge-large.calculation {
+  background: hsl(210 100% 95%);
+  color: hsl(210 100% 35%);
+  border: 1px solid hsl(210 100% 85%);
+}
+
+.method-type-badge-large.transformation {
+  background: hsl(280 100% 95%);
+  color: hsl(280 60% 40%);
+  border: 1px solid hsl(280 100% 85%);
+}
+
+.mutates-badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: hsl(45 100% 95%);
+  color: hsl(45 100% 30%);
+  border: 1px solid hsl(45 100% 80%);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: help;
 }
 
 .equation-browser__detail-meta .class-badge {
   font-size: 12px;
   padding: 4px 8px;
-  background: hsl(142 76% 36%);
-  color: white;
+  background: hsl(142 76% 95%);
+  color: hsl(142 76% 30%);
+  border: 1px solid hsl(142 76% 80%);
   border-radius: 4px;
   font-weight: 500;
 }
 
 .equation-browser__detail-meta .return-type {
-  font-size: 14px;
-  color: hsl(0 0% 50%);
+  font-size: 11px;
+  padding: 4px 8px;
+  background: hsl(280 100% 95%);
+  color: hsl(280 60% 40%);
+  border: 1px solid hsl(280 100% 85%);
+  border-radius: 4px;
+  font-weight: 500;
   font-family: 'Courier New', monospace;
+}
+
+.equation-browser__detail-meta .meta-separator {
+  color: hsl(0 0% 60%);
+  font-size: 14px;
+}
+
+/* Method Signature Detail */
+.method-signature-detail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.method-signature-detail .sig-class {
+  color: hsl(142 76% 36%);
+  font-weight: 600;
+}
+
+.method-signature-detail .sig-method {
+  color: hsl(0 0% 20%);
+  font-weight: 700;
+}
+
+.method-signature-detail .sig-paren,
+.method-signature-detail .sig-comma {
+  color: hsl(0 0% 50%);
+}
+
+.method-signature-detail .sig-param-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.method-signature-detail .sig-param-name {
+  color: hsl(0 0% 30%);
+  font-style: italic;
+}
+
+.method-signature-detail .sig-colon {
+  color: hsl(0 0% 60%);
+}
+
+.method-signature-detail .sig-param-type {
+  font-size: 11px;
+  padding: 2px 6px;
+  background: hsl(210 100% 95%);
+  color: hsl(210 100% 35%);
+  border: 1px solid hsl(210 100% 85%);
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.method-signature-detail .sig-return-type {
+  font-size: 11px;
+  padding: 2px 6px;
+  background: hsl(280 100% 95%);
+  color: hsl(280 60% 40%);
+  border: 1px solid hsl(280 100% 85%);
+  border-radius: 4px;
+  font-weight: 500;
 }
 
 .equation-browser__detail-section {
@@ -427,7 +588,7 @@
 
 .equation-browser__params-list {
   list-style: none;
-  padding: 0;
+  padding: 12px;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -436,8 +597,8 @@
 
 .equation-browser__params-list li {
   padding: 12px;
-  background: white;
-  border: 1px solid hsl(0 0% 89%);
+  background: hsl(0 0% 96%);
+  border: 1px solid hsl(0 0% 93%);
   border-radius: 6px;
 }
 
@@ -450,8 +611,13 @@
 
 .equation-browser__params-list .param-type {
   margin-left: 8px;
-  font-size: 12px;
-  color: hsl(0 0% 50%);
+  font-size: 10px;
+  padding: 2px 6px;
+  background: hsl(210 100% 95%);
+  color: hsl(210 100% 35%);
+  border: 1px solid hsl(210 100% 85%);
+  border-radius: 4px;
+  font-weight: 500;
   font-family: 'Courier New', monospace;
 }
 
@@ -480,17 +646,118 @@
 
 .equation-browser__detail-section pre {
   margin: 0;
-  padding: 12px;
+  padding: 0;
   background: hsl(0 0% 20%);
   color: hsl(142 76% 70%);
   border-radius: 6px;
   overflow-x: auto;
+}
+
+.equation-browser__detail-section pre code {
+  display: block;
+  padding: 12px;
   font-size: 13px;
   line-height: 1.5;
 }
 
+.equation-browser__detail-section pre {
+  margin: 0;
+}
+
 .equation-browser__detail-section pre code {
   font-family: 'Courier New', monospace;
+}
+
+/* Section Content - Unified Block Style */
+.section-content {
+  padding: 12px;
+  background: white;
+  border: 1px solid hsl(0 0% 89%);
+  border-radius: 6px;
+}
+
+.section-content p {
+  margin: 0;
+}
+
+/* Method Type Explanation */
+.method-type-explanation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.method-type-badge-inline {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+}
+
+.method-type-badge-inline.calculation {
+  background: hsl(210 100% 95%);
+  color: hsl(210 100% 35%);
+  border: 1px solid hsl(210 100% 85%);
+}
+
+.method-type-badge-inline.transformation {
+  background: hsl(280 100% 95%);
+  color: hsl(280 60% 40%);
+  border: 1px solid hsl(280 100% 85%);
+}
+
+.method-type-explanation p {
+  color: hsl(0 0% 40%);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* No Parameters Message */
+.no-parameters {
+  margin: 0;
+  color: hsl(0 0% 50%);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Return Info with Type Note */
+.return-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.return-info p {
+  flex: 1;
+}
+
+.method-type-note {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.method-type-note.calculation {
+  background: hsl(210 100% 95%);
+  color: hsl(210 100% 35%);
+  border: 1px solid hsl(210 100% 85%);
+}
+
+.method-type-note.transformation {
+  background: hsl(280 100% 95%);
+  color: hsl(280 60% 40%);
+  border: 1px solid hsl(280 100% 85%);
 }
 
 /* Dark mode support (optional) */
@@ -551,5 +818,77 @@
   .equation-browser__list-view,
   .equation-browser__detail-view {
     background: hsl(0 0% 12%);
+  }
+
+  .section-content {
+    background: hsl(0 0% 15%);
+    border-color: hsl(0 0% 20%);
+  }
+
+  .method-type-explanation p {
+    color: hsl(0 0% 70%);
+  }
+
+  .no-parameters {
+    color: hsl(0 0% 60%);
+  }
+
+  .equation-browser__params-list li {
+    background: hsl(0 0% 18%);
+    border-color: hsl(0 0% 22%);
+  }
+
+  .signature-class {
+    color: hsl(142 76% 50%);
+  }
+
+  .signature-method {
+    color: hsl(0 0% 85%);
+  }
+
+  .signature-params {
+    color: hsl(0 0% 70%);
+  }
+
+  .equation-browser__detail-meta .class-badge {
+    background: hsl(142 76% 25%);
+    color: hsl(142 76% 85%);
+    border-color: hsl(142 76% 35%);
+  }
+
+  .equation-browser__detail-meta .return-type {
+    background: hsl(280 60% 25%);
+    color: hsl(280 100% 85%);
+    border-color: hsl(280 60% 35%);
+  }
+
+  .equation-browser__params-list .param-type {
+    background: hsl(210 100% 25%);
+    color: hsl(210 100% 85%);
+    border-color: hsl(210 100% 35%);
+  }
+
+  .method-signature-detail .sig-class {
+    color: hsl(142 76% 60%);
+  }
+
+  .method-signature-detail .sig-method {
+    color: hsl(0 0% 85%);
+  }
+
+  .method-signature-detail .sig-param-name {
+    color: hsl(0 0% 75%);
+  }
+
+  .method-signature-detail .sig-param-type {
+    background: hsl(210 100% 25%);
+    color: hsl(210 100% 85%);
+    border-color: hsl(210 100% 35%);
+  }
+
+  .method-signature-detail .sig-return-type {
+    background: hsl(280 60% 25%);
+    color: hsl(280 100% 85%);
+    border-color: hsl(280 60% 35%);
   }
 }
