@@ -18,7 +18,7 @@ import {
 import { useScenarioStore } from "../../stores/scenarioStore";
 import { useCameraStore } from "../../stores/cameraStore";
 import { ParameterUI } from "./parameterUI";
-import type { Object3DEventMap } from "three";
+import { useCameraControlHandlers } from "../../utils/cameraControl";
 
 /**
  * UI for creating and editing math scenarios
@@ -116,19 +116,7 @@ export function ScenarioCreator() {
     }
   };
 
-  const handlePointerEnter = (event: Object3DEventMap['pointerenter'] ) => {
-    // Ignore if any button is pressed (user is dragging)
-    if((event.nativeEvent as PointerEvent).buttons !== 0) return;
-    console.log("Pointer entered ScenarioCreator UI",event);
-    cameraStore.setEnabled(false);
-  };
-
-  const handlePointerLeave = (event: Object3DEventMap['pointerleave']) => {
-    // Ignore if any button is pressed (user is dragging)
-    if((event.nativeEvent as PointerEvent).buttons !== 0) return;
-    console.log("Pointer left ScenarioCreator UI",event);
-    cameraStore.setEnabled(true);
-  };
+  const { disableCameraControl, enableCameraControl } = useCameraControlHandlers();
 
   const currentScenario = scenarioStore.getCurrentScenario();
 
@@ -157,8 +145,8 @@ export function ScenarioCreator() {
         width={400}
         height="90vh"
         flexDirection="column"
-        onPointerEnter={handlePointerEnter}
-        onPointerLeave={handlePointerLeave}
+        onPointerEnter={disableCameraControl}
+        onPointerLeave={enableCameraControl}
       >
         <CardHeader flexShrink={0}>
           <Text fontSize={20} fontWeight="bold">

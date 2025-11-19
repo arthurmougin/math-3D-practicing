@@ -16,18 +16,16 @@ import {
   Code,
   Settings,
   ArrowLeft,
-  ChevronLeft,
 } from "@react-three/uikit-lucide";
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import type { Object3DEventMap } from "three";
 import {
   type MethodSignature,
   type SupportedType,
   getDatabaseStats,
 } from "../../data/equationDatabaseHelper";
 import equationDatabase from "../../data/equationDatabase.source.json";
-import { useCameraStore } from "../../stores/cameraStore";
+import { useCameraControlHandlers } from "../../utils/cameraControl";
 
 /**
  * Equation Database Browser Component
@@ -53,8 +51,8 @@ import { useCameraStore } from "../../stores/cameraStore";
  * Format: version 2.0.0 with complete JSDoc documentation
  */
 export function EquationDatabaseBrowser() {
-  // Store to control OrbitControl (disabled during sidebar interaction)
-  const cameraStore = useCameraStore();
+  // Camera control handlers for disabling OrbitControl during UI interaction
+  const { disableCameraControl, enableCameraControl } = useCameraControlHandlers();
 
   // Search and filters state
   const [searchQuery, setSearchQuery] = useState("");
@@ -82,7 +80,7 @@ export function EquationDatabaseBrowser() {
   const [viewPosition, setViewPosition] = useState(0);
 
   // Animation transitions with useFrame
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     // Immediate update of displayed content when a method is selected
     // (even before the animation starts)
     if (selectedMethod && displayedMethod !== selectedMethod) {
@@ -105,27 +103,6 @@ export function EquationDatabaseBrowser() {
       return prev + diff * Math.min(delta * 6, 1);
     });
   });
-
-  /**
-   * Disables OrbitControl when pointer enters the sidebar
-   * Prevents list scrolling from rotating the camera
-   * Ignores events if user is dragging (buttons !== 0)
-   */
-  const handlePointerEnter = (event: Object3DEventMap["pointerenter"]) => {
-    // Ignore if any button is pressed (user is dragging)
-    if ((event.nativeEvent as PointerEvent).buttons !== 0) return;
-    cameraStore.setEnabled(false);
-  };
-
-  /**
-   * Re-enables OrbitControl when pointer leaves the sidebar
-   * Restores camera control for the user
-   */
-  const handlePointerLeave = (event: Object3DEventMap["pointerleave"]) => {
-    // Ignore if any button is pressed (user is dragging)
-    if ((event.nativeEvent as PointerEvent).buttons !== 0) return;
-    cameraStore.setEnabled(true);
-  };
 
   /**
    * Database imported from generated JSON file
@@ -251,8 +228,8 @@ export function EquationDatabaseBrowser() {
         backgroundColor={colors.card}
         borderRightWidth={1}
         borderColor={colors.border}
-        onPointerEnter={handlePointerEnter} // Disables OrbitControl on hover
-        onPointerLeave={handlePointerLeave} // Re-enables OrbitControl when leaving
+        onPointerEnter={disableCameraControl} // Disables OrbitControl on hover
+        onPointerLeave={enableCameraControl} // Re-enables OrbitControl when leaving
         overflow="hidden" // Hides overflow for transition
         positionLeft={panelPosition} // Animated position for collapse/expand
       >

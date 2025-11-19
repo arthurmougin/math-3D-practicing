@@ -1,59 +1,13 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
-import { Euler, Matrix4, Quaternion, Vector3 } from "three";
 import { AMBox } from "./box";
 import type { ScenarioAnswer } from "../types";
+import { valueToMatrix4 } from "../utils/mathTransforms";
 
 interface AnswerProps {
   answer: ScenarioAnswer;
   onClick?: () => void;
   opacity?: number; // Optional opacity for showing expected answer
-}
-
-/**
- * Converts any MathDataType to a Matrix4 for unified transformation handling
- */
-function valueToMatrix4(value: unknown): Matrix4 {
-  const matrix = new Matrix4();
-
-  if (value instanceof Matrix4) {
-    // Already a matrix
-    return value.clone();
-  }
-
-  if (value instanceof Vector3) {
-    // Vector3 -> translation matrix
-    matrix.makeTranslation(value.x, value.y, value.z);
-    return matrix;
-  }
-
-  if (value instanceof Quaternion) {
-    // Quaternion -> rotation matrix
-    matrix.makeRotationFromQuaternion(value);
-    return matrix;
-  }
-
-  if (value instanceof Euler) {
-    // Euler -> rotation matrix
-    matrix.makeRotationFromEuler(value);
-    return matrix;
-  }
-
-  if (Array.isArray(value)) {
-    if (value.length === 3) {
-      // [x, y, z] -> translation matrix
-      matrix.makeTranslation(value[0], value[1], value[2]);
-      return matrix;
-    }
-    if (value.length === 16) {
-      // Array of 16 elements -> matrix elements
-      matrix.fromArray(value);
-      return matrix;
-    }
-  }
-
-  // Default: identity matrix at origin
-  return matrix;
 }
 
 /**
