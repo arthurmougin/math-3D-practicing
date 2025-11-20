@@ -4,7 +4,7 @@ import "./App.css";
 import { CustomOrbitControl } from "./components/orbitControl";
 import { ScenarioVisualization } from "./components/scenarioVisualization";
 import { Decorations } from "./components/environment";
-import { EquationDatabaseBrowserHTML } from "./components/creation/EquationDatabaseBrowserHTML";
+import { EquationDatabaseBrowserHTML } from "./components/equations/EquationDatabaseBrowserHTML";
 
 function App() {
   return (
