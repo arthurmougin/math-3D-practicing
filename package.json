@@ -11,6 +11,7 @@
     "generate-equations": "tsx scripts/generateEquationDatabase.ts",
     "generate-from-source": "tsx scripts/generateFromSource.ts",
     "test-equations": "tsx scripts/testEquationDatabase.ts"
+    ,"deploy": "npm run build && npx gh-pages -d dist"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",

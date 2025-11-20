@@ -6,7 +6,7 @@ import { AMBox } from "../components/box";
 export default function RotatingCube({ speed = 1 }: { speed?: number }) {
   const meshRef = useRef<Mesh>(null);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (meshRef.current) {
       meshRef.current.rotation.x += delta * speed;
       meshRef.current.rotation.y += delta * speed * 0.5;
