@@ -192,10 +192,16 @@ export function getDatabaseStats() {
     return acc;
   }, {} as Record<string, number>);
 
+  const byReturnType = db.methods.reduce((acc, method) => {
+    acc[method.returnType] = (acc[method.returnType] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
   return {
     total: db.methods.length,
     byClass,
     byMethod,
+    byReturnType,
     version: db.version,
     generatedAt: db.generatedAt,
     source: db.source,

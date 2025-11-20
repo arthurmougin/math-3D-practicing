@@ -1,3 +1,11 @@
+/* Boutons de filtre visuellement atténués mais cliquables */
+.equation-browser__filter-chips button.disabled {
+  background: hsl(0 0% 97%);
+  color: hsl(0 0% 70%);
+  border-color: hsl(0 0% 92%);
+  opacity: 0.7;
+  cursor: pointer;
+}
 /* Equation Database Browser - HTML Version Styles */
 
 .equation-browser {
@@ -30,8 +38,8 @@
 /* Collapse Button */
 .equation-browser__collapse-btn {
   position: absolute;
-  top: 20px;
-  right: -40px;
+  top: 5px;
+  left: 0%;
   width: 40px;
   height: 40px;
   background: hsl(0 0% 98%);
@@ -44,7 +52,8 @@
   justify-content: center;
   color: hsl(0 0% 20%);
   transition: all 0.3s ease;
-  z-index: 10;
+  pointer-events: auto;
+  z-index: 0;
 }
 
 .equation-browser__collapse-btn:hover {
