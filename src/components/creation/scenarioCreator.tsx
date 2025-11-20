@@ -46,7 +46,7 @@ export function ScenarioCreator() {
       tags: [],
       parameters: [],
       equation: "",
-      answer: {
+      result: {
         value: 0,
         representation: {
           type: "vertex" as RepresentationType,
@@ -89,7 +89,7 @@ export function ScenarioCreator() {
       tags: [],
       parameters: [],
       equation: "",
-      answer: {
+      result: {
         value: 0,
         representation: {
           type: "vertex" as RepresentationType,

@@ -1,20 +1,20 @@
 import { Suspense } from "react";
 import { useScenarioStore } from "../stores/scenarioStore";
-import { Answer } from "./answer";
+import { Result } from "./result";
 import { Parameter } from "./parameter";
 
 interface ScenarioVisualizationProps {
-  showAnswer?: boolean; // Whether to show the answer
-  answerOpacity?: number; // Opacity of the answer (useful for showing expected result)
+  showresult?: boolean; // Whether to show the result
+  resultOpacity?: number; // Opacity of the result (useful for showing expected result)
 }
 
 /**
- * Visualizes the current active scenario with all its parameters and answer
+ * Visualizes the current active scenario with all its parameters and result
  * Automatically syncs with the scenario store
  */
 export function ScenarioVisualization({
-  showAnswer = true,
-  answerOpacity = 0.3,
+  showresult = true,
+  resultOpacity = 0.3,
 }: ScenarioVisualizationProps) {
   const currentScenario = useScenarioStore((state) =>
     state.getCurrentScenario()
@@ -25,7 +25,7 @@ export function ScenarioVisualization({
     return null;
   }
 
-  const { parameters, answer } = currentScenario;
+  const { parameters, result } = currentScenario;
 
   return (
     <group name="scenario-visualization">
@@ -36,8 +36,8 @@ export function ScenarioVisualization({
         </Suspense>
       ))}
 
-      {/* Render answer if enabled */}
-      {showAnswer && <Answer answer={answer} opacity={answerOpacity} />}
+      {/* Render result if enabled */}
+      {showresult && <Result result={result} opacity={resultOpacity} />}
     </group>
   );
 }

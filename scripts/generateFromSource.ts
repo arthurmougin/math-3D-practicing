@@ -5,7 +5,7 @@ import { enrichDescriptionWithLinks, getTermUsageStats } from "./technicalTerms"
 /**
  * Types supported in our system
  */
-type SupportedType =
+type valueTypeName =
   | "Vector3"
   | "Quaternion"
   | "Euler"
@@ -19,7 +19,7 @@ type SupportedType =
 /**
  * Represents a method parameter extracted from JSDoc
  */
-interface MethodParameter {
+interface EquationParameter {
   name: string;
   type: string;
   optional: boolean;
@@ -30,20 +30,20 @@ interface MethodParameter {
 /**
  * Method type classification
  */
-type MethodType = 'calculation' | 'transformation' | 'mutation';
+type EquationType = 'calculation' | 'transformation' | 'mutation';
 
 /**
  * Represents a method signature with documentation
  */
-interface MethodSignature {
+interface EquationSignature {
   className: string;
   methodName: string;
   description: string;
-  parameters: MethodParameter[];
+  parameters: EquationParameter[];
   returnType: string;
   returnDescription?: string;
   example?: string;
-  methodType: MethodType;
+  EquationType: EquationType;
   mutatesThis: boolean;
 }
 
@@ -54,7 +54,7 @@ interface EnhancedEquationDatabase {
   version: string;
   generatedAt: string;
   source: string;
-  methods: MethodSignature[];
+  methods: EquationSignature[];
 }
 
 /**
@@ -62,12 +62,12 @@ interface EnhancedEquationDatabase {
  */
 function parseJSDoc(jsDocComment: string): {
   description: string;
-  params: MethodParameter[];
+  params: EquationParameter[];
   returns: { type: string; description: string } | null;
 } {
   const lines = jsDocComment.split("\n");
   let description = "";
-  const params: MethodParameter[] = [];
+  const params: EquationParameter[] = [];
   let returns: { type: string; description: string } | null = null;
 
   for (const line of lines) {
@@ -114,9 +114,9 @@ function parseJSDoc(jsDocComment: string): {
 function extractMethodsFromFile(
   filePath: string,
   className: string
-): MethodSignature[] {
+): EquationSignature[] {
   const content = readFileSync(filePath, "utf-8");
-  const methods: MethodSignature[] = [];
+  const methods: EquationSignature[] = [];
 
   // For MathUtils, use a different regex to match free functions
   // For classes, match method definitions
@@ -160,15 +160,15 @@ function extractMethodsFromFile(
     const returnType = parsed.returns?.type || "void";
     
     // Classify method type
-    let methodType: MethodType;
+    let EquationType: EquationType;
     let mutatesThis = false;
     
     // For MathUtils, all functions are calculations (pure functions)
     if (isMathUtils) {
-      methodType = "calculation";
+      EquationType = "calculation";
       mutatesThis = false;
     } else if (returnType === "number" || returnType === "boolean") {
-      methodType = "calculation";
+      EquationType = "calculation";
       mutatesThis = false;
     } else if (returnType === className || returnType === "this") {
       mutatesThis = true;
@@ -189,9 +189,9 @@ function extractMethodsFromFile(
       );
       
       if (isMathOperation) {
-        methodType = "transformation";
+        EquationType = "transformation";
       } else {
-        methodType = "mutation";
+        EquationType = "mutation";
         // Skip simple mutations (setters, copy, etc.)
         continue;
       }
@@ -200,7 +200,7 @@ function extractMethodsFromFile(
       continue;
     } else {
       // Methods returning other types (Vector3, Matrix4, etc.) are transformations
-      methodType = "transformation";
+      EquationType = "transformation";
       mutatesThis = false;
     }
 
@@ -216,7 +216,7 @@ function extractMethodsFromFile(
       returnDescription: parsed.returns?.description 
         ? enrichDescriptionWithLinks(parsed.returns.description, "en")
         : undefined,
-      methodType,
+      EquationType,
       mutatesThis,
     });
   }
@@ -227,7 +227,7 @@ function extractMethodsFromFile(
 /**
  * Map Three.js types to our supported types
  */
-function mapTypeToSupported(type: string): SupportedType | null {
+function mapTypeToSupported(type: string): valueTypeName | null {
   const cleaned = type
     .replace(/\s+/g, "")
     .replace(/\[/g, "")
@@ -253,7 +253,7 @@ function mapTypeToSupported(type: string): SupportedType | null {
 /**
  * Filter methods that are useful for equation database
  */
-function isUsefulMethod(method: MethodSignature): boolean {
+function isUsefulMethod(method: EquationSignature): boolean {
   // Must return a supported type
   const returnType = mapTypeToSupported(method.returnType);
   if (!returnType) return false;
@@ -305,7 +305,7 @@ async function generateEnhancedDatabase() {
     { file: "MathUtils.js", className: "MathUtils" },
   ];
 
-  const allMethods: MethodSignature[] = [];
+  const allMethods: EquationSignature[] = [];
 
   for (const { file, className } of classFiles) {
     const filePath = join(mathFolder, file);
@@ -367,7 +367,7 @@ async function generateEnhancedDatabase() {
 
   // Print statistics by method type
   const byType = allMethods.reduce((acc, method) => {
-    acc[method.methodType] = (acc[method.methodType] || 0) + 1;
+    acc[method.EquationType] = (acc[method.EquationType] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
   

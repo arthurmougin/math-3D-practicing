@@ -120,7 +120,7 @@ interface EquationSignature {
 ### Après (nouvelle structure)
 
 ```typescript
-interface MethodSignature {
+interface EquationSignature {
   className: string;
   methodName: string;
   description: string;  // 🆕 Documentation

@@ -1,7 +1,7 @@
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
 
 /**
- * Converts any MathDataType to a Matrix4 for unified transformation handling
+ * Converts any valueType to a Matrix4 for unified transformation handling
  * 
  * @param value - The value to convert (Vector3, Quaternion, Euler, Matrix4, number[], or number)
  * @returns A Matrix4 representing the transformation

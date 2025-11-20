@@ -1,11 +1,12 @@
-import { Euler, Matrix4, Quaternion, Vector3 } from "three";
-import type { MathDataType, ParameterType, ScenarioParameter } from "../types";
+import { Euler, Matrix4, Quaternion, Vector2, Vector3, Vector4 } from "three";
+import type { valueType, valueTypeName, ScenarioParameter } from "../types";
+import { Matrix3 } from "three";
 
 /**
  * Structure representing parameter values for UI display and editing
  */
 export type ParameterValue = {
-  type: ParameterType;
+  type: valueTypeName;
   list: number[];
   order?: "XYZ" | "YZX" | "ZXY" | "XZY" | "YXZ" | "ZYX";
 };
@@ -29,30 +30,30 @@ export function getParameterValues(param: ScenarioParameter): ParameterValue {
 
   if (value instanceof Vector3) {
     return {
-      type: "Vector3" as ParameterType,
+      type: "Vector3" as valueTypeName,
       list: [value.x, value.y, value.z],
     };
   } else if (value instanceof Quaternion) {
     return {
-      type: "Quaternion" as ParameterType,
+      type: "Quaternion" as valueTypeName,
       list: [value.x, value.y, value.z, value.w],
     };
   } else if (value instanceof Euler) {
     return {
-      type: "Euler" as ParameterType,
+      type: "Euler" as valueTypeName,
       list: [value.x, value.y, value.z],
       order: value.order,
     };
   } else if (value instanceof Matrix4) {
-    return { type: "Matrix4" as ParameterType, list: value.toArray() };
+    return { type: "Matrix4" as valueTypeName, list: value.toArray() };
   } else if (typeof value === "number") {
-    return { type: "number" as ParameterType, list: [value] };
+    return { type: "number" as valueTypeName, list: [value] };
   }
-  return { type: "number" as ParameterType, list: [0] };
+  return { type: "number" as valueTypeName, list: [0] };
 }
 
 /**
- * Converts ParameterValue back to appropriate MathDataType
+ * Converts ParameterValue back to appropriate valueType
  * 
  * @param paramValue - The parameter value to convert
  * @returns A Three.js math object or number
@@ -68,7 +69,7 @@ export function getParameterValues(param: ScenarioParameter): ParameterValue {
  */
 export function parameterValueToMathType(
   paramValue: ParameterValue
-): MathDataType {
+): valueType {
   const { type, list, order } = paramValue;
 
   switch (type) {
@@ -101,12 +102,15 @@ export function parameterValueToMathType(
  * 
  * @returns Record mapping parameter types to their default values
  */
-export function getDefaultParameterValues(): Record<ParameterType, MathDataType> {
+export function getDefaultParameterValues(): Record<valueTypeName, valueType> {
   return {
-    Vector3: new Vector3(0, 0, 0),
-    Euler: new Euler(0, 0, 0),
-    Quaternion: new Quaternion(0, 0, 0, 1),
-    Matrix4: new Matrix4(),
-    number: 0,
-  };
+  Matrix4: new Matrix4(),
+  Matrix3: new Matrix3(),
+  Quaternion: new Quaternion(0, 0, 0, 1),
+  Euler: new Euler(0, 0, 0),
+  Vector4: new Vector4(0, 0, 0, 0),
+  Vector3: new Vector3(0, 0, 0),
+  Vector2: new Vector2(0, 0),
+  number: 0,
+};
 }

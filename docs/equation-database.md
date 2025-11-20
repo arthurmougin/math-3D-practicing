@@ -149,7 +149,7 @@ Ce système génère automatiquement une base de données de toutes les équatio
 **Interfaces TypeScript** :
 
 ```typescript
-interface MethodParameter {
+interface EquationParameter {
   name: string;
   type: string;
   optional: boolean;
@@ -157,11 +157,11 @@ interface MethodParameter {
   description?: string;  // Description du paramètre
 }
 
-interface MethodSignature {
+interface EquationSignature {
   className: string;
   methodName: string;
   description: string;  // Description de la méthode
-  parameters: MethodParameter[];
+  parameters: EquationParameter[];
   returnType: string;
   returnDescription?: string;  // Description du retour
 }
@@ -385,7 +385,7 @@ for (const className of ["Vector3", "Vector2", "Vector4", "Quaternion", "Euler",
 ### Recherche (equationDatabaseHelper.ts)
 
 ```typescript
-export function findEquationsByParameters(paramTypes: SupportedType[]) {
+export function findEquationsByParameters(paramTypes: valueTypeName[]) {
   return database.methods.filter(method => {
     // Filtre les paramètres obligatoires seulement
     const requiredParams = method.parameters.filter(p => !p.optional);
@@ -398,7 +398,7 @@ export function findEquationsByParameters(paramTypes: SupportedType[]) {
   });
 }
 
-export function getEquationSignatureString(method: MethodSignature): string {
+export function getEquationSignatureString(method: EquationSignature): string {
   // Génère: "dot(v: Vector3) → number"
   const params = method.parameters
     .map(p => `${p.name}: ${p.type}`)
@@ -554,7 +554,7 @@ npm run generate-from-source
 Dans `generateFromSource.ts`, la fonction `isUsefulMethod()` :
 
 ```typescript
-function isUsefulMethod(method: MethodSignature): boolean {
+function isUsefulMethod(method: EquationSignature): boolean {
   // Exclut les méthodes spécifiques
   const excludedMethods = ["maMethodeAExclure"];
   if (excludedMethods.includes(method.methodName)) return false;

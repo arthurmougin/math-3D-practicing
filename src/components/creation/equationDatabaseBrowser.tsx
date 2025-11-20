@@ -20,12 +20,11 @@ import {
 import { useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import {
-  type MethodSignature,
-  type SupportedType,
   getDatabaseStats,
 } from "../../data/equationDatabaseHelper";
 import equationDatabase from "../../data/equationDatabase.source.json";
 import { useCameraControlHandlers } from "../../utils/cameraControl";
+import type { EquationSignature, valueTypeName } from "../../types";
 
 /**
  * Equation Database Browser Component
@@ -56,7 +55,7 @@ export function EquationDatabaseBrowser() {
 
   // Search and filters state
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedClass, setSelectedClass] = useState<SupportedType | "all">(
+  const [selectedClass, setSelectedClass] = useState<valueTypeName | "all">(
     "all"
   );
   const [selectedReturnType, setSelectedReturnType] = useState<string | "all">(
@@ -113,7 +112,7 @@ export function EquationDatabaseBrowser() {
     version: string;
     generatedAt: string;
     source: string;
-    methods: MethodSignature[];
+    methods: EquationSignature[];
   };
 
   /**
@@ -181,11 +180,11 @@ export function EquationDatabaseBrowser() {
    * Allows handling overloads (methods with the same name but different signatures)
    * E.g., "dot" can have multiple signatures for Vector2, Vector3, Vector4, Quaternion
    *
-   * Structure: Map<methodName, MethodSignature[]>
+   * Structure: Map<methodName, EquationSignature[]>
    * Converted to array [methodName, methods[]] sorted alphabetically
    */
   const groupedMethods = useMemo(() => {
-    const groups = new Map<string, MethodSignature[]>();
+    const groups = new Map<string, EquationSignature[]>();
     filteredMethods.forEach((method) => {
       const key = method.methodName;
       if (!groups.has(key)) {
@@ -389,7 +388,7 @@ export function EquationDatabaseBrowser() {
                             }
                             size="sm"
                             onClick={() =>
-                              setSelectedClass(className as SupportedType)
+                              setSelectedClass(className as valueTypeName)
                             }
                           >
                             <Text fontSize={11}>

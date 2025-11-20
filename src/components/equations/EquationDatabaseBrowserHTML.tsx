@@ -1,12 +1,7 @@
 import { useState, useMemo } from "react";
-import {
-  type MethodSignature,
-  type MethodType,
-  type SupportedType,
-  getDatabaseStats,
-} from "../../data/equationDatabaseHelper";
 import equationDatabase from "../../data/equationDatabase.source.json";
 import "./EquationDatabaseBrowserHTML.css";
+import type { valueTypeName, EquationType, EquationSignature } from "../../types";
 
 /**
  * Equation Database Browser Component (HTML Version)
@@ -33,7 +28,7 @@ import "./EquationDatabaseBrowserHTML.css";
 export function EquationDatabaseBrowserHTML() {
   // Search and filters state
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedClass, setSelectedClass] = useState<SupportedType | "all">(
+  const [selectedClass, setSelectedClass] = useState<valueTypeName | "all">(
     "all"
   );
   const [selectedReturnType, setSelectedReturnType] = useState<string | "all">(
@@ -47,8 +42,8 @@ export function EquationDatabaseBrowserHTML() {
   const [filtersExpanded, setFiltersExpanded] = useState(false);
 
   // State for method type filter
-  const [selectedMethodType, setSelectedMethodType] = useState<
-    MethodType | "all"
+  const [selectedEquationType, setSelectedEquationType] = useState<
+    EquationType | "all"
   >("all");
 
   // State for entire panel collapse/expand
@@ -61,13 +56,8 @@ export function EquationDatabaseBrowserHTML() {
     version: string;
     generatedAt: string;
     source: string;
-    methods: MethodSignature[];
+    methods: EquationSignature[];
   };
-
-  /**
-   * Global database statistics
-   */
-  const stats = useMemo(() => getDatabaseStats(), []);
 
   /**
    * Unique list of available classes (sorted alphabetically)
@@ -102,21 +92,21 @@ export function EquationDatabaseBrowserHTML() {
         selectedReturnType === "all" ||
         method.returnType === selectedReturnType;
 
-      const matchesMethodType =
-        selectedMethodType === "all" ||
-        method.methodType === selectedMethodType;
+      const matchesEquationType =
+        selectedEquationType === "all" ||
+        method.EquationType === selectedEquationType;
 
       return (
-        matchesSearch && matchesClass && matchesReturnType && matchesMethodType
+        matchesSearch && matchesClass && matchesReturnType && matchesEquationType
       );
     });
-  }, [searchQuery, selectedClass, selectedReturnType, selectedMethodType]);
+  }, [searchQuery, selectedClass, selectedReturnType, selectedEquationType]);
 
   /**
    * Methods grouped by method name
    */
   const groupedMethods = useMemo(() => {
-    const groups = new Map<string, MethodSignature[]>();
+    const groups = new Map<string, EquationSignature[]>();
     filteredMethods.forEach((method) => {
       const key = method.methodName;
       if (!groups.has(key)) {
@@ -267,7 +257,7 @@ export function EquationDatabaseBrowserHTML() {
                               className={
                                 `${selectedClass === cls ? "active" : ""} ${count === 0 ? "disabled" : ""}`
                               }
-                              onClick={() => count > 0 && setSelectedClass(cls as SupportedType)}
+                              onClick={() => count > 0 && setSelectedClass(cls as valueTypeName)}
                               disabled={count === 0}
                             >
                               {cls}
@@ -315,21 +305,21 @@ export function EquationDatabaseBrowserHTML() {
                       <div className="equation-browser__filter-chips">
                         <button
                           className={
-                            selectedMethodType === "all" ? "active" : ""
+                            selectedEquationType === "all" ? "active" : ""
                           }
-                          onClick={() => setSelectedMethodType("all")}
+                          onClick={() => setSelectedEquationType("all")}
                           title="Show all method types"
                         >
                           All{filteredMethods.length > 0 ? ` (${filteredMethods.length})` : ""}
                         </button>
                         {(() => {
-                          const calcCount = filteredMethods.filter(m => m.methodType === "calculation").length;
+                          const calcCount = filteredMethods.filter(m => m.EquationType === "calculation").length;
                           return (
                             <button
                               className={
-                                `${selectedMethodType === "calculation" ? "active" : ""} ${calcCount === 0 ? "disabled" : ""}`
+                                `${selectedEquationType === "calculation" ? "active" : ""} ${calcCount === 0 ? "disabled" : ""}`
                               }
-                              onClick={() =>setSelectedMethodType("calculation")}
+                              onClick={() =>setSelectedEquationType("calculation")}
                               title="Calculation: Returns a computed value without modifying the object"
                             >
                               🔢 Calculation{calcCount > 0 ? ` (${calcCount})` : ""}
@@ -337,13 +327,13 @@ export function EquationDatabaseBrowserHTML() {
                           );
                         })()}
                         {(() => {
-                          const transCount = filteredMethods.filter(m => m.methodType === "transformation").length;
+                          const transCount = filteredMethods.filter(m => m.EquationType === "transformation").length;
                           return (
                             <button
                               className={
-                                `${selectedMethodType === "transformation" ? "active" : ""} ${transCount === 0 ? "disabled" : ""}`
+                                `${selectedEquationType === "transformation" ? "active" : ""} ${transCount === 0 ? "disabled" : ""}`
                               }
-                              onClick={() =>setSelectedMethodType("transformation")}
+                              onClick={() =>setSelectedEquationType("transformation")}
                               title="Transformation: Modifies the object's state and returns it"
                             >
                               🔄 Transform{transCount > 0 ? ` (${transCount})` : ""}
@@ -572,9 +562,9 @@ export function EquationDatabaseBrowserHTML() {
                           )}
                         </p>
                         <span
-                          className={`method-type-note ${selectedMethodDetails.methodType}`}
+                          className={`method-type-note ${selectedMethodDetails.EquationType}`}
                         >
-                          {selectedMethodDetails.methodType === "calculation"
+                          {selectedMethodDetails.EquationType === "calculation"
                             ? "🔢 Calc"
                             : "🔄 Transform"}
                         </span>
@@ -598,14 +588,14 @@ export function EquationDatabaseBrowserHTML() {
                       <h4>Method Type</h4>
                       <div className="section-content method-type-explanation">
                         <span
-                          className={`method-type-badge-inline ${selectedMethodDetails.methodType}`}
+                          className={`method-type-badge-inline ${selectedMethodDetails.EquationType}`}
                         >
-                          {selectedMethodDetails.methodType === "calculation"
+                          {selectedMethodDetails.EquationType === "calculation"
                             ? "🔢 Calculation"
                             : "🔄 Transformation"}
                         </span>
                         <p>
-                          {selectedMethodDetails.methodType === "calculation"
+                          {selectedMethodDetails.EquationType === "calculation"
                             ? "This is a calculation method. It computes and returns a value without modifying the object itself. The original object remains unchanged."
                             : "This is a transformation method. It modifies the object's internal state and returns the object itself (this), allowing method chaining."}
                         </p>

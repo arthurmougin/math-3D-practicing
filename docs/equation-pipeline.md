@@ -71,7 +71,7 @@ Extrait toutes les méthodes d'un fichier avec leur documentation.
 - ✅ Garde les méthodes retournant des types supportés
 - ✅ Garde max 3 paramètres requis
 
-#### `isUsefulMethod(method: MethodSignature)`
+#### `isUsefulMethod(method: EquationSignature)`
 Détermine si une méthode est utile pour la base d'équations.
 
 **Critères :**

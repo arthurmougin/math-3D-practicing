@@ -10,7 +10,7 @@ import {
 } from "@react-three/uikit-default";
 import { ChevronDown, ChevronRight, Trash2 } from "@react-three/uikit-lucide";
 import type {
-  ParameterType,
+  valueTypeName,
   RepresentationType,
   ScenarioParameter,
 } from "../../types";
@@ -31,7 +31,7 @@ import {
 export function ParameterUI({ scenarioId }: { scenarioId: string }) {
   const scenarioStore = useScenarioStore();
   const parameters = scenarioStore.getScenario(scenarioId)?.parameters || [];
-  const parameterTypes: ParameterType[] = [
+  const valueTypeNames: valueTypeName[] = [
     "Vector3",
     "Euler",
     "Quaternion",
@@ -71,7 +71,7 @@ export function ParameterUI({ scenarioId }: { scenarioId: string }) {
     scenarioStore.addParameter(scenarioId, newParam);
   };
 
-  const onChangeParameter = (type: ParameterType, paramId: string) => {
+  const onChangeParameter = (type: valueTypeName, paramId: string) => {
     // Change type with default values
     const defaults = getDefaultParameterValues();
     if (scenarioId) {
@@ -248,7 +248,7 @@ export function ParameterUI({ scenarioId }: { scenarioId: string }) {
                         <Text>Type</Text>
                       </Label>
                       <Container flexDirection="row" gap={8} flexWrap="wrap">
-                        {parameterTypes.map((type) => (
+                        {valueTypeNames.map((type) => (
                           <Button
                             key={type}
                             size="sm"

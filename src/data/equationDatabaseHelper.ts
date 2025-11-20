@@ -1,80 +1,17 @@
 
-import type { MathDataType } from "../types";
+import type { EnhancedEquationDatabase, valueType, EquationSignature, valueTypeName } from "../types";
 import equationDatabase from "./equationDatabase.source.json";
 
-/**
- * Types supported in our system
- */
-export type SupportedType =
-  | "Vector3"
-  | "Vector2"
-  | "Vector4"
-  | "Quaternion"
-  | "Euler"
-  | "Matrix4"
-  | "Matrix3"
-  | "number"
-  | "boolean";
-
-/**
- * Method parameter from source analysis
- */
-export interface MethodParameter {
-  name: string;
-  type: string;
-  optional: boolean;
-  defaultValue?: string;
-  description?: string;
-}
-
-/**
- * Method type classification
- */
-export type MethodType = 'calculation' | 'transformation' | 'mutation';
-
-/**
- * Method signature with documentation (NEW FORMAT)
- */
-export interface MethodSignature {
-  className: string;
-  methodName: string;
-  description: string;
-  parameters: MethodParameter[];
-  returnType: string;
-  returnDescription?: string;
-  example?: string;
-  methodType: MethodType;
-  mutatesThis: boolean;
-}
-
-/**
- * Enhanced equation database (NEW FORMAT)
- */
-export interface EnhancedEquationDatabase {
-  version: string;
-  generatedAt: string;
-  source: string;
-  methods: MethodSignature[];
-}
-
-// Legacy format (OLD)
-export interface EquationSignature {
-  className: SupportedType;
-  methodName: string;
-  parameters: SupportedType[];
-  returnType: SupportedType | "void" | "unknown";
-  isStatic: boolean;
-}
 
 // Type-safe cast of the imported JSON
 const db = equationDatabase as EnhancedEquationDatabase;
 
 /**
- * Get the type name from a MathDataType value
+ * Get the type name from a valueType value
  */
-export function getTypeName(value: MathDataType): SupportedType {
+export function getTypeName(value: valueType): valueTypeName {
   if (typeof value === "number") return "number";
-  return value.constructor.name as SupportedType;
+  return value.constructor.name as valueTypeName;
 }
 
 /**
@@ -86,21 +23,21 @@ function normalizeType(type: string): string {
 
 /**
  * Find all methods that match the given parameter types
- * @param parameterTypes - Array of parameter types to match
+ * @param valueTypeNames - Array of parameter types to match
  * @returns Array of matching method signatures
  */
 export function findEquationsByParameters(
-  parameterTypes: SupportedType[]
-): MethodSignature[] {
+  valueTypeNames: valueTypeName[]
+): EquationSignature[] {
   return db.methods.filter((method) => {
     // Filter out optional parameters for matching
     const requiredParams = method.parameters.filter((p) => !p.optional);
 
-    if (requiredParams.length !== parameterTypes.length) return false;
+    if (requiredParams.length !== valueTypeNames.length) return false;
 
     return requiredParams.every((param, i) => {
       const paramType = normalizeType(param.type);
-      const targetType = normalizeType(parameterTypes[i]);
+      const targetType = normalizeType(valueTypeNames[i]);
       return paramType === targetType;
     });
   });
@@ -112,8 +49,8 @@ export function findEquationsByParameters(
  * @returns Array of matching method signatures
  */
 export function findEquationsByReturnType(
-  returnType: SupportedType
-): MethodSignature[] {
+  returnType: valueTypeName
+): EquationSignature[] {
   return db.methods.filter(
     (method) => normalizeType(method.returnType) === normalizeType(returnType)
   );
@@ -125,22 +62,22 @@ export function findEquationsByReturnType(
  * @returns Array of matching method signatures
  */
 export function findEquationsByClass(
-  className: SupportedType
-): MethodSignature[] {
+  className: valueTypeName
+): EquationSignature[] {
   return db.methods.filter((method) => method.className === className);
 }
 
 /**
  * Find methods that match parameters and return type
- * @param parameterTypes - Array of parameter types
+ * @param valueTypeNames - Array of parameter types
  * @param returnType - The return type
  * @returns Array of matching method signatures
  */
 export function findEquations(
-  parameterTypes: SupportedType[],
-  returnType?: SupportedType
-): MethodSignature[] {
-  let results = findEquationsByParameters(parameterTypes);
+  valueTypeNames: valueTypeName[],
+  returnType?: valueTypeName
+): EquationSignature[] {
+  let results = findEquationsByParameters(valueTypeNames);
 
   if (returnType) {
     results = results.filter(
@@ -154,7 +91,7 @@ export function findEquations(
 /**
  * Get a unique signature string for a method
  */
-export function getEquationSignatureString(method: MethodSignature): string {
+export function getEquationSignatureString(method: EquationSignature): string {
   const params = method.parameters
     .map((p) => `${p.name}: ${p.type}`)
     .join(", ");
@@ -174,7 +111,7 @@ export function getAllMethodNames(): string[] {
  */
 export function findEquationsByMethodName(
   methodName: string
-): MethodSignature[] {
+): EquationSignature[] {
   return db.methods.filter((method) => method.methodName === methodName);
 }
 

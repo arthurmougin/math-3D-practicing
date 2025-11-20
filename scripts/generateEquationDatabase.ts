@@ -13,7 +13,7 @@ import {
 /**
  * Types supported in our system
  */
-type SupportedType =
+type valueTypeName =
   | "Vector2"
   | "Vector3"
   | "Vector4"
@@ -28,10 +28,10 @@ type SupportedType =
  * Represents a valid equation signature
  */
 interface EquationSignature {
-  className: SupportedType;
+  className: valueTypeName;
   methodName: string;
-  parameters: SupportedType[];
-  returnType: SupportedType | "void" | "unknown";
+  parameters: valueTypeName[];
+  returnType: valueTypeName | "void" | "unknown";
   isStatic: boolean;
 }
 
@@ -53,7 +53,7 @@ interface EquationDatabase {
  * @param keepFirstNComponentsIdentical - Number of first components to keep identical between variants (useful for detecting type confusion)
  */
 function createInstance(
-  type: SupportedType,
+  type: valueTypeName,
   variant: "A" | "B" = "A",
   keepFirstNComponentsIdentical: number = 0
 ):
@@ -221,7 +221,7 @@ function createInstance(
  * Get the number of components/properties for a type
  * Used to detect if a method requires more properties than provided
  */
-function getTypeComponentCount(type: SupportedType): number {
+function getTypeComponentCount(type: valueTypeName): number {
   switch (type) {
     case "Vector2":
       return 2;
@@ -248,7 +248,7 @@ function getTypeComponentCount(type: SupportedType): number {
  * Used to test if methods reject under-specified parameters
  * For example, if a method requires Vector3 (x,y,z), test with Vector2 (x,y)
  */
-function getSmallerType(type: SupportedType): SupportedType | null {
+function getSmallerType(type: valueTypeName): valueTypeName | null {
   switch (type) {
     case "Vector3":
     case "Euler":
@@ -266,7 +266,7 @@ function getSmallerType(type: SupportedType): SupportedType | null {
 /**
  * Get the type name from a value
  */
-function getTypeName(value: any): SupportedType | "void" | "unknown" {
+function getTypeName(value: any): valueTypeName | "void" | "unknown" {
   if (value === null || value === undefined) return "void";
   if (typeof value === "boolean") return "boolean";
   if (typeof value === "number") return "number";
@@ -317,9 +317,9 @@ function shouldSkipMethod(methodName: string): boolean {
  * Test a method with given parameters and validate it's not a false positive
  */
 function testMethod(
-  className: SupportedType,
+  className: valueTypeName,
   methodName: string,
-  paramTypes: SupportedType[],
+  paramTypes: valueTypeName[],
   isStatic: boolean
 ): EquationSignature | null {
   try {
@@ -338,7 +338,7 @@ function testMethod(
     // For Quaternion: keep 3 components identical to detect Vector3-only methods
     // For Vector4: keep 3 components identical to detect Vector3-only methods
     // For others: vary all components
-    const getKeepFirstN = (type: SupportedType): number => {
+    const getKeepFirstN = (type: valueTypeName): number => {
       if (type === "Quaternion") return 3; // Keep x,y,z same, vary w
       if (type === "Vector4") return 3; // Keep x,y,z same, vary w
       return 0; // Vary all components
@@ -501,8 +501,8 @@ function areResultsEqual(a: any, b: any): boolean {
  */
 function* generateParameterCombinations(
   maxParams: number
-): Generator<SupportedType[]> {
-  const types: SupportedType[] = [
+): Generator<valueTypeName[]> {
+  const types: valueTypeName[] = [
     "Vector2",
     "Vector3",
     "Vector4",
@@ -520,9 +520,9 @@ function* generateParameterCombinations(
   // Generate combinations for 1 to maxParams
   for (let paramCount = 1; paramCount <= maxParams; paramCount++) {
     function* combine(
-      current: SupportedType[],
+      current: valueTypeName[],
       depth: number
-    ): Generator<SupportedType[]> {
+    ): Generator<valueTypeName[]> {
       if (depth === paramCount) {
         yield [...current];
         return;
@@ -541,7 +541,7 @@ function* generateParameterCombinations(
 /**
  * Discover all methods on a class
  */
-function discoverMethods(className: SupportedType, instance: any): string[] {
+function discoverMethods(className: valueTypeName, instance: any): string[] {
   const methods = new Set<string>();
 
   // Instance methods
@@ -567,7 +567,7 @@ function discoverMethods(className: SupportedType, instance: any): string[] {
 async function generateDatabase() {
   console.log("🔍 Starting equation database generation...\n");
 
-  const types: SupportedType[] = [
+  const types: valueTypeName[] = [
     "Vector2",
     "Vector3",
     "Vector4",

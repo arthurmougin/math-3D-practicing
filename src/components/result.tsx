@@ -1,22 +1,22 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
 import { AMBox } from "./box";
-import type { ScenarioAnswer } from "../types";
+import type { ScenarioResult } from "../types";
 import { valueToMatrix4 } from "../utils/mathTransforms";
 
-interface AnswerProps {
-  answer: ScenarioAnswer;
+interface resultProps {
+  result: ScenarioResult;
   onClick?: () => void;
-  opacity?: number; // Optional opacity for showing expected answer
+  opacity?: number; // Optional opacity for showing expected result
 }
 
 /**
- * Visual representation of a scenario answer in the 3D scene
+ * Visual representation of a scenario result in the 3D scene
  * Uses Matrix4 under the hood for all transformations regardless of value type
  * Can be rendered with transparency to show expected result
  */
-export function Answer({ answer, onClick, opacity = 1 }: AnswerProps) {
-  const { representation, value } = answer;
+export function Result({ result, onClick, opacity = 1 }: resultProps) {
+  const { representation, value } = result;
   const meshRef = useRef<Mesh>(null);
 
   // Convert value to matrix
