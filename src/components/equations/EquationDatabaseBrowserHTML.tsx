@@ -1,7 +1,13 @@
 import { useState, useMemo } from "react";
 import equationDatabase from "../../data/equationDatabase.source.json";
 import "./EquationDatabaseBrowserHTML.css";
-import type { valueTypeName, EquationType, EquationSignature } from "../../types";
+import type {
+  valueTypeName,
+  EquationType,
+  EquationSignature,
+  EnhancedEquationDatabase,
+} from "../../types";
+import { useScenarioStore } from "../../stores/scenarioStore";
 
 /**
  * Equation Database Browser Component (HTML Version)
@@ -36,7 +42,9 @@ export function EquationDatabaseBrowserHTML() {
   );
 
   // State to manage the selected method that displays the details panel
-  const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+  const [selectedMethodName, setSelectedMethodName] = useState<string | null>(
+    null
+  );
 
   // State for filters panel expansion
   const [filtersExpanded, setFiltersExpanded] = useState(false);
@@ -52,12 +60,19 @@ export function EquationDatabaseBrowserHTML() {
   /**
    * Database imported from generated JSON file
    */
-  const database = equationDatabase as {
-    version: string;
-    generatedAt: string;
-    source: string;
-    methods: EquationSignature[];
-  };
+  const database: EnhancedEquationDatabase =
+    equationDatabase as EnhancedEquationDatabase;
+
+  if (selectedMethodName) {
+    const method = equationDatabase.methods.find(
+      (m) => `${m.className}.${m.methodName}` === selectedMethodName
+    );
+    if (method) {
+      useScenarioStore
+        .getState()
+        .addScenarioUsingMethod(method as EquationSignature);
+    }
+  }
 
   /**
    * Unique list of available classes (sorted alphabetically)
@@ -97,7 +112,10 @@ export function EquationDatabaseBrowserHTML() {
         method.EquationType === selectedEquationType;
 
       return (
-        matchesSearch && matchesClass && matchesReturnType && matchesEquationType
+        matchesSearch &&
+        matchesClass &&
+        matchesReturnType &&
+        matchesEquationType
       );
     });
   }, [searchQuery, selectedClass, selectedReturnType, selectedEquationType]);
@@ -123,11 +141,11 @@ export function EquationDatabaseBrowserHTML() {
    * Get the full signature details for the selected method
    */
   const selectedMethodDetails = useMemo(() => {
-    if (!selectedMethod) return null;
+    if (!selectedMethodName) return null;
     return filteredMethods.find(
-      (m) => `${m.className}.${m.methodName}` === selectedMethod
+      (m) => `${m.className}.${m.methodName}` === selectedMethodName
     );
-  }, [selectedMethod, filteredMethods]);
+  }, [selectedMethodName, filteredMethods]);
 
   return (
     <div className={`equation-browser ${panelCollapsed ? "collapsed" : ""}`}>
@@ -150,12 +168,11 @@ export function EquationDatabaseBrowserHTML() {
       </button>
       {/* Main Panel Container */}
       <div className="equation-browser__panel">
-
         {/* Views Container with sliding transition */}
         <div className="equation-browser__views-container">
           <div
             className={`equation-browser__views-wrapper ${
-              selectedMethod ? "show-detail" : ""
+              selectedMethodName ? "show-detail" : ""
             }`}
           >
             {/* List View */}
@@ -250,14 +267,19 @@ export function EquationDatabaseBrowserHTML() {
                           All ({filteredMethods.length})
                         </button>
                         {classes.map((cls) => {
-                          const count = filteredMethods.filter(m => m.className === cls).length;
+                          const count = filteredMethods.filter(
+                            (m) => m.className === cls
+                          ).length;
                           return (
                             <button
                               key={cls}
-                              className={
-                                `${selectedClass === cls ? "active" : ""} ${count === 0 ? "disabled" : ""}`
+                              className={`${
+                                selectedClass === cls ? "active" : ""
+                              } ${count === 0 ? "disabled" : ""}`}
+                              onClick={() =>
+                                count > 0 &&
+                                setSelectedClass(cls as valueTypeName)
                               }
-                              onClick={() => count > 0 && setSelectedClass(cls as valueTypeName)}
                               disabled={count === 0}
                             >
                               {cls}
@@ -281,15 +303,16 @@ export function EquationDatabaseBrowserHTML() {
                           All ({filteredMethods.length})
                         </button>
                         {returnTypes.map((type) => {
-                          const count = filteredMethods.filter(m => m.returnType === type).length;
+                          const count = filteredMethods.filter(
+                            (m) => m.returnType === type
+                          ).length;
                           return (
                             <button
                               key={type}
-                              className={
-                                `${selectedReturnType === type ? "active" : ""} ${count === 0 ? "disabled" : ""}`
-                              }
+                              className={`${
+                                selectedReturnType === type ? "active" : ""
+                              } ${count === 0 ? "disabled" : ""}`}
                               onClick={() => setSelectedReturnType(type)}
-                              
                             >
                               {type}
                               {count > 0 ? ` (${count})` : ""}
@@ -310,33 +333,50 @@ export function EquationDatabaseBrowserHTML() {
                           onClick={() => setSelectedEquationType("all")}
                           title="Show all method types"
                         >
-                          All{filteredMethods.length > 0 ? ` (${filteredMethods.length})` : ""}
+                          All
+                          {filteredMethods.length > 0
+                            ? ` (${filteredMethods.length})`
+                            : ""}
                         </button>
                         {(() => {
-                          const calcCount = filteredMethods.filter(m => m.EquationType === "calculation").length;
+                          const calcCount = filteredMethods.filter(
+                            (m) => m.EquationType === "calculation"
+                          ).length;
                           return (
                             <button
-                              className={
-                                `${selectedEquationType === "calculation" ? "active" : ""} ${calcCount === 0 ? "disabled" : ""}`
+                              className={`${
+                                selectedEquationType === "calculation"
+                                  ? "active"
+                                  : ""
+                              } ${calcCount === 0 ? "disabled" : ""}`}
+                              onClick={() =>
+                                setSelectedEquationType("calculation")
                               }
-                              onClick={() =>setSelectedEquationType("calculation")}
                               title="Calculation: Returns a computed value without modifying the object"
                             >
-                              🔢 Calculation{calcCount > 0 ? ` (${calcCount})` : ""}
+                              🔢 Calculation
+                              {calcCount > 0 ? ` (${calcCount})` : ""}
                             </button>
                           );
                         })()}
                         {(() => {
-                          const transCount = filteredMethods.filter(m => m.EquationType === "transformation").length;
+                          const transCount = filteredMethods.filter(
+                            (m) => m.EquationType === "transformation"
+                          ).length;
                           return (
                             <button
-                              className={
-                                `${selectedEquationType === "transformation" ? "active" : ""} ${transCount === 0 ? "disabled" : ""}`
+                              className={`${
+                                selectedEquationType === "transformation"
+                                  ? "active"
+                                  : ""
+                              } ${transCount === 0 ? "disabled" : ""}`}
+                              onClick={() =>
+                                setSelectedEquationType("transformation")
                               }
-                              onClick={() =>setSelectedEquationType("transformation")}
                               title="Transformation: Modifies the object's state and returns it"
                             >
-                              🔄 Transform{transCount > 0 ? ` (${transCount})` : ""}
+                              🔄 Transform
+                              {transCount > 0 ? ` (${transCount})` : ""}
                             </button>
                           );
                         })()}
@@ -373,7 +413,7 @@ export function EquationDatabaseBrowserHTML() {
                           <button
                             key={key}
                             className="equation-browser__method-item"
-                            onClick={() => setSelectedMethod(key)}
+                            onClick={() => setSelectedMethodName(key)}
                           >
                             <div className="method-signature">
                               {showClass && (
@@ -417,12 +457,12 @@ export function EquationDatabaseBrowserHTML() {
 
             {/* Detail View */}
             <div className="equation-browser__detail-view">
-              {selectedMethod && selectedMethodDetails && (
+              {selectedMethodName && selectedMethodDetails && (
                 <>
                   {/* Back Button */}
                   <button
                     className="equation-browser__back-btn"
-                    onClick={() => setSelectedMethod(null)}
+                    onClick={() => setSelectedMethodName(null)}
                   >
                     <svg
                       width="20"

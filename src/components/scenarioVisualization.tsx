@@ -37,7 +37,7 @@ export function ScenarioVisualization({
       ))}
 
       {/* Render result if enabled */}
-      {showresult && <Result result={result} opacity={resultOpacity} />}
+      {showresult && result && <Result result={result} opacity={resultOpacity} />}
     </group>
   );
 }

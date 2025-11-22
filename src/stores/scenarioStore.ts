@@ -4,20 +4,27 @@ import type {
   MathScenario,
   EquationSignature,
   ScenarioParameter,
-  ScenarioValue,
+  ScenarioResult,
+  valueTypeName,
+  ParameterRepresentation,
+  EquationParameter,
 } from "../types";
 import { Vector3, Euler, Quaternion, Matrix4 } from "three";
-import { EqualIcon } from "@react-three/uikit-lucide";
 
-function mapEquationParamToScenario(param: {
-  name: string;
-  type: string;
-}): ScenarioParameter {
+export function mapEquationParamToScenario(
+  param: EquationParameter
+): ScenarioParameter {
   let value: valueType = 0;
 
   switch (param.type) {
     case "Vector3":
-      value = new Vector3(1, 0, 0);
+      value = new Vector3(0, 0, 0);
+      break;
+    case "Vector2":
+      value = new Vector3(0, 0, 0);
+      break;
+    case "Vector4":
+      value = new Vector3(0, 0, 0);
       break;
     case "Euler":
       value = new Euler(0, 0, 0);
@@ -28,21 +35,90 @@ function mapEquationParamToScenario(param: {
     case "Matrix4":
       value = new Matrix4().identity();
       break;
+    case "Matrix3":
+      value = new Matrix4().identity();
+      break;
     case "number":
       value = 0;
       break;
+    default:
+      value = 0;
   }
   return {
     id: `${param.name}`,
     name: param.name,
+    type: param.type,
     value,
-    representation: {
-      type: "vertex",
-      color: "#ffffff",
-    },
+    optional: param.optional,
+    representation: generateRepresentationFromType(param.type),
   };
 }
 
+export function generateRepresentationFromType(
+  type: valueTypeName
+): ParameterRepresentation {
+  if (!type) {
+    throw new Error("Type is required to generate ScenarioResult");
+  }
+
+  switch (type) {
+    case "Vector3":
+      return {
+        type: "vertex",
+        color: "#ffffff",
+      };
+    case "Euler":
+      return {
+        type: "vertex",
+        color: "#ffffff",
+      };
+    case "Quaternion":
+      return {
+        type: "vertex",
+        color: "#ffffff",
+      };
+    case "Matrix4":
+      return {
+        type: "cube",
+        color: "#ff0000",
+      };
+    case "number":
+      return {
+        type: "cube",
+        color: "#00ff00",
+      };
+    default:
+      return {
+        type: "vertex",
+        color: "#888888",
+      };
+  }
+}
+
+
+export function  computeScenarioEquation(scenario: MathScenario) {
+    try {
+      const params = scenario.parameters.map((p) => p.value);
+      const invoker = scenario.invoker ? scenario.invoker.value : null;
+      const equationName = scenario.equation;
+      let method;
+      if (invoker != null) {
+        // Method called on an object
+        method = (invoker as any)[equationName];
+      } else {
+        // Any standalone function can be called this way
+        method = (window as any)[equationName];
+      }
+
+      if (typeof method === "function") {
+        scenario.result.value = method.apply(invoker, params);
+      } else {
+        throw new Error(`Method ${equationName} not found on invoker`);
+      }
+    } catch (e) {
+      console.error("Error computing result:", e);
+    }
+  };
 interface ScenarioStore {
   scenarios: Map<string, MathScenario>;
   currentScenarioId: string | null;
@@ -67,16 +143,18 @@ interface ScenarioStore {
 
   addScenarioUsingMethod: (EquationSignature: EquationSignature) => void;
 
-  computeresult: (scenario: MathScenario) => ScenarioValue;
 }
 
 export const useScenarioStore = create<ScenarioStore>((set, get) => ({
   scenarios: new Map(),
   currentScenarioId: null,
   addScenario: (scenario) =>
-    set((state) => ({
+    set((state) => {
+      computeScenarioEquation(scenario);
+      return {
       scenarios: new Map(state.scenarios).set(scenario.id, scenario),
-    })),
+    }
+    }),
   removeScenario: (scenarioId) =>
     set((state) => {
       const newScenarios = new Map(state.scenarios);
@@ -88,6 +166,8 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
       const scenario = state.scenarios.get(scenarioId);
       if (!scenario) throw new Error("Scenario not found");
       const updatedScenario = { ...scenario, ...updatedFields };
+      
+      computeScenarioEquation(updatedScenario);
       return {
         scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
       };
@@ -134,6 +214,10 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
         ...scenario,
         parameters: updatedParameters,
       };
+      
+      // Recompute the scenario result after parameter update
+      computeScenarioEquation(updatedScenario);
+
       return {
         scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
       };
@@ -149,13 +233,23 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
 
     let invoker = null;
     if (equationSignature.className !== "MathUtils") {
-      invoker = mapEquationParamToScenario({
-        name: equationSignature.className,
-        type: equationSignature.className,
-      });
+      invoker = mapEquationParamToScenario(
+        {
+          name: equationSignature.className,
+          type: equationSignature.className,
+          optional: false
+        }
+      );
     }
 
-    const newUnComputedScenario: Partial<MathScenario> = {
+        
+    const result = {
+      value: null,
+      type : equationSignature.returnType,
+      representation: generateRepresentationFromType(equationSignature.returnType),
+    }
+
+    const newScenario: MathScenario = {
       id: crypto.randomUUID(),
       title: `Scenario for ${equationSignature.methodName}`,
       tags: [
@@ -167,44 +261,12 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
       equation: equationSignature.methodName,
       parameters,
       invoker,
-      result: undefined,
+      result,
       timelineProgress: 0,
     };
 
-    const newScenario: MathScenario = {
-      ...newUnComputedScenario,
-      result: get().computeresult(newUnComputedScenario as MathScenario),
-    } as MathScenario;
-
+    computeScenarioEquation(newScenario);
     get().addScenario(newScenario);
     get().setCurrentScenario(newScenario.id);
-  },
-  computeresult: (scenario: MathScenario) => {
-    try {
-      const params = scenario.parameters.map((p) => p.value);
-      const invoker = scenario.invoker ? scenario.invoker.value : null;
-      const equationName = scenario.equation;
-
-      let resultValue: valueType = null;
-
-      let method;
-      if (invoker) {
-        // Method called on an object
-        method = (invoker as any)[equationName];
-      } else {
-        // Any standalone function can be called this way
-        method = (window as any)[equationName];
-      }
-
-      if (typeof method === "function") {
-        resultValue = method.apply(invoker, params);
-      } else {
-        throw new Error(`Method ${equationName} not found on invoker`);
-      }
-      return resultValue;
-    } catch (e) {
-      console.error("Error computing result:", e);
-      return null;
-    }
   },
 }));

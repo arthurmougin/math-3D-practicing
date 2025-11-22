@@ -28,15 +28,16 @@ export type valueType =
 /**
  * Names of possible value types
  */
-export type valueTypeName =
-  | "Vector3"
-  | "Vector2"
-  | "Vector4"
-  | "Quaternion"
-  | "Euler"
-  | "Matrix4"
-  | "Matrix3"
-  | "number"
+export enum valueTypeName {
+  Vector3 = "Vector3",
+  Vector2 = "Vector2",
+  Vector4 = "Vector4",
+  Quaternion = "Quaternion",
+  Euler = "Euler",
+  Matrix4 = "Matrix4",
+  Matrix3 = "Matrix3",
+  number = "number",
+} 
 
 export type classNames = Exclude<valueTypeName, "number"> | "MathUtils";
 
@@ -55,14 +56,17 @@ export interface ParameterRepresentation {
 /**
  * Scenario parameter definition
  */
-export interface ScenarioParameter extends ScenarioValue {
+export interface ScenarioParameter extends EquationParameter {
   id: string;
-  name: string;
-}
-
-export interface ScenarioValue {
   value: valueType;
   representation: ParameterRepresentation;
+}
+
+export interface ScenarioResult {
+  value: valueType;
+  type: valueTypeName;
+  representation: ParameterRepresentation;
+  description?: string;
 }
 
 export interface MathScenario {
@@ -74,7 +78,7 @@ export interface MathScenario {
   tags: string[];
   parameters: ScenarioParameter[];
   equation: string; // Function name or description (e.g., "applyQuaternion", "multiplyMatrices")
-  result: ScenarioValue;
+  result: ScenarioResult;
   timelineProgress: number; // 0 to 1 for lerp visualization
 }
 

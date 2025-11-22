@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
 import { AMBox } from "./box";
-import type { ScenarioResult } from "../types";
 import { valueToMatrix4 } from "../utils/mathTransforms";
+import type { ScenarioResult } from "../types";
 
 interface resultProps {
   result: ScenarioResult;
@@ -18,6 +18,10 @@ interface resultProps {
 export function Result({ result, onClick, opacity = 1 }: resultProps) {
   const { representation, value } = result;
   const meshRef = useRef<Mesh>(null);
+
+  if(!representation) {
+    return null;
+  }
 
   // Convert value to matrix
   const matrix = valueToMatrix4(value);

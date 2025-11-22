@@ -11,14 +11,34 @@ import {
   Label,
   Separator,
 } from "@react-three/uikit-default";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
+  type MathScenario,
   type RepresentationType,
 } from "../../types.d";
 import { useScenarioStore } from "../../stores/scenarioStore";
 import { useCameraStore } from "../../stores/cameraStore";
-import { ParameterUI } from "./parameterUI";
+import { ParameterListUI } from "./parameterListUI";
 import { useCameraControlHandlers } from "../../utils/cameraControl";
+
+const tempScenario : MathScenario = {
+  id: `temp-${Date.now()}`,
+  title: "New Scenario",
+  description: "",
+  tags: [],
+  parameters: [],
+  equation: "",
+  invoker: null,
+  result: {
+    value: 0,
+    type:"number",
+    representation: {
+      type: "vertex" as RepresentationType,
+      color: "#ffff00",
+    },
+  },
+  timelineProgress: 0,
+};
 
 /**
  * UI for creating and editing math scenarios
@@ -29,7 +49,6 @@ export function ScenarioCreator() {
   const cameraStore = useCameraStore();
 
   const [tempScenarioId, setTempScenarioId] = useState<string | null>(null);
-  const savedRef = useRef(false);
   const [editingField, setEditingField] = useState<{
     type: string;
     value: string;
@@ -37,28 +56,9 @@ export function ScenarioCreator() {
 
  useEffect(() => {
     console.log("Mounting ScenarioCreator");
-    // Create a temporary scenario for editing
-    const tempId = `temp-${Date.now()}`;
-    const tempScenario = {
-      id: tempId,
-      title: "New Scenario",
-      description: "",
-      tags: [],
-      parameters: [],
-      equation: "",
-      result: {
-        value: 0,
-        representation: {
-          type: "vertex" as RepresentationType,
-          color: "#ffff00",
-        },
-      },
-      timelineProgress: 0,
-    };
-
     scenarioStore.addScenario(tempScenario);
-    scenarioStore.setCurrentScenario(tempId);
-    setTempScenarioId(tempId);
+    scenarioStore.setCurrentScenario(tempScenario.id);
+    setTempScenarioId(tempScenario.id);
     return () => { 
       console.log("Unmounting ScenarioCreator")
      }
@@ -77,32 +77,6 @@ export function ScenarioCreator() {
       setTimeout(() => setEditingField(null), 3000);
       return;
     }
-
-    savedRef.current = true;
-
-    // Create new temp scenario for next creation
-    const newTempId = `temp-${Date.now()}`;
-    const newTempScenario = {
-      id: newTempId,
-      title: "New Scenario",
-      description: "",
-      tags: [],
-      parameters: [],
-      equation: "",
-      result: {
-        value: 0,
-        representation: {
-          type: "vertex" as RepresentationType,
-          color: "#ffff00",
-        },
-      },
-      timelineProgress: 0,
-    };
-
-    scenarioStore.addScenario(newTempScenario);
-    scenarioStore.setCurrentScenario(newTempId);
-    setTempScenarioId(newTempId);
-    savedRef.current = false;
   };
 
   /**
@@ -203,7 +177,7 @@ export function ScenarioCreator() {
 
             <Separator marginY={8} />
 
-            <ParameterUI scenarioId={currentScenario.id} />
+            <ParameterListUI scenarioId={currentScenario.id} />
           </CardContent>
         </Container>
 
