@@ -1,12 +1,12 @@
 import { Euler, Matrix4, Quaternion, Vector2, Vector3, Vector4 } from "three";
-import type { valueType, valueTypeName, ScenarioParameter } from "../types";
+import type { ValueType, ValueTypeName, ScenarioParameter } from "../types";
 import { Matrix3 } from "three";
 
 /**
  * Structure representing parameter values for UI display and editing
  */
 export type ParameterValue = {
-  type: valueTypeName;
+  type: ValueTypeName;
   list: number[];
   order?: "XYZ" | "YZX" | "ZXY" | "XZY" | "YXZ" | "ZYX";
 };
@@ -30,26 +30,26 @@ export function getParameterValues(param: ScenarioParameter): ParameterValue {
 
   if (value instanceof Vector3) {
     return {
-      type: "Vector3" as valueTypeName,
+      type: "Vector3" as ValueTypeName,
       list: [value.x, value.y, value.z],
     };
   } else if (value instanceof Quaternion) {
     return {
-      type: "Quaternion" as valueTypeName,
+      type: "Quaternion" as ValueTypeName,
       list: [value.x, value.y, value.z, value.w],
     };
   } else if (value instanceof Euler) {
     return {
-      type: "Euler" as valueTypeName,
+      type: "Euler" as ValueTypeName,
       list: [value.x, value.y, value.z],
       order: value.order,
     };
   } else if (value instanceof Matrix4) {
-    return { type: "Matrix4" as valueTypeName, list: value.toArray() };
+    return { type: "Matrix4" as ValueTypeName, list: value.toArray() };
   } else if (typeof value === "number") {
-    return { type: "number" as valueTypeName, list: [value] };
+    return { type: "number" as ValueTypeName, list: [value] };
   }
-  return { type: "number" as valueTypeName, list: [0] };
+  return { type: "number" as ValueTypeName, list: [0] };
 }
 
 /**
@@ -69,7 +69,7 @@ export function getParameterValues(param: ScenarioParameter): ParameterValue {
  */
 export function parameterValueToMathType(
   paramValue: ParameterValue
-): valueType {
+): ValueType {
   const { type, list, order } = paramValue;
 
   switch (type) {
@@ -102,7 +102,7 @@ export function parameterValueToMathType(
  * 
  * @returns Record mapping parameter types to their default values
  */
-export function getDefaultParameterValues(): Record<valueTypeName, valueType> {
+export function getDefaultParameterValues(): Record<ValueTypeName, ValueType> {
   return {
   Matrix4: new Matrix4(),
   Matrix3: new Matrix3(),

@@ -1,11 +1,10 @@
 import { create } from "zustand";
 import type {
-  valueType,
+  ValueType,
   MathScenario,
   EquationSignature,
   ScenarioParameter,
-  ScenarioResult,
-  valueTypeName,
+  ValueTypeName,
   ParameterRepresentation,
   EquationParameter,
 } from "../types";
@@ -14,7 +13,7 @@ import { Vector3, Euler, Quaternion, Matrix4 } from "three";
 export function mapEquationParamToScenario(
   param: EquationParameter
 ): ScenarioParameter {
-  let value: valueType = 0;
+  let value: ValueType = 0;
 
   switch (param.type) {
     case "Vector3":
@@ -55,7 +54,7 @@ export function mapEquationParamToScenario(
 }
 
 export function generateRepresentationFromType(
-  type: valueTypeName
+  type: ValueTypeName
 ): ParameterRepresentation {
   if (!type) {
     throw new Error("Type is required to generate ScenarioResult");

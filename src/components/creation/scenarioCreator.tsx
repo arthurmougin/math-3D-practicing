@@ -13,6 +13,7 @@ import {
 } from "@react-three/uikit-default";
 import { useEffect, useState } from "react";
 import {
+  ValueTypeName,
   type MathScenario,
   type RepresentationType,
 } from "../../types.d";
@@ -31,7 +32,7 @@ const tempScenario : MathScenario = {
   invoker: null,
   result: {
     value: 0,
-    type:"number",
+    type: ValueTypeName.number,
     representation: {
       type: "vertex" as RepresentationType,
       color: "#ffff00",

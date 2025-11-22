@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import equationDatabase from "../../data/equationDatabase.source.json";
 import "./EquationDatabaseBrowserHTML.css";
 import type {
-  valueTypeName,
+  ValueTypeName,
   EquationType,
   EquationSignature,
   EnhancedEquationDatabase,
@@ -34,7 +34,7 @@ import { useScenarioStore } from "../../stores/scenarioStore";
 export function EquationDatabaseBrowserHTML() {
   // Search and filters state
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedClass, setSelectedClass] = useState<valueTypeName | "all">(
+  const [selectedClass, setSelectedClass] = useState<ValueTypeName | "all">(
     "all"
   );
   const [selectedReturnType, setSelectedReturnType] = useState<string | "all">(
@@ -278,7 +278,7 @@ export function EquationDatabaseBrowserHTML() {
                               } ${count === 0 ? "disabled" : ""}`}
                               onClick={() =>
                                 count > 0 &&
-                                setSelectedClass(cls as valueTypeName)
+                                setSelectedClass(cls as ValueTypeName)
                               }
                               disabled={count === 0}
                             >

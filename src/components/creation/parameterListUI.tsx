@@ -3,7 +3,7 @@ import {
   Button,
 } from "@react-three/uikit-default";
 import {
-  valueTypeName,
+  ValueTypeName,
   type ScenarioParameter,
 } from "../../types";
 import { useScenarioStore } from "../../stores/scenarioStore";
@@ -27,7 +27,7 @@ export function ParameterListUI({ scenarioId }: { scenarioId: string }) {
     const newParam: ScenarioParameter = {
       id: `param-${Date.now()}`,
       name: findNonOverlappingName(parameters),
-      type: valueTypeName.Vector3,
+      type: ValueTypeName.Vector3,
       optional: false,
       value: findNonOverlappingPosition(parameters),
       representation: { type: "cube", color },

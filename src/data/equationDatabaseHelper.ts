@@ -1,5 +1,5 @@
 
-import type { EnhancedEquationDatabase, valueType, EquationSignature, valueTypeName } from "../types";
+import { type EnhancedEquationDatabase, type ValueType, type EquationSignature, ValueTypeName } from "../types";
 import equationDatabase from "./equationDatabase.source.json";
 
 
@@ -7,11 +7,11 @@ import equationDatabase from "./equationDatabase.source.json";
 const db = equationDatabase as EnhancedEquationDatabase;
 
 /**
- * Get the type name from a valueType value
+ * Get the type name from a ValueType value
  */
-export function getTypeName(value: valueType): valueTypeName {
-  if (typeof value === "number") return "number";
-  return value.constructor.name as valueTypeName;
+export function getTypeName(value: ValueType): ValueTypeName {
+  if (typeof value === "number") return  ValueTypeName.number;
+  return value.constructor.name as ValueTypeName;
 }
 
 /**
@@ -27,7 +27,7 @@ function normalizeType(type: string): string {
  * @returns Array of matching method signatures
  */
 export function findEquationsByParameters(
-  valueTypeNames: valueTypeName[]
+  valueTypeNames: ValueTypeName[]
 ): EquationSignature[] {
   return db.methods.filter((method) => {
     // Filter out optional parameters for matching
@@ -49,7 +49,7 @@ export function findEquationsByParameters(
  * @returns Array of matching method signatures
  */
 export function findEquationsByReturnType(
-  returnType: valueTypeName
+  returnType: ValueTypeName
 ): EquationSignature[] {
   return db.methods.filter(
     (method) => normalizeType(method.returnType) === normalizeType(returnType)
@@ -62,7 +62,7 @@ export function findEquationsByReturnType(
  * @returns Array of matching method signatures
  */
 export function findEquationsByClass(
-  className: valueTypeName
+  className: ValueTypeName
 ): EquationSignature[] {
   return db.methods.filter((method) => method.className === className);
 }
@@ -74,8 +74,8 @@ export function findEquationsByClass(
  * @returns Array of matching method signatures
  */
 export function findEquations(
-  valueTypeNames: valueTypeName[],
-  returnType?: valueTypeName
+  valueTypeNames: ValueTypeName[],
+  returnType?: ValueTypeName
 ): EquationSignature[] {
   let results = findEquationsByParameters(valueTypeNames);
 

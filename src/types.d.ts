@@ -15,7 +15,7 @@ export interface EnhancedEquationDatabase {
 /**
  * Possible value types for parameters and results
  */
-export type valueType =
+export type ValueType =
   | Vector3
   | Vector2
   | Vector4
@@ -28,7 +28,7 @@ export type valueType =
 /**
  * Names of possible value types
  */
-export enum valueTypeName {
+export enum ValueTypeName {
   Vector3 = "Vector3",
   Vector2 = "Vector2",
   Vector4 = "Vector4",
@@ -39,7 +39,7 @@ export enum valueTypeName {
   number = "number",
 } 
 
-export type classNames = Exclude<valueTypeName, "number"> | "MathUtils";
+export type ClassNames = Exclude<ValueTypeName, "number"> | "MathUtils";
 
 /**
  * Types of representations for parameters and results
@@ -58,13 +58,13 @@ export interface ParameterRepresentation {
  */
 export interface ScenarioParameter extends EquationParameter {
   id: string;
-  value: valueType;
+  value: ValueType;
   representation: ParameterRepresentation;
 }
 
 export interface ScenarioResult {
-  value: valueType;
-  type: valueTypeName;
+  value: ValueType;
+  type: ValueTypeName;
   representation: ParameterRepresentation;
   description?: string;
 }
@@ -88,7 +88,7 @@ export interface MathScenario {
  */
 export interface EquationParameter {
   name: string;
-  type: valueTypeName;
+  type: ValueTypeName;
   optional: boolean;
   defaultValue?: string;
   description?: string;
@@ -103,11 +103,11 @@ export type EquationType = "calculation" | "transformation" | "mutation";
  * Method signature with documentation (NEW FORMAT)
  */
 export interface EquationSignature {
-  className: classNames;
+  className: ClassNames;
   methodName: string;
   description: string;
   parameters: EquationParameter[];
-  returnType: valueTypeName;
+  returnType: ValueTypeName;
   returnDescription?: string;
   example?: string;
   EquationType: EquationType;

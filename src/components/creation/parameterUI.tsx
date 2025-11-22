@@ -9,7 +9,7 @@ import {
   Label,
 } from "@react-three/uikit-default";
 import { ChevronDown, ChevronRight, Trash2 } from "@react-three/uikit-lucide";
-import { valueTypeName, type RepresentationType } from "../../types";
+import { ValueTypeName, type RepresentationType } from "../../types";
 import { useState } from "react";
 import { useScenarioStore } from "../../stores/scenarioStore";
 import {
@@ -58,7 +58,7 @@ export function ParameterUI({
     scenarioStore.updateParameter(scenarioId, parameterId, { value: newValue });
   };
 
-  const onChangeParameter = (type: valueTypeName, paramId: string) => {
+  const onChangeParameter = (type: ValueTypeName, paramId: string) => {
     // Change type with default values
     const defaults = getDefaultParameterValues();
     if (scenarioId) {
@@ -181,7 +181,7 @@ export function ParameterUI({
               <Text>Type</Text>
             </Label>
             <Container flexDirection="row" gap={8} flexWrap="wrap">
-              {Object.values(valueTypeName).map((type) => (
+              {Object.values(ValueTypeName).map((type) => (
                 <Button
                   key={type}
                   size="sm"
