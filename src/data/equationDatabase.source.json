@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2025-11-19T22:34:26.189Z",
+  "generatedAt": "2025-11-22T12:53:43.442Z",
   "source": "Three.js source code analysis",
   "methods": [
     {
@@ -495,6 +495,16 @@
     },
     {
       "className": "Vector3",
+      "methodName": "negate",
+      "description": "Inverts this vector - i.e. sets x = -x, y = -y and z = -z.",
+      "parameters": [],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
       "methodName": "dot",
       "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
       "parameters": [
@@ -545,6 +555,23 @@
       "methodName": "normalize",
       "description": "Converts this vector to a <a href=\"https://en.wikipedia.org/wiki/Unit_vector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">unit vector</a> - that is, sets it equal to a vector",
       "parameters": [],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "setLength",
+      "description": "Sets this vector to a vector with the same direction as this one, but",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false,
+          "description": "The new length of this vector."
+        }
+      ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
       "EquationType": "transformation",
@@ -678,6 +705,23 @@
     },
     {
       "className": "Vector3",
+      "methodName": "reflect",
+      "description": "Reflects this vector off a plane orthogonal to the given <a href=\"https://en.wikipedia.org/wiki/Normal_(geometry)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">normal</a> vector.",
+      "parameters": [
+        {
+          "name": "normal",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The (normalized) <a href=\"https://en.wikipedia.org/wiki/Normal_(geometry)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">normal</a> vector."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
       "methodName": "angleTo",
       "description": "Returns the angle between the given vector and this instance in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
       "parameters": [
@@ -743,6 +787,64 @@
       "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
       "EquationType": "calculation",
       "mutatesThis": false
+    },
+    {
+      "className": "Vector3",
+      "methodName": "setFromSphericalCoords",
+      "description": "Sets the vector components from the given <a href=\"https://en.wikipedia.org/wiki/Spherical_coordinate_system\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">spherical</a> coordinates.",
+      "parameters": [
+        {
+          "name": "radius",
+          "type": "number",
+          "optional": false,
+          "description": "The radius."
+        },
+        {
+          "name": "phi",
+          "type": "number",
+          "optional": false,
+          "description": "The phi angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        },
+        {
+          "name": "theta",
+          "type": "number",
+          "optional": false,
+          "description": "The theta angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector3",
+      "methodName": "setFromCylindricalCoords",
+      "description": "Sets the vector components from the given <a href=\"https://en.wikipedia.org/wiki/Cylindrical_coordinate_system\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cylindrical</a> coordinates.",
+      "parameters": [
+        {
+          "name": "radius",
+          "type": "number",
+          "optional": false,
+          "description": "The radius."
+        },
+        {
+          "name": "theta",
+          "type": "number",
+          "optional": false,
+          "description": "The theta angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>."
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": "The y value."
+        }
+      ],
+      "returnType": "Vector3",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Vector3",
@@ -1145,6 +1247,16 @@
     },
     {
       "className": "Vector2",
+      "methodName": "negate",
+      "description": "Inverts this vector - i.e. sets x = -x and y = -y.",
+      "parameters": [],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector2",
       "methodName": "dot",
       "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
       "parameters": [
@@ -1294,6 +1406,23 @@
       "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
       "EquationType": "calculation",
       "mutatesThis": false
+    },
+    {
+      "className": "Vector2",
+      "methodName": "setLength",
+      "description": "Sets this vector to a vector with the same direction as this one, but",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false,
+          "description": "The new length of this vector."
+        }
+      ],
+      "returnType": "Vector2",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Vector2",
@@ -1771,6 +1900,16 @@
     },
     {
       "className": "Vector4",
+      "methodName": "negate",
+      "description": "Inverts this vector - i.e. sets x = -x, y = -y, z = -z, w = -w.",
+      "parameters": [],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
       "methodName": "dot",
       "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
       "parameters": [
@@ -1821,6 +1960,23 @@
       "methodName": "normalize",
       "description": "Converts this vector to a <a href=\"https://en.wikipedia.org/wiki/Unit_vector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">unit vector</a> - that is, sets it equal to a vector",
       "parameters": [],
+      "returnType": "Vector4",
+      "returnDescription": "A reference to this vector.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Vector4",
+      "methodName": "setLength",
+      "description": "Sets this vector to a vector with the same direction as this one, but",
+      "parameters": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false,
+          "description": "The new length of this vector."
+        }
+      ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
       "EquationType": "transformation",
@@ -2024,6 +2180,58 @@
     },
     {
       "className": "Quaternion",
+      "methodName": "slerp",
+      "description": "Performs a <a href=\"https://en.wikipedia.org/wiki/Slerp\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">spherical <a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">linear interpolation</a></a> between quaternions.",
+      "parameters": [
+        {
+          "name": "qb",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The target <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>."
+        },
+        {
+          "name": "t",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Quaternion",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Quaternion",
+      "methodName": "slerpQuaternions",
+      "description": "Performs a <a href=\"https://en.wikipedia.org/wiki/Slerp\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">spherical <a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">linear interpolation</a></a> between the given quaternions",
+      "parameters": [
+        {
+          "name": "qa",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The source <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>."
+        },
+        {
+          "name": "qb",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The target <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>."
+        },
+        {
+          "name": "t",
+          "type": "number",
+          "optional": false,
+          "description": "The interpolation factor in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "Quaternion",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "EquationType": "transformation",
+      "mutatesThis": true
+    },
+    {
+      "className": "Quaternion",
       "methodName": "equals",
       "description": "Returns `true` if this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> is equal with the given one.",
       "parameters": [
@@ -2055,6 +2263,35 @@
       "returnDescription": "Whether this Euler instance is equal with the given one.",
       "EquationType": "calculation",
       "mutatesThis": false
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "lookAt",
+      "description": "Sets the rotation <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> of the transformation <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>, looking from `eye` towards",
+      "parameters": [
+        {
+          "name": "eye",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The eye vector."
+        },
+        {
+          "name": "target",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The target vector."
+        },
+        {
+          "name": "up",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The up vector."
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "EquationType": "transformation",
+      "mutatesThis": true
     },
     {
       "className": "Matrix4",
@@ -2300,7 +2537,7 @@
           "name": "value",
           "type": "number",
           "optional": false,
-          "description": "The value to <a href=\"https://en.wikipedia.org/wiki/Clamping_(graphics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">clamp</a>."
+          "description": "The value to <a href=\"https://en.wikipedia.org/wiki/Clamp_(function)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">clamp</a>."
         },
         {
           "name": "min",
@@ -2340,6 +2577,47 @@
       ],
       "returnType": "number",
       "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> modulo.",
+      "EquationType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "mapLinear",
+      "description": "Performs a linear mapping from range `<a1, a2>` to range `<b1, b2>`",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": "The value to be mapped."
+        },
+        {
+          "name": "a1",
+          "type": "number",
+          "optional": false,
+          "description": "Minimum value for range A."
+        },
+        {
+          "name": "a2",
+          "type": "number",
+          "optional": false,
+          "description": "Maximum value for range A."
+        },
+        {
+          "name": "b1",
+          "type": "number",
+          "optional": false,
+          "description": "Minimum value for range B."
+        },
+        {
+          "name": "b2",
+          "type": "number",
+          "optional": false,
+          "description": "Maximum value for range B."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The mapped value.",
       "EquationType": "calculation",
       "mutatesThis": false
     },
@@ -2394,6 +2672,41 @@
           "type": "number",
           "optional": false,
           "description": "The interpolation factor in the closed interval `[0, 1]`."
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The interpolated value.",
+      "EquationType": "calculation",
+      "mutatesThis": false
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "damp",
+      "description": "Smoothly interpolate a number from `x` to `y` in  a spring-like manner using a delta",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "number",
+          "optional": false,
+          "description": "The current point."
+        },
+        {
+          "name": "y",
+          "type": "number",
+          "optional": false,
+          "description": "The target point."
+        },
+        {
+          "name": "lambda",
+          "type": "number",
+          "optional": false,
+          "description": "A higher lambda value will make the movement more sudden,"
+        },
+        {
+          "name": "dt",
+          "type": "number",
+          "optional": false,
+          "description": "Delta time in seconds."
         }
       ],
       "returnType": "number",

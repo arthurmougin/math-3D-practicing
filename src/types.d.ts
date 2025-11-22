@@ -36,11 +36,11 @@ export enum ValueTypeName {
   Euler = "Euler",
   Matrix4 = "Matrix4",
   Matrix3 = "Matrix3",
-  number = "number",
+  Number = "Number",
+  Boolean = "Boolean",
 } 
 
-export type ClassNames = Exclude<ValueTypeName, "number"> | "MathUtils";
-
+export type ClassNames = Exclude<ValueTypeName, "Number"> | "MathUtils";
 /**
  * Types of representations for parameters and results
  */ export type RepresentationType = "vertex" | "cube"; //TODO | 'mesh' | 'line' | 'plane' ;

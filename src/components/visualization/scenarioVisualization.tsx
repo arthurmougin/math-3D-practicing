@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useScenarioStore } from "../stores/scenarioStore";
+import { useScenarioStore } from "../../stores/scenarioStore";
 import { Result } from "./result";
 import { Parameter } from "./parameter";
 

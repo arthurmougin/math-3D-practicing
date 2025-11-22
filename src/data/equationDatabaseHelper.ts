@@ -10,7 +10,7 @@ const db = equationDatabase as EnhancedEquationDatabase;
  * Get the type name from a ValueType value
  */
 export function getTypeName(value: ValueType): ValueTypeName {
-  if (typeof value === "number") return  ValueTypeName.number;
+  if (typeof value === "number") return  ValueTypeName.Number;
   return value.constructor.name as ValueTypeName;
 }
 

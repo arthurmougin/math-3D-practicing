@@ -5,16 +5,17 @@ import { enrichDescriptionWithLinks, getTermUsageStats } from "./technicalTerms"
 /**
  * Types supported in our system
  */
-type valueTypeName =
-  | "Vector3"
-  | "Quaternion"
-  | "Euler"
-  | "Matrix4"
-  | "Matrix3"
-  | "Vector2"
-  | "Vector4"
-  | "number"
-  | "boolean";
+export enum ValueTypeName {
+  Vector3 = "Vector3",
+  Vector2 = "Vector2",
+  Vector4 = "Vector4",
+  Quaternion = "Quaternion",
+  Euler = "Euler",
+  Matrix4 = "Matrix4",
+  Matrix3 = "Matrix3",
+  Number = "Number",
+  Boolean = "Boolean",
+} 
 
 /**
  * Represents a method parameter extracted from JSDoc
@@ -227,25 +228,25 @@ function extractMethodsFromFile(
 /**
  * Map Three.js types to our supported types
  */
-function mapTypeToSupported(type: string): valueTypeName | null {
+function mapTypeToSupported(type: string): ValueTypeName | null {
   const cleaned = type
     .replace(/\s+/g, "")
     .replace(/\[/g, "")
     .replace(/\]/g, "");
 
   if (cleaned === "number" || cleaned === "float" || cleaned === "integer") {
-    return "number";
+    return  ValueTypeName.Number;
   }
   if (cleaned === "boolean" || cleaned === "bool") {
-    return "boolean";
+    return ValueTypeName.Boolean;
   }
-  if (cleaned === "Vector3") return "Vector3";
-  if (cleaned === "Vector2") return "Vector2";
-  if (cleaned === "Vector4") return "Vector4";
-  if (cleaned === "Quaternion") return "Quaternion";
-  if (cleaned === "Euler") return "Euler";
-  if (cleaned === "Matrix4") return "Matrix4";
-  if (cleaned === "Matrix3") return "Matrix3";
+  if (cleaned === "Vector3") return ValueTypeName.Vector3;
+  if (cleaned === "Vector2") return ValueTypeName.Vector2;
+  if (cleaned === "Vector4") return ValueTypeName.Vector4;
+  if (cleaned === "Quaternion") return ValueTypeName.Quaternion;
+  if (cleaned === "Euler") return ValueTypeName.Euler;
+  if (cleaned === "Matrix4") return ValueTypeName.Matrix4;
+  if (cleaned === "Matrix3") return ValueTypeName.Matrix3;
 
   return null;
 }
@@ -265,24 +266,8 @@ function isUsefulMethod(method: EquationSignature): boolean {
 
   if (!allParamsSupported) return false;
 
-  // Exclude methods with too many parameters
-  const requiredParams = method.parameters.filter((p) => !p.optional);
-  if (requiredParams.length > 3) return false;
 
-  // Useful methods typically:
-  // - Return numbers (calculations)
-  // - Return vectors/quaternions (transformations)
-  // - Have descriptive names suggesting operations
-  const usefulPatterns = [
-    /^(add|sub|multiply|divide|scale|dot|cross|distance|angle|length|normalize|clamp|lerp|min|max|abs|ceil|floor|round|apply|transform|project|rotate)/i,
-    /^(get|compute|calculate|is|equals|contains|intersect)/i,
-  ];
-
-  const isUsefulPattern = usefulPatterns.some((pattern) =>
-    pattern.test(method.methodName)
-  );
-
-  return isUsefulPattern || returnType === "number" || returnType === "boolean";
+  return true;
 }
 
 /**

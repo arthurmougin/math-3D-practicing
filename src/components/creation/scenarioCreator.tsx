@@ -32,7 +32,7 @@ const tempScenario : MathScenario = {
   invoker: null,
   result: {
     value: 0,
-    type: ValueTypeName.number,
+    type: ValueTypeName.Number,
     representation: {
       type: "vertex" as RepresentationType,
       color: "#ffff00",

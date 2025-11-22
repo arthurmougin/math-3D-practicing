@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
 import { Color, Vector3 } from "three";
-import type { ScenarioParameter } from "../types";
-import { AMBox } from "./box";
-import { valueToMatrix4 } from "../utils/mathTransforms";
-import { ParameterLabel } from "./common/ParameterLabel";
+import type { ScenarioParameter } from "../../types";
+import { AMBox } from "../box";
+import { valueToMatrix4 } from "../../utils/mathTransforms";
+import { ParameterLabel } from "../common/ParameterLabel";
 
 interface ParameterProps {
   parameter: ScenarioParameter;

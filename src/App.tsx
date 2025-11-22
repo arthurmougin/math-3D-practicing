@@ -2,7 +2,7 @@
 import { Canvas } from "@react-three/fiber";
 import "./App.css";
 import { CustomOrbitControl } from "./components/orbitControl";
-import { ScenarioVisualization } from "./components/scenarioVisualization";
+import { ScenarioVisualization } from "./components/visualization/scenarioVisualization";
 import { Decorations } from "./components/environment";
 import { EquationDatabaseBrowserHTML } from "./components/equations/EquationDatabaseBrowserHTML";
 
