@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { enrichDescriptionWithLinks, getTermUsageStats } from "./technicalTerms";
+import * as THREE from 'three';
 
 /**
  * Types supported in our system
@@ -17,6 +18,21 @@ export enum ValueTypeName {
   Boolean = "Boolean",
 } 
 
+export function isExcludedMethodName(methodName: string): boolean {
+  return methodName.includes("Array")||
+        methodName.includes("Buffer")||
+        methodName.includes("random")||
+        methodName.startsWith("_") ||
+        methodName === "constructor" ||
+        methodName === "set" ||
+        methodName === "copy" ||
+        methodName === "clone" ||
+        methodName === "toJSON" ||
+        methodName === "fromJSON" ||
+        methodName === "generateUUID" ||
+        methodName === "seededRandom"
+}
+
 /**
  * Represents a method parameter extracted from JSDoc
  */
@@ -31,7 +47,13 @@ interface EquationParameter {
 /**
  * Method type classification
  */
-type EquationType = 'calculation' | 'transformation' | 'mutation';
+type EquationType = {
+  isStatic: boolean; // true for static methods (e.g., MathUtils), false for instance methods
+  isMutatingInvoker: boolean; // true if the method mutates the instance (this), false otherwise
+  isMutatingParameter: boolean; // true if the method mutates any of its parameters, false otherwise
+  isReturningInstance: boolean; // true if the method returns the instance (this), false otherwise
+  isPureFunction: boolean; // true if the method does not mutate any input and returns a new value, false otherwise
+};
 
 /**
  * Represents a method signature with documentation
@@ -45,7 +67,6 @@ interface EquationSignature {
   returnDescription?: string;
   example?: string;
   EquationType: EquationType;
-  mutatesThis: boolean;
 }
 
 /**
@@ -72,26 +93,68 @@ function parseJSDoc(jsDocComment: string): {
   let returns: { type: string; description: string } | null = null;
 
   for (const line of lines) {
-    const trimmed = line.trim().replace(/^\*\s?/, "");
+    const trimmed = line.trim().split("\*")?.[1]?.trim() || "";
+
+    if(trimmed.length === 0){
+      continue;
+    }
 
     // Description (before any @tags)
-    if (!trimmed.startsWith("@") && !description && trimmed) {
-      description = trimmed;
+    if (!trimmed.startsWith("@") && trimmed) {
+      //if description already has content, add a space before appending
+      description += (description != "" ? " " : "") + trimmed;
       continue;
     }
 
     // @param tag with description
-    const paramMatch = trimmed.match(
-      /@param\s+\{([^}]+)\}\s+\[?([^\]\s]+)\]?(?:=([^\s]+))?\s*-?\s*(.*)/
-    );
+    const paramMatch = trimmed.includes("@param")
     if (paramMatch) {
-      const [, type, name, defaultValue, description] = paramMatch;
+      /**
+       * example data :
+       * @param {Matrix4} m - A 4x4 matrix of which the upper 3x3 of matrix is a pure rotation matrix (i.e. unscaled).
+       * @param {boolean} [update=true] - Whether the internal `onChange` callback should be executed or not
+	     * @param {number} t - The interpolation factor in the closed interval `[0, 1]`.	 
+       * @param {Array<number>} [array=[]] - The target array holding the quaternion components.
+       */
+
+      const splitDescription = trimmed.split(" - ");
+
+      const parameterSegment = splitDescription[0];  
+      //"@param {boolean} [update=true]"
+
+      const descriptionSegment = splitDescription[1] || "";
+
+      const typeAndName = parameterSegment.replace("@param", "").trim().split(" "); 
+      //typeAndName[0] = "{boolean}"; typeAndName[1] = "[update=true]" || "t"
+
+      const [,type] = typeAndName[0].match(/\{?([^}]+)\}/) || [];
+
+      const nameSection = typeAndName[1].trim();
+
+      const nameAndDefault = nameSection.match(/\[?([^}]+)\]/)?.[1].split("=") || [typeAndName[1]]; 
+      // nameAndDefault[0] = "update" || "m"; nameAndDefault[1] = "true" || undefined
+
+      const name = nameAndDefault[0].trim();
+
+      const defaultValue =  nameAndDefault[1] ? JSON.parse(nameAndDefault[1].trim()) : undefined;
+
+      const optional = !!nameAndDefault[1];
+
+      //number -> Number
+      const typeFormated = type.charAt(0).toUpperCase() + type.slice(1);
+
+      //TODO handle union types like "Number|Array"
+      const firstType = typeFormated.split("|")[0];
+      if(typeFormated.includes("|")){
+        console.warn(`⚠️  Warning: Parameter "${name}" has a union type "${typeFormated}". Using first type "${firstType}".`);
+      }
+
       params.push({
-        name: name.replace(/[[\]]/g, ""),
-        type: type.trim(),
-        optional: name.includes("[") || defaultValue !== undefined,
-        defaultValue: defaultValue?.trim(),
-        description: description.trim() || undefined,
+        name,
+        type: firstType,
+        optional,
+        defaultValue,
+        description: descriptionSegment.trim(),
       });
       continue;
     }
@@ -112,16 +175,17 @@ function parseJSDoc(jsDocComment: string): {
 /**
  * Extract methods from a JavaScript class file
  */
-function extractMethodsFromFile(
+async function extractMethodsFromFile(
   filePath: string,
   className: string
-): EquationSignature[] {
+): Promise<EquationSignature[]> {
   const content = readFileSync(filePath, "utf-8");
   const methods: EquationSignature[] = [];
 
   // For MathUtils, use a different regex to match free functions
   // For classes, match method definitions
   const isMathUtils = className === "MathUtils";
+
   const methodRegex = isMathUtils
     ? /\/\*\*([\s\S]*?)\*\/\s*function\s+(\w+)\s*\(([^)]*)\)\s*\{/g
     : /\/\*\*([\s\S]*?)\*\/\s*(\w+)\s*\(([^)]*)\)\s*\{/g;
@@ -130,26 +194,10 @@ function extractMethodsFromFile(
   while ((match = methodRegex.exec(content)) !== null) {
     const [, jsDocContent, methodName] = match;
 
-    // Skip constructor and private methods (but not for MathUtils free functions)
+    // Skip constructor and private methods
     if (!isMathUtils) {
       if (
-        methodName === "constructor" ||
-        methodName.startsWith("_") ||
-        methodName === "set" ||
-        methodName === "copy" ||
-        methodName === "clone" ||
-        methodName === "toJSON" ||
-        methodName === "fromJSON"
-      ) {
-        continue;
-      }
-    } else {
-      // For MathUtils, skip private functions and utility functions
-      if (
-        methodName.startsWith("_") ||
-        methodName === "generateUUID" ||
-        methodName === "seededRandom" ||
-        methodName === "setQuaternionFromProperEuler"
+        isExcludedMethodName(methodName)
       ) {
         continue;
       }
@@ -162,47 +210,74 @@ function extractMethodsFromFile(
     
     // Classify method type
     let EquationType: EquationType;
-    let mutatesThis = false;
-    
-    // For MathUtils, all functions are calculations (pure functions)
-    if (isMathUtils) {
-      EquationType = "calculation";
-      mutatesThis = false;
-    } else if (returnType === "number" || returnType === "boolean") {
-      EquationType = "calculation";
-      mutatesThis = false;
-    } else if (returnType === className || returnType === "this") {
-      mutatesThis = true;
-      
-      // Distinguish between mathematical transformations and simple mutations
-      const MATH_OPERATION_PATTERNS = [
-        /^(add|sub|multiply|divide|scale)/i,           // Arithmetic
-        /^(normalize|negate|absolute|floor|ceil|round|abs)/i,  // Normalization
-        /^(clamp|min|max|lerp|slerp)/i,                // Clamping/interpolation
-        /^(apply|transform|project|reflect)/i,         // Transformations
-        /^(cross|dot)/i,                               // Vector operations
-        /^(rotate|lookAt)/i,                           // Rotation
-        /^(setLength|setFromSpherical|setFromCylindrical)/i,  // Special setters
-      ];
-      
-      const isMathOperation = MATH_OPERATION_PATTERNS.some(pattern => 
-        pattern.test(methodName)
-      );
-      
-      if (isMathOperation) {
-        EquationType = "transformation";
-      } else {
-        EquationType = "mutation";
-        // Skip simple mutations (setters, copy, etc.)
-        continue;
+    let isStatic = false;
+    let isMutatingInvoker = false;
+    let isMutatingParameter = false;
+    let isReturningInstance = false;
+    let isPureFunction = false;
+
+    if (THREE && (THREE as any)[className]) {
+      const classRef = (THREE as any)[className];
+      //check if method is static
+      isStatic = typeof classRef[methodName] === "function";
+      let invoker;
+      if( !isStatic ){
+        invoker = new classRef();
+      } else{
+        invoker = classRef;
       }
-    } else if (returnType === "void") {
-      // Skip void methods
-      continue;
-    } else {
-      // Methods returning other types (Vector3, Matrix4, etc.) are transformations
-      EquationType = "transformation";
-      mutatesThis = false;
+
+      let params = parsed.params.map(p => {
+        let type = p.type;
+
+        type = type.split("|")[0]; //handle union types by taking the first type
+
+
+        if(type === "Number"){
+          // Vector and matrix component related methods use integer to return the value of one of their properties, 0 points to the first one
+          if(methodName.includes("Component")){
+            return p.defaultValue || 0;
+          }
+          else return 10;
+        }
+        if(type === "Boolean"){
+          return p.defaultValue || true;
+        }
+        if(type === "String"){
+          return p.defaultValue || "ZXY";
+        }
+        return new (THREE as any)[type]();
+      });
+
+      const oldInvoker = isStatic ? invoker : invoker.clone();
+      const oldParams = params.map((p: any) => {
+        if(p.clone) return p.clone();
+        return p;
+      });
+
+      const method = invoker[methodName];
+
+      const results = method.apply(invoker, params);
+
+      // Check if invoker was mutated
+      isMutatingInvoker = invoker.equals ? !invoker.equals(oldInvoker) : invoker !== oldInvoker;
+
+      // Check if any parameter was mutated
+      isMutatingParameter = params.some((p: any, index: number) => {
+        if(p.equals){
+          return !p.equals(oldParams[index]);
+        }
+        return p !== oldParams[index];
+      });
+
+      // Check if method returns the instance
+      isReturningInstance = results === invoker;
+
+      isPureFunction = !isMutatingInvoker && !isMutatingParameter && !isReturningInstance && results !== undefined;
+    
+    }
+    else {
+      throw new Error(`Class ${className} not found in imported module from ${filePath}`);
     }
 
     methods.push({
@@ -217,8 +292,13 @@ function extractMethodsFromFile(
       returnDescription: parsed.returns?.description 
         ? enrichDescriptionWithLinks(parsed.returns.description, "en")
         : undefined,
-      EquationType,
-      mutatesThis,
+      EquationType: {
+        isStatic,
+        isMutatingInvoker,
+        isMutatingParameter,
+        isReturningInstance,
+        isPureFunction
+      }
     });
   }
 
@@ -240,13 +320,10 @@ function mapTypeToSupported(type: string): ValueTypeName | null {
   if (cleaned === "boolean" || cleaned === "bool") {
     return ValueTypeName.Boolean;
   }
-  if (cleaned === "Vector3") return ValueTypeName.Vector3;
-  if (cleaned === "Vector2") return ValueTypeName.Vector2;
-  if (cleaned === "Vector4") return ValueTypeName.Vector4;
-  if (cleaned === "Quaternion") return ValueTypeName.Quaternion;
-  if (cleaned === "Euler") return ValueTypeName.Euler;
-  if (cleaned === "Matrix4") return ValueTypeName.Matrix4;
-  if (cleaned === "Matrix3") return ValueTypeName.Matrix3;
+  //use ValueTypeName enums
+  if(ValueTypeName[cleaned as keyof typeof ValueTypeName]){
+    return ValueTypeName[cleaned as keyof typeof ValueTypeName];
+  }
 
   return null;
 }
@@ -254,7 +331,7 @@ function mapTypeToSupported(type: string): ValueTypeName | null {
 /**
  * Filter methods that are useful for equation database
  */
-function isUsefulMethod(method: EquationSignature): boolean {
+function hasAllTypesSupported(method: EquationSignature): boolean {
   // Must return a supported type
   const returnType = mapTypeToSupported(method.returnType);
   if (!returnType) return false;
@@ -264,10 +341,7 @@ function isUsefulMethod(method: EquationSignature): boolean {
     return mapTypeToSupported(p.type) !== null || p.optional;
   });
 
-  if (!allParamsSupported) return false;
-
-
-  return true;
+  return allParamsSupported
 }
 
 /**
@@ -297,14 +371,14 @@ async function generateEnhancedDatabase() {
     console.log(`📊 Analyzing ${className}...`);
 
     try {
-      const methods = extractMethodsFromFile(filePath, className);
-      const usefulMethods = methods.filter(isUsefulMethod);
+      const methods = await extractMethodsFromFile(filePath, className);
+      const supportedMethods = methods.filter(hasAllTypesSupported);
 
       console.log(
-        `   Found ${methods.length} methods, ${usefulMethods.length} useful`
+        `   Found ${methods.length} methods, ${supportedMethods.length} useful`
       );
 
-      allMethods.push(...usefulMethods);
+      allMethods.push(...supportedMethods);
     } catch (error) {
       console.error(`   ❌ Error processing ${file}:`, error);
     }
@@ -350,9 +424,25 @@ async function generateEnhancedDatabase() {
       });
   }
 
+  /*
+  type EquationType = {
+    isStatic: boolean; // true for static methods (e.g., MathUtils), false for instance methods
+    isMutatingInvoker: boolean; // true if the method mutates the instance (this), false otherwise
+    isMutatingParameter: boolean; // true if the method mutates any of its parameters, false otherwise
+    isReturningInstance: boolean; // true if the method returns the instance (this), false otherwise
+    isPureFunction: boolean; // true if the method does not mutate any input and returns a new value, false otherwise
+  };
+
+  */
+
+
   // Print statistics by method type
   const byType = allMethods.reduce((acc, method) => {
-    acc[method.EquationType] = (acc[method.EquationType] || 0) + 1;
+    acc['static'] = (acc['static'] || 0) + (method.EquationType.isStatic ? 1 : 0);
+    acc['mutatingInvoker'] = (acc['mutatingInvoker'] || 0) + (method.EquationType.isMutatingInvoker ? 1 : 0);
+    acc['mutatingParameter'] = (acc['mutatingParameter'] || 0) + (method.EquationType.isMutatingParameter ? 1 : 0);
+    acc['returningInstance'] = (acc['returningInstance'] || 0) + (method.EquationType.isReturningInstance ? 1 : 0);
+    acc['pureFunction'] = (acc['pureFunction'] || 0) + (method.EquationType.isPureFunction ? 1 : 0);
     return acc;
   }, {} as Record<string, number>);
   
@@ -360,7 +450,26 @@ async function generateEnhancedDatabase() {
   Object.entries(byType)
     .sort(([, a], [, b]) => b - a)
     .forEach(([type, count]) => {
-      const icon = type === 'calculation' ? '🔢' : type === 'transformation' ? '🔄' : '⚙️';
+      let icon;
+      switch(type){
+        case 'static':
+          icon = '📌';
+          break;
+        case 'mutatingInvoker':
+          icon = '🔧';
+          break;
+        case 'mutatingParameter':
+          icon = '⚙️ ';
+          break;
+        case 'returningInstance':
+          icon = '🔄';
+          break;
+        case 'pureFunction':
+          icon = '✨';
+          break;
+        default:
+          icon = '❓';
+      }
       console.log(`   ${icon} ${type}: ${count} methods`);
     });
 

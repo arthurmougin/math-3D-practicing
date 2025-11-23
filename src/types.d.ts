@@ -15,6 +15,7 @@ export interface EnhancedEquationDatabase {
 /**
  * Possible value types for parameters and results
  */
+// TODO : Add strings very useful for euler
 export type ValueType =
   | Vector3
   | Vector2
@@ -97,7 +98,13 @@ export interface EquationParameter {
 /**
  * Method type classification
  */
-export type EquationType = "calculation" | "transformation" | "mutation";
+export type EquationType = {
+  isStatic: boolean; // true for static methods (e.g., MathUtils), false for instance methods
+  isMutatingInvoker: boolean; // true if the method mutates the instance (this), false otherwise
+  isMutatingParameter: boolean; // true if the method mutates any of its parameters, false otherwise
+  isReturningInstance: boolean; // true if the method returns the instance (this), false otherwise
+  isPureFunction: boolean; // true if the method does not mutate any input and returns a new value, false otherwise
+};
 
 /**
  * Method signature with documentation (NEW FORMAT)
@@ -111,7 +118,6 @@ export interface EquationSignature {
   returnDescription?: string;
   example?: string;
   EquationType: EquationType;
-  mutatesThis: boolean;
 }
 
 export interface CameraState {
