@@ -1,3 +1,5 @@
+//@ts-nocheck THIS FILE IS ONLY SAVED FOR REFERENCE OF PREVIOUS TYPESCRIPT ISSUES
+
 import { Container, Text } from "@react-three/uikit";
 import {
   Button,

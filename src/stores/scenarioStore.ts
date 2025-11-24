@@ -50,6 +50,7 @@ export function mapEquationParamToScenario(
     value,
     optional: param.optional,
     representation: generateRepresentationFromType(param.type),
+    isMutated: param.isMutated,
   };
 }
 
@@ -234,6 +235,7 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
         name: equationSignature.className,
         type: equationSignature.className,
         optional: false,
+        isMutated: equationSignature.equationType.isMutatingInvoker,
       });
     }
 

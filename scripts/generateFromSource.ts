@@ -101,6 +101,7 @@ function parseJSDoc(jsDocComment: string): Partial<EquationSignatureCandidate> {
         optional,
         defaultValue,
         description: descriptionSegment.trim(),
+        isMutated: false, //default value, will be updated later if needed
       });
       continue;
     }
@@ -216,13 +217,21 @@ async function extractMethodsFromFile(
       // Check if invoker was mutated
       isMutatingInvoker = invoker.equals ? !invoker.equals(oldInvoker) : invoker !== oldInvoker;
 
-      // Check if any parameter was mutated
-      isMutatingParameter = parameters.some((p: any, index: number) => {
+      // Check for all and return if at least one is mutated
+      isMutatingParameter = parameters.map((p: any, index: number) => {
+        let hasChanged;
         if(p.equals){
-          return !p.equals(oldParameters[index]);
+          hasChanged = !p.equals(oldParameters[index]);
         }
-        return p !== oldParameters[index];
-      });
+        else {
+          hasChanged = p !== oldParameters[index];
+        }
+        if(hasChanged){
+          //mark parameter as mutated in parsed data
+          parsed.parameters![index].isMutated = true;
+        }
+        return hasChanged;
+      }).some(v => v);
 
       // Check if method returns the instance
       isReturningInstance = results === invoker;

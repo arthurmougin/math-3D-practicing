@@ -93,6 +93,7 @@ export interface EquationParameter {
   optional: boolean;
   defaultValue?: string;
   description?: string;
+  isMutated: boolean;
 }
 
 /**

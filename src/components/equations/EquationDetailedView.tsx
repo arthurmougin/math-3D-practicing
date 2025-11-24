@@ -114,11 +114,15 @@ export function EquationDetailedView({
                           }}
                         />
                       )}
+                      {param.isMutated && (
+                        <p className="param-mutated">Mutated by the method.</p>
+                      )}
                       {param.defaultValue && (
                         <span className="param-default">
                           Default: {param.defaultValue}
                         </span>
                       )}
+                      
                     </li>
                   ))}
                 </ul>
