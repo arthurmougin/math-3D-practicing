@@ -1,5 +1,5 @@
 
-import { type EnhancedEquationDatabase, type ValueType, type EquationSignature, ValueTypeName } from "../types";
+import { type EnhancedEquationDatabase, type ValueType, type EquationSignature, ValueTypeName } from "../../types/types";
 import equationDatabase from "./equationDatabase.source.json";
 
 

@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import type { ScenarioParameter } from "../types";
+import type { ScenarioParameter } from "../../types/types";
 import {
   PARAMETER_SPACING,
   PARAMETER_BREATHING_ROOM,

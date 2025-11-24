@@ -1,4 +1,5 @@
 import { Euler, Matrix4, Quaternion, Vector3 } from "three";
+import type { ValueType } from "../../types/types";
 
 /**
  * Converts any valueType to a Matrix4 for unified transformation handling
@@ -15,7 +16,7 @@ import { Euler, Matrix4, Quaternion, Vector3 } from "three";
  * const matrix2 = valueToMatrix4(quat); // Rotation matrix
  * ```
  */
-export function valueToMatrix4(value: unknown): Matrix4 {
+export function valueToMatrix4(value: ValueType): Matrix4 {
   const matrix = new Matrix4();
 
   if (value instanceof Matrix4) {

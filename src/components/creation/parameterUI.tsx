@@ -9,7 +9,7 @@ import {
   Label,
 } from "@react-three/uikit-default";
 import { ChevronDown, ChevronRight, Trash2 } from "@react-three/uikit-lucide";
-import { ValueTypeName, type RepresentationType } from "../../types";
+import { ValueTypeName, type RepresentationType } from "../../../types/types";
 import { useState } from "react";
 import { useScenarioStore } from "../../stores/scenarioStore";
 import {
@@ -232,7 +232,7 @@ export function ParameterUI({
             </Container>
           )}
 
-          {paramValues.type === "number" && (
+          {paramValues.type === "Number" && (
             <Container flexDirection="column" gap={8}>
               <Label>
                 <Text>Value</Text>

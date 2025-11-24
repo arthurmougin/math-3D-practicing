@@ -1,5 +1,5 @@
 import { Euler, Matrix4, Quaternion, Vector2, Vector3, Vector4 } from "three";
-import type { ValueType, ValueTypeName, ScenarioParameter } from "../types";
+import type { ValueType, ValueTypeName, ScenarioParameter } from "../../types/types";
 import { Matrix3 } from "three";
 
 /**
@@ -89,7 +89,7 @@ export function parameterValueToMathType(
         return new Matrix4().fromArray(list);
       }
       return new Matrix4();
-    case "number":
+    case "Number":
       return list[0] ?? 0;
     default:
       return 0;
@@ -111,6 +111,7 @@ export function getDefaultParameterValues(): Record<ValueTypeName, ValueType> {
   Vector4: new Vector4(0, 0, 0, 0),
   Vector3: new Vector3(0, 0, 0),
   Vector2: new Vector2(0, 0),
-  number: 0,
+  Number: 0,
+  Boolean: false,
 };
 }

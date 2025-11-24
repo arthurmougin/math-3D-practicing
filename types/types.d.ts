@@ -98,7 +98,7 @@ export interface EquationParameter {
 /**
  * Method type classification
  */
-export type EquationType = {
+export interface EquationType {
   isStatic: boolean; // true for static methods (e.g., MathUtils), false for instance methods
   isMutatingInvoker: boolean; // true if the method mutates the instance (this), false otherwise
   isMutatingParameter: boolean; // true if the method mutates any of its parameters, false otherwise
@@ -117,7 +117,7 @@ export interface EquationSignature {
   returnType: ValueTypeName;
   returnDescription?: string;
   example?: string;
-  EquationType: EquationType;
+  equationType: EquationType;
 }
 
 export interface CameraState {

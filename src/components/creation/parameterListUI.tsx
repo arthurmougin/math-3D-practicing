@@ -5,7 +5,7 @@ import {
 import {
   ValueTypeName,
   type ScenarioParameter,
-} from "../../types";
+} from "../../../types/types";
 import { useScenarioStore } from "../../stores/scenarioStore";
 import { PARAMETER_COLORS } from "../../constants/parameters";
 import {

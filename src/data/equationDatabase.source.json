@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2025-11-23T21:43:45.764Z",
+  "generatedAt": "2025-11-24T21:53:06.257Z",
   "source": "Three.js source code analysis",
   "methods": [
     {
@@ -17,7 +17,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -39,7 +39,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -61,7 +61,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -83,7 +83,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -111,7 +111,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -133,7 +133,7 @@
       ],
       "returnType": "number",
       "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -155,7 +155,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -177,7 +177,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -205,7 +205,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -233,7 +233,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -255,7 +255,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -277,7 +277,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -305,7 +305,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -327,7 +327,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -349,7 +349,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -377,7 +377,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -399,7 +399,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -427,7 +427,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -449,7 +449,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -471,7 +471,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -493,7 +493,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -515,7 +515,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -537,7 +537,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -559,7 +559,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -581,7 +581,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -603,7 +603,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -625,7 +625,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -653,7 +653,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -681,7 +681,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -709,7 +709,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -724,7 +724,7 @@
       "parameters": [],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -739,7 +739,7 @@
       "parameters": [],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -754,7 +754,7 @@
       "parameters": [],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -769,7 +769,7 @@
       "parameters": [],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -784,7 +784,7 @@
       "parameters": [],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -806,7 +806,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -821,7 +821,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The square length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -836,7 +836,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -851,7 +851,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -866,7 +866,7 @@
       "parameters": [],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -888,7 +888,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -916,7 +916,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -950,7 +950,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -972,7 +972,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1000,7 +1000,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1022,7 +1022,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1044,7 +1044,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1066,7 +1066,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1088,7 +1088,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1110,7 +1110,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The distance.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1132,7 +1132,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The squared distance.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1154,7 +1154,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1188,7 +1188,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1222,7 +1222,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1244,7 +1244,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1266,7 +1266,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1294,7 +1294,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1322,7 +1322,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1344,7 +1344,7 @@
       ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1366,7 +1366,7 @@
       ],
       "returnType": "boolean",
       "returnDescription": "Whether this vector is equal with the given one.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1388,7 +1388,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1410,7 +1410,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1432,7 +1432,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1460,7 +1460,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1482,7 +1482,7 @@
       ],
       "returnType": "number",
       "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1504,7 +1504,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1526,7 +1526,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1554,7 +1554,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1582,7 +1582,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1604,7 +1604,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1626,7 +1626,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1654,7 +1654,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1676,7 +1676,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1698,7 +1698,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1720,7 +1720,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1742,7 +1742,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1764,7 +1764,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1786,7 +1786,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1808,7 +1808,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1836,7 +1836,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1864,7 +1864,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -1892,7 +1892,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1907,7 +1907,7 @@
       "parameters": [],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1922,7 +1922,7 @@
       "parameters": [],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1937,7 +1937,7 @@
       "parameters": [],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1952,7 +1952,7 @@
       "parameters": [],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1967,7 +1967,7 @@
       "parameters": [],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -1989,7 +1989,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2011,7 +2011,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2026,7 +2026,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The square length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2041,7 +2041,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2056,7 +2056,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2071,7 +2071,7 @@
       "parameters": [],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2086,7 +2086,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2108,7 +2108,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2130,7 +2130,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The distance.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2152,7 +2152,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The squared distance.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2174,7 +2174,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2196,7 +2196,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2224,7 +2224,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2258,7 +2258,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2280,7 +2280,7 @@
       ],
       "returnType": "boolean",
       "returnDescription": "Whether this vector is equal with the given one.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2308,7 +2308,7 @@
       ],
       "returnType": "Vector2",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2330,7 +2330,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2352,7 +2352,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2374,7 +2374,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2396,7 +2396,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2418,7 +2418,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2446,7 +2446,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2468,7 +2468,7 @@
       ],
       "returnType": "number",
       "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2490,7 +2490,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2512,7 +2512,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2540,7 +2540,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2568,7 +2568,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2590,7 +2590,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2612,7 +2612,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2640,7 +2640,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2662,7 +2662,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2684,7 +2684,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2706,7 +2706,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2728,7 +2728,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2750,7 +2750,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2772,7 +2772,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2794,7 +2794,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2816,7 +2816,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2838,7 +2838,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2860,7 +2860,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2888,7 +2888,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2916,7 +2916,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2944,7 +2944,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -2959,7 +2959,7 @@
       "parameters": [],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2974,7 +2974,7 @@
       "parameters": [],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -2989,7 +2989,7 @@
       "parameters": [],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3004,7 +3004,7 @@
       "parameters": [],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3019,7 +3019,7 @@
       "parameters": [],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -3041,7 +3041,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3056,7 +3056,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The square length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3071,7 +3071,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3086,7 +3086,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The length of this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3101,7 +3101,7 @@
       "parameters": [],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3123,7 +3123,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -3151,7 +3151,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3185,7 +3185,7 @@
       ],
       "returnType": "Vector4",
       "returnDescription": "A reference to this vector.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3207,7 +3207,7 @@
       ],
       "returnType": "boolean",
       "returnDescription": "Whether this vector is equal with the given one.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3236,7 +3236,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3264,7 +3264,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -3286,7 +3286,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3314,7 +3314,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3336,7 +3336,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3364,7 +3364,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3379,7 +3379,7 @@
       "parameters": [],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3394,7 +3394,7 @@
       "parameters": [],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3409,7 +3409,7 @@
       "parameters": [],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3431,7 +3431,7 @@
       ],
       "returnType": "number",
       "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3446,7 +3446,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The squared <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3461,7 +3461,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3476,7 +3476,7 @@
       "parameters": [],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3498,7 +3498,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3520,7 +3520,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3548,7 +3548,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3576,7 +3576,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3610,7 +3610,7 @@
       ],
       "returnType": "Quaternion",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3632,7 +3632,7 @@
       ],
       "returnType": "boolean",
       "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> is equal with the given one.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3654,7 +3654,7 @@
       ],
       "returnType": "boolean",
       "returnDescription": "Whether this Euler instance is equal with the given one.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3669,7 +3669,7 @@
       "parameters": [],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3703,7 +3703,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": true,
@@ -3725,7 +3725,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3747,7 +3747,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3769,7 +3769,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3797,7 +3797,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3819,7 +3819,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -3834,7 +3834,7 @@
       "parameters": [],
       "returnType": "number",
       "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3849,7 +3849,7 @@
       "parameters": [],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3864,7 +3864,7 @@
       "parameters": [],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3886,7 +3886,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
@@ -3944,7 +3944,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -3972,7 +3972,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -3994,7 +3994,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -4022,7 +4022,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -4050,7 +4050,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -4072,7 +4072,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -4100,7 +4100,7 @@
       ],
       "returnType": "Matrix3",
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
         "isMutatingParameter": false,
@@ -4122,7 +4122,7 @@
       ],
       "returnType": "boolean",
       "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
-      "EquationType": {
+      "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,

@@ -2,21 +2,17 @@ import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { enrichDescriptionWithLinks, getTermUsageStats } from "./technicalTerms";
 import * as THREE from 'three';
+import { EnhancedEquationDatabase, EquationParameter, EquationSignature, EquationType, ValueTypeName } from "../types/types.d";
 
-/**
- * Types supported in our system
- */
-export enum ValueTypeName {
-  Vector3 = "Vector3",
-  Vector2 = "Vector2",
-  Vector4 = "Vector4",
-  Quaternion = "Quaternion",
-  Euler = "Euler",
-  Matrix4 = "Matrix4",
-  Matrix3 = "Matrix3",
-  Number = "Number",
-  Boolean = "Boolean",
-} 
+type EquationParameterCandidate = Omit<EquationParameter, "type"> & {type: string};
+type EquationTypeCandidate = Partial<EquationType>;
+type EquationSignatureCandidate = Omit<EquationSignature, "className" | "methodName" | "parameters" | "returnType" | "equationType"> & {
+  className: string;
+  methodName: string;
+  parameters: EquationParameterCandidate[];
+  returnType: string;
+  equationType: EquationTypeCandidate;
+};
 
 export function isExcludedMethodName(methodName: string): boolean {
   return methodName.includes("Array")||
@@ -34,62 +30,12 @@ export function isExcludedMethodName(methodName: string): boolean {
 }
 
 /**
- * Represents a method parameter extracted from JSDoc
- */
-interface EquationParameter {
-  name: string;
-  type: string;
-  optional: boolean;
-  defaultValue?: string;
-  description?: string;
-}
-
-/**
- * Method type classification
- */
-type EquationType = {
-  isStatic: boolean; // true for static methods (e.g., MathUtils), false for instance methods
-  isMutatingInvoker: boolean; // true if the method mutates the instance (this), false otherwise
-  isMutatingParameter: boolean; // true if the method mutates any of its parameters, false otherwise
-  isReturningInstance: boolean; // true if the method returns the instance (this), false otherwise
-  isPureFunction: boolean; // true if the method does not mutate any input and returns a new value, false otherwise
-};
-
-/**
- * Represents a method signature with documentation
- */
-interface EquationSignature {
-  className: string;
-  methodName: string;
-  description: string;
-  parameters: EquationParameter[];
-  returnType: string;
-  returnDescription?: string;
-  example?: string;
-  EquationType: EquationType;
-}
-
-/**
- * The complete equation database with source analysis
- */
-interface EnhancedEquationDatabase {
-  version: string;
-  generatedAt: string;
-  source: string;
-  methods: EquationSignature[];
-}
-
-/**
  * Parse JSDoc comment block
  */
-function parseJSDoc(jsDocComment: string): {
-  description: string;
-  params: EquationParameter[];
-  returns: { type: string; description: string } | null;
-} {
+function parseJSDoc(jsDocComment: string): Partial<EquationSignatureCandidate> {
   const lines = jsDocComment.split("\n");
   let description = "";
-  const params: EquationParameter[] = [];
+  const parameters: EquationParameterCandidate[] = [];
   let returns: { type: string; description: string } | null = null;
 
   for (const line of lines) {
@@ -149,7 +95,7 @@ function parseJSDoc(jsDocComment: string): {
         console.warn(`⚠️  Warning: Parameter "${name}" has a union type "${typeFormated}". Using first type "${firstType}".`);
       }
 
-      params.push({
+      parameters.push({
         name,
         type: firstType,
         optional,
@@ -169,7 +115,13 @@ function parseJSDoc(jsDocComment: string): {
     }
   }
 
-  return { description, params, returns };
+  return { 
+    description, 
+    parameters, 
+    returnType: returns?.type, 
+    returnDescription: 
+    returns?.description  
+  };
 }
 
 /**
@@ -178,9 +130,9 @@ function parseJSDoc(jsDocComment: string): {
 async function extractMethodsFromFile(
   filePath: string,
   className: string
-): Promise<EquationSignature[]> {
+): Promise<EquationSignatureCandidate[]> {
   const content = readFileSync(filePath, "utf-8");
-  const methods: EquationSignature[] = [];
+  const methods: EquationSignatureCandidate[] = [];
 
   // For MathUtils, use a different regex to match free functions
   // For classes, match method definitions
@@ -203,10 +155,12 @@ async function extractMethodsFromFile(
       }
     }
 
-    const parsed = parseJSDoc(jsDocContent);
+    const parsed : Partial<EquationSignatureCandidate> = parseJSDoc(jsDocContent);
+
+    parsed.parameters = parsed.parameters || [];
 
     // Determine return type
-    const returnType = parsed.returns?.type || "void";
+    const returnType = parsed.returnType || "void";
     
     // Classify method type
     let EquationType: EquationType;
@@ -227,7 +181,7 @@ async function extractMethodsFromFile(
         invoker = classRef;
       }
 
-      let params = parsed.params.map(p => {
+      let parameters = parsed.parameters?.map((p: EquationParameterCandidate) => {
         let type = p.type;
 
         type = type.split("|")[0]; //handle union types by taking the first type
@@ -250,24 +204,24 @@ async function extractMethodsFromFile(
       });
 
       const oldInvoker = isStatic ? invoker : invoker.clone();
-      const oldParams = params.map((p: any) => {
+      const oldParameters = parameters.map((p: any) => {
         if(p.clone) return p.clone();
         return p;
       });
 
       const method = invoker[methodName];
 
-      const results = method.apply(invoker, params);
+      const results = method.apply(invoker, parameters);
 
       // Check if invoker was mutated
       isMutatingInvoker = invoker.equals ? !invoker.equals(oldInvoker) : invoker !== oldInvoker;
 
       // Check if any parameter was mutated
-      isMutatingParameter = params.some((p: any, index: number) => {
+      isMutatingParameter = parameters.some((p: any, index: number) => {
         if(p.equals){
-          return !p.equals(oldParams[index]);
+          return !p.equals(oldParameters[index]);
         }
-        return p !== oldParams[index];
+        return p !== oldParameters[index];
       });
 
       // Check if method returns the instance
@@ -283,16 +237,16 @@ async function extractMethodsFromFile(
     methods.push({
       className,
       methodName,
-      description: enrichDescriptionWithLinks(parsed.description, "en"),
-      parameters: parsed.params.map(param => ({
+      description: parsed.description ? enrichDescriptionWithLinks(parsed.description, "en") : "",
+      parameters: (parsed.parameters || []).map(param => ({
         ...param,
         description: param.description ? enrichDescriptionWithLinks(param.description, "en") : undefined
       })),
       returnType,
-      returnDescription: parsed.returns?.description 
-        ? enrichDescriptionWithLinks(parsed.returns.description, "en")
+      returnDescription: parsed.returnDescription 
+        ? enrichDescriptionWithLinks(parsed.returnDescription, "en")
         : undefined,
-      EquationType: {
+      equationType: {
         isStatic,
         isMutatingInvoker,
         isMutatingParameter,
@@ -331,17 +285,17 @@ function mapTypeToSupported(type: string): ValueTypeName | null {
 /**
  * Filter methods that are useful for equation database
  */
-function hasAllTypesSupported(method: EquationSignature): boolean {
+function hasAllTypesSupported(method: EquationSignatureCandidate): boolean {
   // Must return a supported type
-  const returnType = mapTypeToSupported(method.returnType);
+  const returnType = mapTypeToSupported(method.returnType || "");
   if (!returnType) return false;
 
   // Must have supported parameter types
-  const allParamsSupported = method.parameters.every((p) => {
+  const allParametersSupported = (method.parameters || []).every((p) => {
     return mapTypeToSupported(p.type) !== null || p.optional;
   });
 
-  return allParamsSupported
+  return allParametersSupported
 }
 
 /**
@@ -364,15 +318,15 @@ async function generateEnhancedDatabase() {
     { file: "MathUtils.js", className: "MathUtils" },
   ];
 
-  const allMethods: EquationSignature[] = [];
+  const allMethods: Array<EquationSignature> = [];
 
   for (const { file, className } of classFiles) {
     const filePath = join(mathFolder, file);
     console.log(`📊 Analyzing ${className}...`);
 
     try {
-      const methods = await extractMethodsFromFile(filePath, className);
-      const supportedMethods = methods.filter(hasAllTypesSupported);
+      const methods : Array<EquationSignatureCandidate> = await extractMethodsFromFile(filePath, className);
+      const supportedMethods : Array<EquationSignature> = methods.filter(hasAllTypesSupported) as Array<EquationSignature>;
 
       console.log(
         `   Found ${methods.length} methods, ${supportedMethods.length} useful`
@@ -438,11 +392,11 @@ async function generateEnhancedDatabase() {
 
   // Print statistics by method type
   const byType = allMethods.reduce((acc, method) => {
-    acc['static'] = (acc['static'] || 0) + (method.EquationType.isStatic ? 1 : 0);
-    acc['mutatingInvoker'] = (acc['mutatingInvoker'] || 0) + (method.EquationType.isMutatingInvoker ? 1 : 0);
-    acc['mutatingParameter'] = (acc['mutatingParameter'] || 0) + (method.EquationType.isMutatingParameter ? 1 : 0);
-    acc['returningInstance'] = (acc['returningInstance'] || 0) + (method.EquationType.isReturningInstance ? 1 : 0);
-    acc['pureFunction'] = (acc['pureFunction'] || 0) + (method.EquationType.isPureFunction ? 1 : 0);
+    acc['static'] = (acc['static'] || 0) + (method.equationType.isStatic ? 1 : 0);
+    acc['mutatingInvoker'] = (acc['mutatingInvoker'] || 0) + (method.equationType.isMutatingInvoker ? 1 : 0);
+    acc['mutatingParameter'] = (acc['mutatingParameter'] || 0) + (method.equationType.isMutatingParameter ? 1 : 0);
+    acc['returningInstance'] = (acc['returningInstance'] || 0) + (method.equationType.isReturningInstance ? 1 : 0);
+    acc['pureFunction'] = (acc['pureFunction'] || 0) + (method.equationType.isPureFunction ? 1 : 0);
     return acc;
   }, {} as Record<string, number>);
   
@@ -489,11 +443,11 @@ async function generateEnhancedDatabase() {
   // Show some examples
   console.log("\n📝 Sample methods:");
   allMethods.slice(0, 5).forEach((method) => {
-    const params = method.parameters
+    const parameters = method.parameters
       .map((p) => `${p.name}: ${p.type}`)
       .join(", ");
     console.log(
-      `   ${method.className}.${method.methodName}(${params}) → ${method.returnType}`
+      `   ${method.className}.${method.methodName}(${parameters}) → ${method.returnType}`
     );
     console.log(`      ${method.description}`);
   });

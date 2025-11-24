@@ -4,6 +4,7 @@ import {
   getDatabaseStats,
   getEquationSignatureString,
 } from "../src/data/equationDatabaseHelper";
+import { ValueTypeName } from "../types/types";
 
 console.log("🔍 Equation Database Test\n");
 
@@ -22,7 +23,7 @@ console.log();
 
 // Test 2: Find methods with 1 Vector3 parameter (instance methods)
 console.log("🔎 Finding methods with Vector3 parameter:");
-const v3Equations = findEquationsByParameters(["Vector3"]);
+const v3Equations = findEquationsByParameters([ValueTypeName.Vector3]);
 console.log(`   Found ${v3Equations.length} methods\n`);
 console.log("   Top 3 with parameter details:");
 v3Equations.slice(0, 3).forEach((eq) => {

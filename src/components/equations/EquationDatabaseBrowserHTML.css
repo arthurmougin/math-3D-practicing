@@ -707,18 +707,6 @@
   align-self: flex-start;
 }
 
-.method-type-badge-inline.calculation {
-  background: hsl(210 100% 95%);
-  color: hsl(210 100% 35%);
-  border: 1px solid hsl(210 100% 85%);
-}
-
-.method-type-badge-inline.transformation {
-  background: hsl(280 100% 95%);
-  color: hsl(280 60% 40%);
-  border: 1px solid hsl(280 100% 85%);
-}
-
 .method-type-explanation p {
   color: hsl(0 0% 40%);
   font-size: 13px;
@@ -755,18 +743,6 @@
   gap: 4px;
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-.method-type-note.calculation {
-  background: hsl(210 100% 95%);
-  color: hsl(210 100% 35%);
-  border: 1px solid hsl(210 100% 85%);
-}
-
-.method-type-note.transformation {
-  background: hsl(280 100% 95%);
-  color: hsl(280 60% 40%);
-  border: 1px solid hsl(280 100% 85%);
 }
 
 /* Dark mode support (optional) */

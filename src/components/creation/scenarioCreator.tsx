@@ -16,7 +16,7 @@ import {
   ValueTypeName,
   type MathScenario,
   type RepresentationType,
-} from "../../types.d";
+} from "../../../types/types";
 import { useScenarioStore } from "../../stores/scenarioStore";
 import { useCameraStore } from "../../stores/cameraStore";
 import { ParameterListUI } from "./parameterListUI";

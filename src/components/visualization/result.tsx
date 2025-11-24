@@ -2,7 +2,7 @@ import { useRef } from "react";
 import type { Mesh } from "three";
 import { AMBox } from "../box";
 import { valueToMatrix4 } from "../../utils/mathTransforms";
-import type { ScenarioResult } from "../../types";
+import type { ScenarioResult } from "../../../types/types";
 
 interface resultProps {
   result: ScenarioResult;
