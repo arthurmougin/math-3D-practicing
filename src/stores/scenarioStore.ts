@@ -9,7 +9,11 @@ import type {
   EquationParameter,
 } from "../../types/types";
 import { Vector3, Euler, Quaternion, Matrix4 } from "three";
-import { findNonOverlappingColor } from "../utils/parameterHelpers";
+import {
+  findNonOverlappingColor,
+  findNonOverlappingName,
+} from "../utils/parameterHelpers";
+import { Matrix3 } from "three";
 
 //findNonOverlappingName
 //findNonOverlappingPosition
@@ -40,7 +44,7 @@ export function mapEquationParamToScenario(
       value = new Matrix4().identity();
       break;
     case "Matrix3":
-      value = new Matrix4().identity();
+      value = new Matrix3().identity();
       break;
     case "Number":
       value = 0;
@@ -50,7 +54,9 @@ export function mapEquationParamToScenario(
   }
   return {
     id: `${param.name}`,
-    name: param.name,
+    name:
+      findNonOverlappingName(allParams) +
+      (param.name !== "" ? " (" + param.name + ")" : ""),
     type: param.type,
     value,
     optional: param.optional,
@@ -247,7 +253,7 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
     ) {
       invoker = mapEquationParamToScenario(
         {
-          name: equationSignature.className,
+          name: "",
           type: equationSignature.className,
           optional: false,
           isMutated: equationSignature.equationType.isMutatingInvoker,

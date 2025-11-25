@@ -1,4 +1,4 @@
-import { Vector3 } from "three";
+import { Vector2, Vector3 } from "three";
 import type { ScenarioParameter } from "../../types/types";
 import {
   PARAMETER_SPACING,
@@ -46,10 +46,28 @@ export function findNonOverlappingPosition(
     for (const pos of predefinedPositions) {
       const position = new Vector3(...(pos as [number, number, number]));
       const overlapping = parameters.some((param) => {
-        if (param.value instanceof Vector3) {
-          return param.value.distanceTo(position) < PARAMETER_BREATHING_ROOM;
+        console.log("Checking overlap with param:", param);
+
+        switch (param.type) {
+          case "Vector3":
+            return (
+              (param.value as Vector3).distanceTo(position) <
+              PARAMETER_BREATHING_ROOM
+            );
+          case "Vector2":
+            return (
+              (param.value as Vector2).distanceTo(position) <
+              PARAMETER_BREATHING_ROOM
+            );
+          case "Number":
+            return (
+              Math.abs((param.value as number) - position.x) <
+              PARAMETER_BREATHING_ROOM
+            );
+          //case "Euler":
+          default:
+            return false;
         }
-        return false;
       });
 
       if (!overlapping) {
