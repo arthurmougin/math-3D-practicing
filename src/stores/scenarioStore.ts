@@ -9,13 +9,14 @@ import type {
   EquationParameter,
 } from "../../types/types";
 import { Vector3, Euler, Quaternion, Matrix4 } from "three";
+import { findNonOverlappingColor } from "../utils/parameterHelpers";
 
 //findNonOverlappingName
 //findNonOverlappingPosition
 
-
 export function mapEquationParamToScenario(
-  param: EquationParameter
+  param: EquationParameter,
+  allParams: ScenarioParameter[]
 ): ScenarioParameter {
   let value: ValueType = 0;
 
@@ -53,48 +54,50 @@ export function mapEquationParamToScenario(
     type: param.type,
     value,
     optional: param.optional,
-    representation: generateRepresentationFromType(param.type),
+    representation: generateRepresentationFromType(param.type, allParams),
     isMutated: param.isMutated,
   };
 }
 
 export function generateRepresentationFromType(
-  type: ValueTypeName
+  type: ValueTypeName,
+  allParams: ScenarioParameter[]
 ): ParameterRepresentation {
   if (!type) {
     throw new Error("Type is required to generate ScenarioResult");
   }
+  const color = findNonOverlappingColor(allParams);
 
   switch (type) {
     case "Vector3":
       return {
         type: "vertex",
-        color: "#ffffff",
+        color,
       };
     case "Euler":
       return {
         type: "vertex",
-        color: "#ffffff",
+        color,
       };
     case "Quaternion":
       return {
         type: "vertex",
-        color: "#ffffff",
+        color,
       };
     case "Matrix4":
       return {
         type: "cube",
-        color: "#ff0000",
+        color,
       };
     case "Number":
       return {
         type: "cube",
-        color: "#00ff00",
+        color,
       };
     default:
       return {
         type: "vertex",
-        color: "#888888",
+        color,
       };
   }
 }
@@ -230,25 +233,35 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
 
     const parameters: MathScenario["parameters"] = [];
     for (let i = 0; i < equationSignature.parameters.length; i++) {
-      const param = mapEquationParamToScenario(equationSignature.parameters[i]);
+      const param = mapEquationParamToScenario(
+        equationSignature.parameters[i],
+        parameters
+      );
       parameters.push(param);
     }
 
     let invoker = null;
-    if (!equationSignature.equationType.isStatic && equationSignature.className !== "MathUtils") {
-      invoker = mapEquationParamToScenario({
-        name: equationSignature.className,
-        type: equationSignature.className,
-        optional: false,
-        isMutated: equationSignature.equationType.isMutatingInvoker,
-      });
+    if (
+      !equationSignature.equationType.isStatic &&
+      equationSignature.className !== "MathUtils"
+    ) {
+      invoker = mapEquationParamToScenario(
+        {
+          name: equationSignature.className,
+          type: equationSignature.className,
+          optional: false,
+          isMutated: equationSignature.equationType.isMutatingInvoker,
+        },
+        parameters
+      );
     }
 
     const result = {
       value: null,
       type: equationSignature.returnType,
       representation: generateRepresentationFromType(
-        equationSignature.returnType
+        equationSignature.returnType,
+        invoker ? [...parameters, invoker] : parameters
       ),
     };
 

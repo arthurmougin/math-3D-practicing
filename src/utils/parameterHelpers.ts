@@ -4,15 +4,16 @@ import {
   PARAMETER_SPACING,
   PARAMETER_BREATHING_ROOM,
   PARAMETER_NAMES,
+  PARAMETER_COLORS,
 } from "../constants/parameters";
 
 /**
  * Finds a non-overlapping position for a new parameter in 3D space
  * Uses predefined positions first, then shifts incrementally if needed
- * 
+ *
  * @param parameters - Existing parameters to check for overlaps
  * @returns A Vector3 position that doesn't overlap with existing parameters
- * 
+ *
  * @example
  * ```ts
  * const position = findNonOverlappingPosition(existingParameters);
@@ -63,10 +64,10 @@ export function findNonOverlappingPosition(
 /**
  * Finds a non-overlapping name for a new parameter
  * Uses Greek alphabet letters, adding numeric suffixes if needed
- * 
+ *
  * @param parameters - Existing parameters to check for name conflicts
  * @returns A unique parameter name
- * 
+ *
  * @example
  * ```ts
  * const name = findNonOverlappingName(existingParameters);
@@ -88,4 +89,23 @@ export function findNonOverlappingName(
     }
     increment++;
   } while (true);
+}
+
+/**
+ * Finds a non-overlapping color for a new parameter
+ * Cycles through predefined high-contrast colors
+ */
+export function findNonOverlappingColor(
+  parameters: ScenarioParameter[]
+): string {
+  const existingColors = new Set(
+    parameters.map((param) => param.representation.color)
+  );
+  for (const color of PARAMETER_COLORS) {
+    if (!existingColors.has(color)) {
+      return color;
+    }
+  }
+  // If all predefined colors are taken, return a default color
+  return "#888888"; // Grey
 }
