@@ -41,7 +41,7 @@ export enum ValueTypeName {
   Boolean = "Boolean",
 } 
 
-export type ClassNames = Exclude<ValueTypeName, "Number"> | "MathUtils";
+export type ClassNames = "MathUtils" | Exclude<ValueTypeName, "Number">;
 /**
  * Types of representations for parameters and results
  */ export type RepresentationType = "vertex" | "cube"; //TODO | 'mesh' | 'line' | 'plane' ;

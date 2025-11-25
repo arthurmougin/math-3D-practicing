@@ -10,6 +10,10 @@ import type {
 } from "../../types/types";
 import { Vector3, Euler, Quaternion, Matrix4 } from "three";
 
+//findNonOverlappingName
+//findNonOverlappingPosition
+
+
 export function mapEquationParamToScenario(
   param: EquationParameter
 ): ScenarioParameter {
@@ -121,7 +125,6 @@ export function computeScenarioEquation(scenario: MathScenario) {
 interface ScenarioStore {
   scenarios: Map<string, MathScenario>;
   currentScenarioId: string | null;
-
   addScenario: (scenario: MathScenario) => void;
   removeScenario: (scenarioId: string) => void;
   updateScenario: (
@@ -132,8 +135,8 @@ interface ScenarioStore {
   getCurrentScenario: () => MathScenario | null;
   getScenario: (scenarioId: string) => MathScenario | undefined;
 
-  addParameter: (scenarioId: string, parameter: ScenarioParameter) => void;
-  removeParameter: (scenarioId: string, parameterId: string) => void;
+  //addParameter: (scenarioId: string, parameter: ScenarioParameter) => void;
+  //removeParameter: (scenarioId: string, parameterId: string) => void;
   updateParameter: (
     scenarioId: string,
     parameterId: string,
@@ -177,30 +180,32 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
     return scenarios.get(currentScenarioId) || null;
   },
   getScenario: (scenarioId) => get().scenarios.get(scenarioId),
-  addParameter: (scenarioId, parameter) =>
-    set((state) => {
-      const scenario = state.scenarios.get(scenarioId);
-      if (!scenario) throw new Error("Scenario not found");
-      const updatedScenario = {
-        ...scenario,
-        parameters: [...scenario.parameters, parameter],
-      };
-      return {
-        scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
-      };
-    }),
-  removeParameter: (scenarioId, parameterId) =>
-    set((state) => {
-      const scenario = state.scenarios.get(scenarioId);
-      if (!scenario) throw new Error("Scenario not found");
-      const updatedScenario = {
-        ...scenario,
-        parameters: scenario.parameters.filter((p) => p.id !== parameterId),
-      };
-      return {
-        scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
-      };
-    }),
+  /*
+    addParameter: (scenarioId, parameter) =>
+      set((state) => {
+        const scenario = state.scenarios.get(scenarioId);
+        if (!scenario) throw new Error("Scenario not found");
+        const updatedScenario = {
+          ...scenario,
+          parameters: [...scenario.parameters, parameter],
+        };
+        return {
+          scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
+        };
+      }),
+    removeParameter: (scenarioId, parameterId) =>
+      set((state) => {
+        const scenario = state.scenarios.get(scenarioId);
+        if (!scenario) throw new Error("Scenario not found");
+        const updatedScenario = {
+          ...scenario,
+          parameters: scenario.parameters.filter((p) => p.id !== parameterId),
+        };
+        return {
+          scenarios: new Map(state.scenarios).set(scenarioId, updatedScenario),
+        };
+      }),
+  */
   updateParameter: (scenarioId, parameterId, updatedFields) =>
     set((state) => {
       const scenario = state.scenarios.get(scenarioId);
@@ -230,7 +235,7 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
     }
 
     let invoker = null;
-    if (equationSignature.className !== "MathUtils") {
+    if (!equationSignature.equationType.isStatic && equationSignature.className !== "MathUtils") {
       invoker = mapEquationParamToScenario({
         name: equationSignature.className,
         type: equationSignature.className,
