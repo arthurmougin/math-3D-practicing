@@ -1,10 +1,13 @@
 import { useRef } from "react";
 import type { Mesh } from "three";
-import { Color, Vector3 } from "three";
 import type { ScenarioParameter } from "../../../types/types";
 import { AMBox } from "../box";
-import { valueToMatrix4 } from "../../utils/mathTransforms";
 import { ParameterLabel } from "../common/ParameterLabel";
+import { PivotControls } from "@react-three/drei";
+import { useCameraControlHandlers } from "../../utils/cameraControl";
+import { matrix4ToValue, valueToMatrix4 } from "../../utils/parameterHelpers";
+import type { Matrix4 } from "three";
+import { useScenarioStore } from "../../stores/scenarioStore";
 
 interface ParameterProps {
   parameter: ScenarioParameter;
@@ -16,38 +19,97 @@ interface ParameterProps {
  * Uses Matrix4 under the hood for all transformations regardless of value type
  */
 export function Parameter({ parameter, onClick }: ParameterProps) {
-  const { representation, value } = parameter;
+  const { representation, value, type } = parameter;  
+  
+  if(!representation) {
+    return null;
+  }
+
   const meshRef = useRef<Mesh>(null);
+  const scenarioStore = useScenarioStore();
+  const { disableCameraControl, enableCameraControl } = useCameraControlHandlers();
 
   // Convert value to matrix
-  const matrix = valueToMatrix4(value);
-  const computedPosition = new Vector3().setFromMatrixPosition(matrix);
+  const matrix = valueToMatrix4(value, type);
+  function updateParameter(newMatrix: Matrix4){
+    const newValue = matrix4ToValue(newMatrix, value, type);
+    scenarioStore.updateParameter(scenarioStore.getCurrentScenario()?.id ?? "", parameter.id, newValue);
+  }
 
-  const representationColor = new Color(representation.color);
-  const dimmedColor = representationColor.multiplyScalar(0.2);
-  const xColor = new Color(0xff0000).add(dimmedColor);
-  const yColor = new Color(0x00ff00).add(dimmedColor);
-  const zColor = new Color(0x0000ff).add(dimmedColor);
+  /** Allows you to switch individual axes off */
+  const activeAxes : [boolean, boolean, boolean] = [true, true, true]; 
+  /** Allows you to disable translation via axes arrows */
+  let disableAxes: boolean = false;
+  /** Allows you to disable translation via axes planes */
+  let disableSliders: boolean = false;
+  /** Allows you to disable rotation */
+  let disableRotations: boolean = false;
+  /** Allows you to disable scaling */
+  let disableScaling: boolean = false;
+
+  switch (type) {
+    case "Vector3":
+      // All controls enabled
+      disableRotations = true;
+      disableScaling = true;
+      break;
+    case "Vector2":
+      // Disable Z axis
+      activeAxes[2] = false;
+      disableRotations = true;
+      disableScaling = true;
+      break;
+    case "Vector4":
+      // Disable rotation and scaling for Vector4
+      disableRotations = true;
+      disableScaling = true;
+      break;
+    case "Euler":
+    case "Quaternion":
+      // Disable translation and scaling for rotations
+      disableAxes = true;
+      disableSliders = true;
+      disableScaling = true;
+      break;
+    case "Matrix4":
+      break;
+    case "Matrix3":
+      // Disable scaling for matrices
+      disableScaling = true;
+      break;
+    case "Number":
+    case "Boolean":
+      // Disable all but one axis for numbers and booleans
+      activeAxes[1] = false;
+      activeAxes[2] = false;
+      disableRotations = true;
+      disableScaling = true;
+      break;
+    default:
+      throw new Error(`Unsupported parameter type for visualization: ${type}`);
+  }
+
 
   // Render based on representation type
   switch (representation.type) {
     case "cube":
       return (
-        <group>
+        <group 
+          matrix={matrix}
+          matrixAutoUpdate={false}
+        >
           <ParameterLabel
             text={parameter.name}
             position={[
-              computedPosition.x,
-              computedPosition.y + 0.8,
-              computedPosition.z,
+              0,
+              0.8,
+              0,
             ]}
             borderColor={representation.color}
             useSuspense={false}
           />
           <AMBox
             ref={meshRef}
-            matrix={matrix}
-            matrixAutoUpdate={false}
             color={representation.color}
             onClick={onClick}
             scale={0.5}
@@ -57,55 +119,31 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
 
     case "vertex":
       return (
-        <group>
+        <PivotControls
+          matrix={matrix}
+          onDragEnd={() => enableCameraControl()}
+          onDrag={updateParameter}
+          onDragStart={() => disableCameraControl()}
+          activeAxes={activeAxes}
+          disableAxes={disableAxes}
+          disableSliders={disableSliders}
+          disableRotations={disableRotations}
+          disableScaling={disableScaling}
+        >
           <ParameterLabel
             text={parameter.name}
             position={[
-              computedPosition.x,
-              computedPosition.y + 0.3,
-              computedPosition.z,
+              0.5,
+              0.5,
+              0.5,
             ]}
             borderColor={representation.color}
             useSuspense={true}
           />
-          <mesh matrix={matrix} matrixAutoUpdate={false}>
-            <boxGeometry args={[0.1, 0.1, 0.1]} />
-            <meshBasicMaterial color={representation.color} />
-            <arrowHelper
-              args={[
-                new Vector3(1, 0, 0),
-                new Vector3(0, 0, 0),
-                1,
-                xColor,
-                0.1,
-                0.05,
-              ]}
-            />
-            <arrowHelper
-              args={[
-                new Vector3(0, 1, 0),
-                new Vector3(0, 0, 0),
-                1,
-                yColor,
-                0.1,
-                0.05,
-              ]}
-            />
-            <arrowHelper
-              args={[
-                new Vector3(0, 0, 1),
-                new Vector3(0, 0, 0),
-                1,
-                zColor,
-                0.1,
-                0.05,
-              ]}
-            />
-          </mesh>
-        </group>
+        </PivotControls>
       );
 
     default:
-      return null;
+      throw new Error(`Unknown representation type: ${representation.type}`);
   }
 }

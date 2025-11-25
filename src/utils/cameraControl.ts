@@ -26,9 +26,9 @@ export function useCameraControlHandlers() {
    * Prevents scrolling/interaction from rotating the camera
    * Ignores events if user is dragging (buttons !== 0)
    */
-  const disableCameraControl = (event: Object3DEventMap["pointerenter"]) => {
+  const disableCameraControl = (event?: Object3DEventMap["pointerenter"]) => {
     // Ignore if any button is pressed (user is dragging)
-    if ((event.nativeEvent as PointerEvent).buttons !== 0) return;
+    if (event && (event.nativeEvent as PointerEvent).buttons !== 0) return;
     cameraStore.setEnabled(false);
   };
 
@@ -37,9 +37,9 @@ export function useCameraControlHandlers() {
    * Restores camera control for the user
    * Ignores events if user is dragging (buttons !== 0)
    */
-  const enableCameraControl = (event: Object3DEventMap["pointerleave"]) => {
+  const enableCameraControl = (event?: Object3DEventMap["pointerleave"]) => {
     // Ignore if any button is pressed (user is dragging)
-    if ((event.nativeEvent as PointerEvent).buttons !== 0) return;
+    if (event && (event.nativeEvent as PointerEvent).buttons !== 0) return;
     cameraStore.setEnabled(true);
   };
 

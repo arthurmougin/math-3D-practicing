@@ -9,7 +9,7 @@ import type {
 } from "../../../types/types.d.ts";
 import { useScenarioStore } from "../../stores/scenarioStore";
 import { EquationDetailedView } from "./EquationDetailedView.tsx";
-import { EQUATION_TYPE_NICENAMES } from "../../constants/equationType";
+import { EQUATION_TYPE_NICENAMES } from "../../constants/equationTypeConstants.ts";
 
 /**
  * Equation Database Browser Component (HTML Version)

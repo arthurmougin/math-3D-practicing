@@ -11,7 +11,6 @@ export const CustomOrbitControl = () => {
 
   useEffect(() => {
     if (orbitRef.current) {
-      console.log("Camera target updated:", cameraStore.target);
       orbitRef.current.position0 = defaultPosition.add(cameraStore.target);
       orbitRef.current.reset();
       orbitRef.current.target = cameraStore.target;

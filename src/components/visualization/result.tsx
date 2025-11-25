@@ -1,8 +1,9 @@
 import { useRef } from "react";
-import type { Mesh } from "three";
+import { Color, Vector3, type Mesh } from "three";
 import { AMBox } from "../box";
-import { valueToMatrix4 } from "../../utils/mathTransforms";
 import type { ScenarioResult } from "../../../types/types";
+import { ParameterLabel } from "../common/ParameterLabel";
+import { valueToMatrix4 } from "../../utils/parameterHelpers";
 
 interface resultProps {
   result: ScenarioResult;
@@ -16,7 +17,7 @@ interface resultProps {
  * Can be rendered with transparency to show expected result
  */
 export function Result({ result, onClick, opacity = 1 }: resultProps) {
-  const { representation, value } = result;
+  const { representation, value, type } = result;
   const meshRef = useRef<Mesh>(null);
 
   if(!representation) {
@@ -24,45 +25,96 @@ export function Result({ result, onClick, opacity = 1 }: resultProps) {
   }
 
   // Convert value to matrix
-  const matrix = valueToMatrix4(value);
+  const matrix = valueToMatrix4(value, type);
 
   // Render based on representation type
   switch (representation.type) {
     case "cube":
       return (
-        <AMBox
-          ref={meshRef}
-          matrix={matrix}
-          matrixAutoUpdate={false}
-          color={representation.color}
-          onClick={onClick}
-          scale={0.5}
-        >
-          <meshStandardMaterial
+        <group 
+            matrix={matrix}
+            matrixAutoUpdate={false}>
+          <ParameterLabel
+              text="Result"
+              position={[
+                0,
+                0.8,
+                0,
+              ]}
+              borderColor={representation.color}
+              useSuspense={false}
+            />
+          <AMBox
+            ref={meshRef}
             color={representation.color}
-            transparent={opacity < 1}
-            opacity={opacity}
-          />
-        </AMBox>
+            onClick={onClick}
+            scale={0.5}
+          >
+            <meshStandardMaterial
+              color={representation.color}
+              transparent={opacity < 1}
+              opacity={opacity}
+            />
+          </AMBox>
+        </group>
       );
 
     case "vertex":
+    const representationColor = new Color(representation.color);
+    const dimmedColor = representationColor.multiplyScalar(0.2);
+      const xColor = new Color(0xff0000).add(dimmedColor);
+      const yColor = new Color(0x00ff00).add(dimmedColor);
+      const zColor = new Color(0x0000ff).add(dimmedColor);
       return (
-        <mesh
-          ref={meshRef}
+ <group
           matrix={matrix}
           matrixAutoUpdate={false}
-          onClick={onClick}
         >
-          <sphereGeometry args={[0.15, 16, 16]} />
-          <meshStandardMaterial
-            color={representation.color}
-            transparent={opacity < 1}
-            opacity={opacity}
-            emissive={representation.color}
-            emissiveIntensity={0.3}
+          <ParameterLabel
+            text="Result"
+            position={[
+              0,
+              0.3,
+              0,
+            ]}
+            borderColor={representation.color}
+            useSuspense={true}
           />
-        </mesh>
+          <mesh>
+            <boxGeometry args={[0.1, 0.1, 0.1]} />
+            <meshBasicMaterial color={representation.color} />
+            <arrowHelper
+              args={[
+                new Vector3(1, 0, 0),
+                new Vector3(0, 0, 0),
+                1,
+                xColor,
+                0.1,
+                0.05,
+              ]}
+            />
+            <arrowHelper
+              args={[
+                new Vector3(0, 1, 0),
+                new Vector3(0, 0, 0),
+                1,
+                yColor,
+                0.1,
+                0.05,
+              ]}
+            />
+            <arrowHelper
+              args={[
+                new Vector3(0, 0, 1),
+                new Vector3(0, 0, 0),
+                1,
+                zColor,
+                0.1,
+                0.05,
+              ]}
+            />
+          </mesh>
+        </group>
       );
 
     default:

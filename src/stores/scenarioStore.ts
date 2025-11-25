@@ -8,10 +8,11 @@ import type {
   ParameterRepresentation,
   EquationParameter,
 } from "../../types/types";
-import { Vector3, Euler, Quaternion, Matrix4 } from "three";
+import { Euler, Quaternion, Matrix4, Vector2, Vector4 } from "three";
 import {
   findNonOverlappingColor,
   findNonOverlappingName,
+  findNonOverlappingPosition,
 } from "../utils/parameterHelpers";
 import { Matrix3 } from "three";
 
@@ -23,34 +24,38 @@ export function mapEquationParamToScenario(
   allParams: ScenarioParameter[]
 ): ScenarioParameter {
   let value: ValueType = 0;
+  let newPosition;
 
   switch (param.type) {
     case "Vector3":
-      value = new Vector3(0, 0, 0);
+      value = findNonOverlappingPosition(allParams);
       break;
     case "Vector2":
-      value = new Vector3(0, 0, 0);
+      newPosition = findNonOverlappingPosition(allParams);
+      value = new Vector2(newPosition.x, newPosition.y);
       break;
     case "Vector4":
-      value = new Vector3(0, 0, 0);
+      newPosition = findNonOverlappingPosition(allParams);
+      value = new Vector4(newPosition.x, newPosition.y, newPosition.z, 0);
       break;
     case "Euler":
-      value = new Euler(0, 0, 0);
+      value = new Euler();
       break;
     case "Quaternion":
-      value = new Quaternion(0, 0, 0, 1);
+      value = new Quaternion().identity();
       break;
     case "Matrix4":
-      value = new Matrix4().identity();
+      value = new Matrix4().makeTranslation(findNonOverlappingPosition(allParams));
       break;
     case "Matrix3":
-      value = new Matrix3().identity();
+      const m4 = new Matrix4().makeTranslation(findNonOverlappingPosition(allParams));
+      value = new Matrix3().setFromMatrix4(m4);
       break;
     case "Number":
       value = 0;
       break;
     default:
-      value = 0;
+      throw new Error(`unImplemented parameter type: ${param.type}`);
   }
   return {
     id: `${param.name}`,
@@ -82,12 +87,12 @@ export function generateRepresentationFromType(
       };
     case "Euler":
       return {
-        type: "vertex",
+        type: "cube",
         color,
       };
     case "Quaternion":
       return {
-        type: "vertex",
+        type: "cube",
         color,
       };
     case "Matrix4":
@@ -101,16 +106,16 @@ export function generateRepresentationFromType(
         color,
       };
     default:
-      return {
-        type: "vertex",
-        color,
-      };
+      throw new Error(`unImplemented parameter type: ${type}`);
   }
 }
 
 export function computeScenarioEquation(scenario: MathScenario) {
   try {
-    const params = scenario.parameters.map((p) => p.value);
+    //TODO : Handle non-cloneable values
+    const params = scenario.parameters.map((p) => {
+      p.value.clone()
+    });
     const invoker = scenario.invoker ? scenario.invoker.value : null;
     const equationName = scenario.equation;
     let method;
@@ -123,7 +128,7 @@ export function computeScenarioEquation(scenario: MathScenario) {
     }
 
     if (typeof method === "function") {
-      scenario.result.value = method.apply(invoker, params);
+      scenario.result.value = method.apply(invoker.clone(), params);
     } else {
       throw new Error(`Method ${equationName} not found on invoker`);
     }
@@ -131,6 +136,8 @@ export function computeScenarioEquation(scenario: MathScenario) {
     console.error("Error computing result:", e);
   }
 }
+
+
 interface ScenarioStore {
   scenarios: Map<string, MathScenario>;
   currentScenarioId: string | null;
@@ -238,14 +245,6 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
     // Implementation for adding a scenario using a method signature
 
     const parameters: MathScenario["parameters"] = [];
-    for (let i = 0; i < equationSignature.parameters.length; i++) {
-      const param = mapEquationParamToScenario(
-        equationSignature.parameters[i],
-        parameters
-      );
-      parameters.push(param);
-    }
-
     let invoker = null;
     if (
       !equationSignature.equationType.isStatic &&
@@ -253,21 +252,31 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
     ) {
       invoker = mapEquationParamToScenario(
         {
-          name: "",
+          name: "This",
           type: equationSignature.className,
           optional: false,
           isMutated: equationSignature.equationType.isMutatingInvoker,
         },
         parameters
       );
+
     }
+    
+    for (let i = 0; i < equationSignature.parameters.length; i++) {
+      const param = mapEquationParamToScenario(
+        equationSignature.parameters[i],
+        parameters.concat(invoker ? [invoker] : [])
+      );
+      parameters.push(param);
+    }
+
 
     const result = {
       value: null,
       type: equationSignature.returnType,
       representation: generateRepresentationFromType(
         equationSignature.returnType,
-        invoker ? [...parameters, invoker] : parameters
+        parameters.concat(invoker ? [invoker] : [])
       ),
     };
 

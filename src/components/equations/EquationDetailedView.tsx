@@ -1,5 +1,5 @@
 import type { EquationSignature } from "../../../types/types";
-import { EQUATION_TYPE_DESCRIPTIONS, EQUATION_TYPE_NICENAMES } from "../../constants/equationType";
+import { EQUATION_TYPE_DESCRIPTIONS, EQUATION_TYPE_NICENAMES } from "../../constants/equationTypeConstants";
 
 export function EquationDetailedView({
   selectedMethodName,

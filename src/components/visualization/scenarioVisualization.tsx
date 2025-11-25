@@ -8,7 +8,7 @@ import { Parameter } from "./parameter";
  *     - on 1 or more axes
  *     - possibly with arrows (for offsets)
  *     - possibly normalized (for direction vectors )
- * - Rotation (axes with rotation ?) 
+ * - Rotation (axes with rotation ?)
  *     - on 1 or more axes
  * - Scale
  *     - on 1 or more axes
@@ -20,7 +20,6 @@ import { Parameter } from "./parameter";
  */
 
 interface ScenarioVisualizationProps {
-  showresult?: boolean; // Whether to show the result
   resultOpacity?: number; // Opacity of the result (useful for showing expected result)
 }
 
@@ -29,7 +28,6 @@ interface ScenarioVisualizationProps {
  * Automatically syncs with the scenario store
  */
 export function ScenarioVisualization({
-  showresult = true,
   resultOpacity = 0.3,
 }: ScenarioVisualizationProps) {
   const currentScenario = useScenarioStore((state) =>
@@ -41,19 +39,25 @@ export function ScenarioVisualization({
     return null;
   }
 
-  const { parameters, result } = currentScenario;
+  const { parameters, result, invoker } = currentScenario;
 
   return (
     <group name="scenario-visualization">
       {/* Render all parameters */}
       {parameters.map((parameter) => (
-        <Suspense key={parameter.id} fallback={null}>
+        <Suspense key={parameter.id}>
           <Parameter key={parameter.id} parameter={parameter} />
         </Suspense>
       ))}
 
+      {invoker && (
+        <Suspense>
+          <Parameter parameter={invoker} />
+        </Suspense>
+      )}
+
       {/* Render result if enabled */}
-      {showresult && result && <Result result={result} opacity={resultOpacity} />}
+      {result && <Result result={result} opacity={resultOpacity} />}
     </group>
   );
 }
