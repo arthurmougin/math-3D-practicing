@@ -45,10 +45,14 @@ export function mapEquationParamToScenario(
       value = new Quaternion().identity();
       break;
     case "Matrix4":
-      value = new Matrix4().makeTranslation(findNonOverlappingPosition(allParams));
+      value = new Matrix4().makeTranslation(
+        findNonOverlappingPosition(allParams)
+      );
       break;
     case "Matrix3":
-      const m4 = new Matrix4().makeTranslation(findNonOverlappingPosition(allParams));
+      const m4 = new Matrix4().makeTranslation(
+        findNonOverlappingPosition(allParams)
+      );
       value = new Matrix3().setFromMatrix4(m4);
       break;
     case "Number":
@@ -109,12 +113,30 @@ export function generateRepresentationFromType(
       throw new Error(`unImplemented parameter type: ${type}`);
   }
 }
+/*    //TODO : Handle non-cloneable values
+    const params = scenario.parameters.map((p) => {
+      return p.value.clone
+        ? p.value.clone()
+        : p.value.copy
+        ? new p.value.constructor().copy(p.value)
+        : p.value;
+    });
+    let invoker;
+    if (scenario?.invoker && scenario.invoker?.isMutated) {
+      invoker = scenario.invoker.value.clone
+        ? scenario.invoker.value.clone()
+        : scenario.invoker.value.copy
+        ? new scenario.invoker.value.constructor().copy(scenario.invoker.value)
+        : scenario.invoker.value;
+    } else {
+      invoker = scenario.invoker ? scenario.invoker.value : null;
+    }*/
 
 export function computeScenarioEquation(scenario: MathScenario) {
   try {
     //TODO : Handle non-cloneable values
     const params = scenario.parameters.map((p) => {
-      p.value.clone()
+      p.value.clone();
     });
     const invoker = scenario.invoker ? scenario.invoker.value : null;
     const equationName = scenario.equation;
@@ -136,7 +158,6 @@ export function computeScenarioEquation(scenario: MathScenario) {
     console.error("Error computing result:", e);
   }
 }
-
 
 interface ScenarioStore {
   scenarios: Map<string, MathScenario>;
@@ -259,9 +280,8 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
         },
         parameters
       );
-
     }
-    
+
     for (let i = 0; i < equationSignature.parameters.length; i++) {
       const param = mapEquationParamToScenario(
         equationSignature.parameters[i],
@@ -269,7 +289,6 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
       );
       parameters.push(param);
     }
-
 
     const result = {
       value: null,
