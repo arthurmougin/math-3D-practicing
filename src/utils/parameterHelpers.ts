@@ -58,6 +58,7 @@ export function findNonOverlappingPosition(
       const position = new Vector3(...(pos as [number, number, number]));
       const overlapping = parameters.some((param) => {
         switch (param.type) {
+          // @ts-ignore
           case "Vector4":
             return (
               new Vector3().copy(param.value as Vector4).distanceTo(position) <
@@ -191,6 +192,7 @@ export function valueToMatrix4(value: ValueType, type: ValueTypeName): Matrix4 {
       const vec2 = value as Vector2;
       matrix.makeTranslation(vec2.x, vec2.y, 0);
       return matrix;
+    // @ts-ignore
     case "Vector4":
       const vec4 = value as Vector4;
       matrix.makeTranslation(vec4.x, vec4.y, vec4.z);
@@ -216,8 +218,11 @@ export function valueToMatrix4(value: ValueType, type: ValueTypeName): Matrix4 {
   }
 }
 
-
-export function matrix4ToValue(matrix: Matrix4, value : ValueType, type: ValueTypeName): ValueType {
+export function matrix4ToValue(
+  matrix: Matrix4,
+  value: ValueType,
+  type: ValueTypeName
+): ValueType {
   switch (type) {
     case "Matrix4":
       value.copy(matrix);
@@ -235,6 +240,7 @@ export function matrix4ToValue(matrix: Matrix4, value : ValueType, type: ValueTy
       const pos2 = new Vector3().setFromMatrixPosition(matrix);
       vec2.set(pos2.x, pos2.y);
       return vec2;
+    // @ts-ignore
     case "Vector4":
       const vec4 = value as Vector4;
       const pos4 = new Vector3().setFromMatrixPosition(matrix);

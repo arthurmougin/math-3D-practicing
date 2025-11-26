@@ -2,7 +2,8 @@ import { Billboard, Text } from "@react-three/drei";
 import { geometry } from "maath";
 import { extend } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
-import type { Mesh } from "three";
+import { Vector3, type Mesh } from "three";
+import { useCameraStore } from "../../stores/cameraStore";
 
 // Extend R3F with RoundedPlaneGeometry
 extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry });
@@ -46,6 +47,8 @@ export function ParameterLabel({
   borderColor,
   useSuspense = true,
 }: ParameterLabelProps) {
+  const meshRef = useRef<Mesh>(null);
+  const cameraStore = useCameraStore();
   const textRef = useRef<Mesh>(null);
 
   // Calculate label dimensions based on text
@@ -80,7 +83,16 @@ export function ParameterLabel({
         <meshBasicMaterial color="white" transparent opacity={0.95} />
       </mesh>
       {/* Colored border */}
-      <mesh position={[0, 0, -0.011]}>
+      <mesh ref={meshRef} position={[0, 0, -0.011]}
+      
+        onDoubleClick={(e) =>
+          cameraStore.setTarget(e.object.getWorldPosition(new Vector3()))
+        }
+        onPointerOver={() => meshRef.current?.scale.set(1.1, 1.1, 1.1)}
+        onPointerLeave={() => meshRef.current?.scale.set(1, 1, 1)}
+        onPointerEnter={() => meshRef.current?.scale.set(1.1, 1.1, 1.1)}
+        onPointerOut={() => meshRef.current?.scale.set(1, 1, 1)}
+      >
         {/* @ts-ignore - roundedPlaneGeometry is extended */}
         <roundedPlaneGeometry
           args={[labelWidth + 0.02, labelHeight + 0.02, borderRadius]}

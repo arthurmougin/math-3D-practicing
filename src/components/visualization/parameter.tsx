@@ -94,15 +94,23 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
   switch (representation.type) {
     case "cube":
       return (
-        <group 
+        <PivotControls
           matrix={matrix}
-          matrixAutoUpdate={false}
+          onDragEnd={() => enableCameraControl()}
+          onDrag={updateParameter}
+          onDragStart={() => disableCameraControl()}
+          activeAxes={activeAxes}
+          disableAxes={disableAxes}
+          disableSliders={disableSliders}
+          disableRotations={disableRotations}
+          disableScaling={disableScaling}
+          depthTest={false}
         >
           <ParameterLabel
             text={parameter.name}
             position={[
               0,
-              0.8,
+              0.9,
               0,
             ]}
             borderColor={representation.color}
@@ -114,7 +122,7 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
             onClick={onClick}
             scale={0.5}
           />
-        </group>
+        </PivotControls>
       );
 
     case "vertex":

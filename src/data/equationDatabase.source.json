@@ -1,153 +1,8 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2025-11-26T22:29:36.181Z",
+  "generatedAt": "2025-11-26T22:41:57.365Z",
   "source": " js source code analysis",
   "methods": [
-    {
-      "className": "Vector3",
-      "methodName": "setScalar",
-      "description": "Sets the vector components to the same value.",
-      "parameters": [
-        {
-          "name": "scalar",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set for all vector components.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setX",
-      "description": "Sets the vector's x <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> to the given value",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setY",
-      "description": "Sets the vector's y <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> to the given value",
-      "parameters": [
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setZ",
-      "description": "Sets the vector's z <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> to the given value",
-      "parameters": [
-        {
-          "name": "z",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setComponent",
-      "description": "Allows to set a vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> with an index.",
-      "parameters": [
-        {
-          "name": "index",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> index. `0` equals to x, `1` equals to y, `2` equals to z.",
-          "isMutated": false
-        },
-        {
-          "name": "value",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "getComponent",
-      "description": "Returns the value of the vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> which matches the given index.",
-      "parameters": [
-        {
-          "name": "index",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> index. `0` equals to x, `1` equals to y, `2` equals to z.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
     {
       "className": "Vector3",
       "methodName": "add",
@@ -158,29 +13,6 @@
           "type": "Vector3",
           "optional": false,
           "description": "The vector to add.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "addScalar",
-      "description": "Adds the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value to all components of this instance.",
-      "parameters": [
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to add.",
           "isMutated": false
         }
       ],
@@ -226,36 +58,6 @@
     },
     {
       "className": "Vector3",
-      "methodName": "addScaledVector",
-      "description": "Adds the given vector scaled by the given factor to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector.",
-          "isMutated": false
-        },
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The factor that scales `v`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
       "methodName": "sub",
       "description": "Subtracts the given vector from this instance.",
       "parameters": [
@@ -272,29 +74,6 @@
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "subScalar",
-      "description": "Subtracts the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value from all components of this instance.",
-      "parameters": [
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to subtract.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -355,29 +134,6 @@
     },
     {
       "className": "Vector3",
-      "methodName": "multiplyScalar",
-      "description": "Multiplies the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value with all components of this instance.",
-      "parameters": [
-        {
-          "name": "scalar",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to multiply.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
       "methodName": "multiplyVectors",
       "description": "Multiplies the given vectors and stores the result in this instance.",
       "parameters": [
@@ -416,36 +172,6 @@
           "type": "Euler",
           "optional": false,
           "description": "The <a href=\"https://en.wikipedia.org/wiki/Euler_angles\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euler angles</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "applyAxisAngle",
-      "description": "Applies a <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> specified by an <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a> and an angle to this vector.",
-      "parameters": [
-        {
-          "name": "axis",
-          "type": "Vector3",
-          "optional": false,
-          "description": "A normalized vector representing the <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "angle",
-          "type": "Number",
-          "optional": false,
-          "description": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
           "isMutated": false
         }
       ],
@@ -599,29 +325,6 @@
     },
     {
       "className": "Vector3",
-      "methodName": "divideScalar",
-      "description": "Divides this vector by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
-      "parameters": [
-        {
-          "name": "scalar",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to divide.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
       "methodName": "min",
       "description": "If this vector's x, y or z value is greater than the given vector's x, y or z value, replace that value with the corresponding min value.",
       "parameters": [
@@ -683,66 +386,6 @@
           "type": "Vector3",
           "optional": false,
           "description": "The maximum x, y and z values in the desired range.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "clampScalar",
-      "description": "If this vector's x, y or z values are greater than the max value, they are replaced by the max value. If this vector's x, y or z values are less than the min value, they are replaced by the min value.",
-      "parameters": [
-        {
-          "name": "minVal",
-          "type": "Number",
-          "optional": false,
-          "description": "The minimum value the components will be clamped to.",
-          "isMutated": false
-        },
-        {
-          "name": "maxVal",
-          "type": "Number",
-          "optional": false,
-          "description": "The maximum value the components will be clamped to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "clampLength",
-      "description": "If this vector's length is greater than the max value, it is replaced by the max value. If this vector's length is less than the min value, it is replaced by the min value.",
-      "parameters": [
-        {
-          "name": "min",
-          "type": "Number",
-          "optional": false,
-          "description": "The minimum value the vector length will be clamped to.",
-          "isMutated": false
-        },
-        {
-          "name": "max",
-          "type": "Number",
-          "optional": false,
-          "description": "The maximum value the vector length will be clamped to.",
           "isMutated": false
         }
       ],
@@ -833,167 +476,9 @@
     },
     {
       "className": "Vector3",
-      "methodName": "dot",
-      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> with.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "lengthSq",
-      "description": "Computes the square of the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from (0, 0, 0) to (x, y, z). If you are comparing the lengths of vectors, you should compare the length squared instead as it is slightly more efficient to calculate.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The square length of this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "length",
-      "description": "Computes the  <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from (0, 0, 0) to (x, y, z).",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "manhattanLength",
-      "description": "Computes the Manhattan length of this vector.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
       "methodName": "normalize",
       "description": "Converts this vector to a <a href=\"https://en.wikipedia.org/wiki/Unit_vector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">unit vector</a> - that is, sets it equal to a vector with the same direction as this one, but with a vector length of `1`.",
       "parameters": [],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setLength",
-      "description": "Sets this vector to a vector with the same direction as this one, but with the specified length.",
-      "parameters": [
-        {
-          "name": "length",
-          "type": "Number",
-          "optional": false,
-          "description": "The new length of this vector.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "lerp",
-      "description": "Linearly interpolates between the given vector and this instance, where alpha is the percent distance along the line - alpha = 0 will be this vector, and alpha = 1 will be the given one.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to interpolate towards.",
-          "isMutated": false
-        },
-        {
-          "name": "alpha",
-          "type": "Number",
-          "optional": false,
-          "description": "The interpolation factor, typically in the closed interval `[0, 1]`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "lerpVectors",
-      "description": "Linearly interpolates between the given vectors, where alpha is the percent distance along the line - alpha = 0 will be first vector, and alpha = 1 will be the second one. The result is stored in this instance.",
-      "parameters": [
-        {
-          "name": "v1",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The first vector.",
-          "isMutated": false
-        },
-        {
-          "name": "v2",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The second vector.",
-          "isMutated": false
-        },
-        {
-          "name": "alpha",
-          "type": "Number",
-          "optional": false,
-          "description": "The interpolation factor, typically in the closed interval `[0, 1]`.",
-          "isMutated": false
-        }
-      ],
       "returnType": "Vector3",
       "returnDescription": "A reference to this vector.",
       "equationType": {
@@ -1128,172 +613,6 @@
     },
     {
       "className": "Vector3",
-      "methodName": "angleTo",
-      "description": "Returns the angle between the given vector and this instance in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the angle with.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "distanceTo",
-      "description": "Computes the distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the distance to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The distance.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "distanceToSquared",
-      "description": "Computes the squared distance from the given vector to this instance. If you are just comparing the distance with another distance, you should compare the distance squared instead as it is slightly more efficient to calculate.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the squared distance to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The squared distance.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "manhattanDistanceTo",
-      "description": "Computes the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setFromSphericalCoords",
-      "description": "Sets the vector components from the given <a href=\"https://en.wikipedia.org/wiki/Spherical_coordinate_system\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">spherical</a> coordinates.",
-      "parameters": [
-        {
-          "name": "radius",
-          "type": "Number",
-          "optional": false,
-          "description": "The radius.",
-          "isMutated": false
-        },
-        {
-          "name": "phi",
-          "type": "Number",
-          "optional": false,
-          "description": "The phi angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "theta",
-          "type": "Number",
-          "optional": false,
-          "description": "The theta angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setFromCylindricalCoords",
-      "description": "Sets the vector components from the given <a href=\"https://en.wikipedia.org/wiki/Cylindrical_coordinate_system\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cylindrical</a> coordinates.",
-      "parameters": [
-        {
-          "name": "radius",
-          "type": "Number",
-          "optional": false,
-          "description": "The radius.",
-          "isMutated": false
-        },
-        {
-          "name": "theta",
-          "type": "Number",
-          "optional": false,
-          "description": "The theta angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The y value.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
       "methodName": "setFromMatrixPosition",
       "description": "Sets the vector components to the position elements of the given transformation <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "parameters": [
@@ -1340,66 +659,6 @@
     },
     {
       "className": "Vector3",
-      "methodName": "setFromMatrixColumn",
-      "description": "Sets the vector components from the specified <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> column.",
-      "parameters": [
-        {
-          "name": "m",
-          "type": "Matrix4",
-          "optional": false,
-          "description": "The 4x4 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "index",
-          "type": "Number",
-          "optional": false,
-          "description": "The column index.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
-      "methodName": "setFromMatrix3Column",
-      "description": "Sets the vector components from the specified <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> column.",
-      "parameters": [
-        {
-          "name": "m",
-          "type": "Matrix3",
-          "optional": false,
-          "description": "The 3x3 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "index",
-          "type": "Number",
-          "optional": false,
-          "description": "The column index.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector3",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector3",
       "methodName": "setFromEuler",
       "description": "Sets the vector components from the given <a href=\"https://en.wikipedia.org/wiki/Euler_angles\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euler angles</a>.",
       "parameters": [
@@ -1422,151 +681,6 @@
       }
     },
     {
-      "className": "Vector3",
-      "methodName": "equals",
-      "description": "Returns `true` if this vector is equal with the given one.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The vector to test for equality.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this vector is equal with the given one.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "setScalar",
-      "description": "Sets the vector components to the same value.",
-      "parameters": [
-        {
-          "name": "scalar",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set for all vector components.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "setX",
-      "description": "Sets the vector's x <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> to the given value",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "setY",
-      "description": "Sets the vector's y <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> to the given value",
-      "parameters": [
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "setComponent",
-      "description": "Allows to set a vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> with an index.",
-      "parameters": [
-        {
-          "name": "index",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> index. `0` equals to x, `1` equals to y.",
-          "isMutated": false
-        },
-        {
-          "name": "value",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to set.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "getComponent",
-      "description": "Returns the value of the vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> which matches the given index.",
-      "parameters": [
-        {
-          "name": "index",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> index. `0` equals to x, `1` equals to y.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "A vector <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> value.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
       "className": "Vector2",
       "methodName": "add",
       "description": "Adds the given vector to this instance.",
@@ -1576,29 +690,6 @@
           "type": "Vector2",
           "optional": false,
           "description": "The vector to add.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "addScalar",
-      "description": "Adds the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value to all components of this instance.",
-      "parameters": [
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to add.",
           "isMutated": false
         }
       ],
@@ -1644,36 +735,6 @@
     },
     {
       "className": "Vector2",
-      "methodName": "addScaledVector",
-      "description": "Adds the given vector scaled by the given factor to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector.",
-          "isMutated": false
-        },
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The factor that scales `v`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
       "methodName": "sub",
       "description": "Subtracts the given vector from this instance.",
       "parameters": [
@@ -1690,29 +751,6 @@
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "subScalar",
-      "description": "Subtracts the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value from all components of this instance.",
-      "parameters": [
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to subtract.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1773,29 +811,6 @@
     },
     {
       "className": "Vector2",
-      "methodName": "multiplyScalar",
-      "description": "Multiplies the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> value with all components of this instance.",
-      "parameters": [
-        {
-          "name": "scalar",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to multiply.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
       "methodName": "divide",
       "description": "Divides this instance by the given vector.",
       "parameters": [
@@ -1804,29 +819,6 @@
           "type": "Vector2",
           "optional": false,
           "description": "The vector to divide.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "divideScalar",
-      "description": "Divides this vector by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
-      "parameters": [
-        {
-          "name": "scalar",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> to divide.",
           "isMutated": false
         }
       ],
@@ -1941,66 +933,6 @@
     },
     {
       "className": "Vector2",
-      "methodName": "clampScalar",
-      "description": "If this vector's x or y values are greater than the max value, they are replaced by the max value. If this vector's x or y values are less than the min value, they are replaced by the min value.",
-      "parameters": [
-        {
-          "name": "minVal",
-          "type": "Number",
-          "optional": false,
-          "description": "The minimum value the components will be clamped to.",
-          "isMutated": false
-        },
-        {
-          "name": "maxVal",
-          "type": "Number",
-          "optional": false,
-          "description": "The maximum value the components will be clamped to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "clampLength",
-      "description": "If this vector's length is greater than the max value, it is replaced by the max value. If this vector's length is less than the min value, it is replaced by the min value.",
-      "parameters": [
-        {
-          "name": "min",
-          "type": "Number",
-          "optional": false,
-          "description": "The minimum value the vector length will be clamped to.",
-          "isMutated": false
-        },
-        {
-          "name": "max",
-          "type": "Number",
-          "optional": false,
-          "description": "The maximum value the vector length will be clamped to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
       "methodName": "floor",
       "description": "The components of this vector are rounded down to the nearest <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> value.",
       "parameters": [],
@@ -2076,97 +1008,6 @@
     },
     {
       "className": "Vector2",
-      "methodName": "dot",
-      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of the given vector with this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> with.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "cross",
-      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a> of the given vector with this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a> with.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "lengthSq",
-      "description": "Computes the square of the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from (0, 0) to (x, y). If you are comparing the lengths of vectors, you should compare the length squared instead as it is slightly more efficient to calculate.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The square length of this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "length",
-      "description": "Computes the  <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length (straight-line length) from (0, 0) to (x, y).",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "manhattanLength",
-      "description": "Computes the Manhattan length of this vector.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The length of this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
       "methodName": "normalize",
       "description": "Converts this vector to a <a href=\"https://en.wikipedia.org/wiki/Unit_vector\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">unit vector</a> - that is, sets it equal to a vector with the same direction as this one, but with a vector length of `1`.",
       "parameters": [],
@@ -2181,127 +1022,12 @@
       }
     },
     {
-      "className": "Vector2",
-      "methodName": "angle",
-      "description": "Computes the angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a> of this vector with respect to the positive x-<a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+      "className": "Matrix4",
+      "methodName": "identity",
+      "description": "Sets this matrix to the 4x4 <a href=\"https://en.wikipedia.org/wiki/Identity_matrix\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">identity <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a></a>.",
       "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "angleTo",
-      "description": "Returns the angle between the given vector and this instance in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the angle with.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "distanceTo",
-      "description": "Computes the distance from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the distance to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The distance.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "distanceToSquared",
-      "description": "Computes the squared distance from the given vector to this instance. If you are just comparing the distance with another distance, you should compare the distance squared instead as it is slightly more efficient to calculate.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the squared distance to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The squared distance.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "manhattanDistanceTo",
-      "description": "Computes the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> from the given vector to this instance.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to compute the <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a> to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Taxicab_geometry\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Manhattan distance</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "setLength",
-      "description": "Sets this vector to a vector with the same direction as this one, but with the specified length.",
-      "parameters": [
-        {
-          "name": "length",
-          "type": "Number",
-          "optional": false,
-          "description": "The new length of this vector.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2311,117 +1037,20 @@
       }
     },
     {
-      "className": "Vector2",
-      "methodName": "lerp",
-      "description": "Linearly interpolates between the given vector and this instance, where alpha is the percent distance along the line - alpha = 0 will be this vector, and alpha = 1 will be the given one.",
+      "className": "Matrix4",
+      "methodName": "copyPosition",
+      "description": "Copies the translation <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> of the given matrix into this matrix's translation <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a>.",
       "parameters": [
         {
-          "name": "v",
-          "type": "Vector2",
+          "name": "m",
+          "type": "Matrix4",
           "optional": false,
-          "description": "The vector to interpolate towards.",
-          "isMutated": false
-        },
-        {
-          "name": "alpha",
-          "type": "Number",
-          "optional": false,
-          "description": "The interpolation factor, typically in the closed interval `[0, 1]`.",
+          "description": "The matrix to copy the translation <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a>.",
           "isMutated": false
         }
       ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "lerpVectors",
-      "description": "Linearly interpolates between the given vectors, where alpha is the percent distance along the line - alpha = 0 will be first vector, and alpha = 1 will be the second one. The result is stored in this instance.",
-      "parameters": [
-        {
-          "name": "v1",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The first vector.",
-          "isMutated": false
-        },
-        {
-          "name": "v2",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The second vector.",
-          "isMutated": false
-        },
-        {
-          "name": "alpha",
-          "type": "Number",
-          "optional": false,
-          "description": "The interpolation factor, typically in the closed interval `[0, 1]`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "equals",
-      "description": "Returns `true` if this vector is equal with the given one.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The vector to test for equality.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this vector is equal with the given one.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Vector2",
-      "methodName": "rotateAround",
-      "description": "Rotates this vector around the given center by the given angle.",
-      "parameters": [
-        {
-          "name": "center",
-          "type": "Vector2",
-          "optional": false,
-          "description": "The point around which to rotate.",
-          "isMutated": false
-        },
-        {
-          "name": "angle",
-          "type": "Number",
-          "optional": false,
-          "description": "The angle to rotate, in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Vector2",
-      "returnDescription": "A reference to this vector.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
@@ -2431,9 +1060,129 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "setFromEuler",
-      "description": "Sets this quaternion from the rotation specified by the given <a href=\"https://en.wikipedia.org/wiki/Euler_angles\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euler angles</a>.",
+      "className": "Matrix4",
+      "methodName": "setFromMatrix3",
+      "description": "Set the upper 3x3 elements of this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to the values of given 3x3 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix3",
+          "optional": false,
+          "description": "The 3x3 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "equationType": {
+        "isStatic": false,
+        "isMutatingInvoker": true,
+        "isMutatingParameter": false,
+        "isReturningInstance": true,
+        "isPureFunction": false
+      }
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "extractBasis",
+      "description": "Extracts the basis of this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> into the three <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a> vectors provided.",
+      "parameters": [
+        {
+          "name": "xAxis",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The basis's x <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+          "isMutated": true
+        },
+        {
+          "name": "yAxis",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The basis's y <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+          "isMutated": true
+        },
+        {
+          "name": "zAxis",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The basis's z <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+          "isMutated": true
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "equationType": {
+        "isStatic": false,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": true,
+        "isReturningInstance": true,
+        "isPureFunction": false
+      }
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "makeBasis",
+      "description": "Sets the given basis vectors to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "parameters": [
+        {
+          "name": "xAxis",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The basis's x <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+          "isMutated": false
+        },
+        {
+          "name": "yAxis",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The basis's y <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+          "isMutated": false
+        },
+        {
+          "name": "zAxis",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The basis's z <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "equationType": {
+        "isStatic": false,
+        "isMutatingInvoker": true,
+        "isMutatingParameter": false,
+        "isReturningInstance": true,
+        "isPureFunction": false
+      }
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "extractRotation",
+      "description": "Extracts the rotation component of the given matrix into this matrix's rotation component. Note: This method does not support <a href=\"https://en.wikipedia.org/wiki/Reflection_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">reflection</a> matrices.",
+      "parameters": [
+        {
+          "name": "m",
+          "type": "Matrix4",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "equationType": {
+        "isStatic": false,
+        "isMutatingInvoker": true,
+        "isMutatingParameter": false,
+        "isReturningInstance": true,
+        "isPureFunction": false
+      }
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "makeRotationFromEuler",
+      "description": "Sets the rotation component (the upper left 3x3 matrix) of this matrix to the rotation specified by the given <a href=\"https://en.wikipedia.org/wiki/Euler_angles\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euler angles</a>. The rest of the <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is set to the identity. Depending on the {@link Euler#order}, there are six possible outcomes. See [this page](https://en.wikipedia.org/wiki/Euler_angles#Rotation_matrix) for a complete list.",
       "parameters": [
         {
           "name": "euler",
@@ -2441,18 +1190,10 @@
           "optional": false,
           "description": "The <a href=\"https://en.wikipedia.org/wiki/Euler_angles\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euler angles</a>.",
           "isMutated": false
-        },
-        {
-          "name": "update",
-          "type": "Boolean",
-          "optional": true,
-          "defaultValue": true,
-          "description": "Whether the internal `onChange` callback should be executed or not.",
-          "isMutated": false
         }
       ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2462,27 +1203,20 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "setFromAxisAngle",
-      "description": "Sets this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> from the given <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a> and angle.",
+      "className": "Matrix4",
+      "methodName": "makeRotationFromQuaternion",
+      "description": "Sets the rotation component of this matrix to the rotation specified by the given <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a> as outlined [here](https://en.wikipedia.org/wiki/Rotation_matrix#<a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>) The rest of the <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is set to the identity.",
       "parameters": [
         {
-          "name": "axis",
-          "type": "Vector3",
+          "name": "q",
+          "type": "Quaternion",
           "optional": false,
-          "description": "The normalized <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "angle",
-          "type": "Number",
-          "optional": false,
-          "description": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>.",
           "isMutated": false
         }
       ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2492,20 +1226,57 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "setFromRotationMatrix",
-      "description": "Sets this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> from the given <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "className": "Matrix4",
+      "methodName": "lookAt",
+      "description": "Sets the rotation <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> of the transformation <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>, looking from `eye` towards `target`, and oriented by the up-direction.",
+      "parameters": [
+        {
+          "name": "eye",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The eye vector.",
+          "isMutated": false
+        },
+        {
+          "name": "target",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The target vector.",
+          "isMutated": false
+        },
+        {
+          "name": "up",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The up vector.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "equationType": {
+        "isStatic": false,
+        "isMutatingInvoker": true,
+        "isMutatingParameter": false,
+        "isReturningInstance": true,
+        "isPureFunction": false
+      }
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "multiply",
+      "description": "Post-multiplies this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given 4x4 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "parameters": [
         {
           "name": "m",
           "type": "Matrix4",
           "optional": false,
-          "description": "A 4x4 matrix of which the upper 3x3 of matrix is a pure <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> (i.e. unscaled).",
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to multiply with.",
           "isMutated": false
         }
       ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2515,239 +1286,20 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "setFromUnitVectors",
-      "description": "Sets this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> to the <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> required to rotate the direction vector `vFrom` to the direction vector `vTo`.",
-      "parameters": [
-        {
-          "name": "vFrom",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The first (normalized) direction vector.",
-          "isMutated": false
-        },
-        {
-          "name": "vTo",
-          "type": "Vector3",
-          "optional": false,
-          "description": "The second (normalized) direction vector.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "angleTo",
-      "description": "Returns the angle between this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> and the given one in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "parameters": [
-        {
-          "name": "q",
-          "type": "Quaternion",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> to compute the angle with.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The angle in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "rotateTowards",
-      "description": "Rotates this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> by a given angular step to the given <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>. The method ensures that the final <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> will not overshoot `q`.",
-      "parameters": [
-        {
-          "name": "q",
-          "type": "Quaternion",
-          "optional": false,
-          "description": "The target <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "step",
-          "type": "Number",
-          "optional": false,
-          "description": "The angular step in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "identity",
-      "description": "Sets this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> to the identity <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>; that is, to the <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> that represents \"no <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a>\".",
-      "parameters": [],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "invert",
-      "description": "Inverts this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> via {@link <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>#conjugate}. The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> is assumed to have unit length.",
-      "parameters": [],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "conjugate",
-      "description": "Returns the rotational conjugate of this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>. The conjugate of a <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> represents the same <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> in the opposite direction about the rotational <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-      "parameters": [],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "dot",
-      "description": "Calculates the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> of this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> and the given one.",
-      "parameters": [
-        {
-          "name": "v",
-          "type": "Quaternion",
-          "optional": false,
-          "description": "The quaternion to compute the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a> with.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Dot_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">dot product</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "lengthSq",
-      "description": "Computes the squared Euclidean length (straight-line length) of this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>, considered as a 4 dimensional vector. This can be useful if you are comparing the lengths of two quaternions, as this is a slightly more efficient calculation than {@link <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>#length}.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The squared <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "length",
-      "description": "Computes the Euclidean length (straight-line length) of this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>, considered as a 4 dimensional vector.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> length.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "normalize",
-      "description": "Normalizes this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> - that is, calculated the <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> that performs the same <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> as this one, but has a length equal to `1`.",
-      "parameters": [],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Quaternion",
-      "methodName": "multiply",
-      "description": "Multiplies this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> by the given one.",
-      "parameters": [
-        {
-          "name": "q",
-          "type": "Quaternion",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Quaternion",
+      "className": "Matrix4",
       "methodName": "premultiply",
-      "description": "Pre-multiplies this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> by the given one.",
+      "description": "Pre-multiplies this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given 4x4 <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "parameters": [
         {
-          "name": "q",
-          "type": "Quaternion",
+          "name": "m",
+          "type": "Matrix4",
           "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to multiply with.",
           "isMutated": false
         }
       ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2757,27 +1309,27 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "multiplyQuaternions",
-      "description": "Multiplies the given quaternions and stores the result in this instance.",
+      "className": "Matrix4",
+      "methodName": "multiplyMatrices",
+      "description": "Multiples the given 4x4 matrices and stores the result in this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "parameters": [
         {
           "name": "a",
-          "type": "Quaternion",
+          "type": "Matrix4",
           "optional": false,
-          "description": "The first <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+          "description": "The first <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
           "isMutated": false
         },
         {
           "name": "b",
-          "type": "Quaternion",
+          "type": "Matrix4",
           "optional": false,
-          "description": "The second <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+          "description": "The second <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
           "isMutated": false
         }
       ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2787,27 +1339,12 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "slerp",
-      "description": "Performs a <a href=\"https://en.wikipedia.org/wiki/Slerp\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">spherical <a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">linear interpolation</a></a> between quaternions.",
-      "parameters": [
-        {
-          "name": "qb",
-          "type": "Quaternion",
-          "optional": false,
-          "description": "The target <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "t",
-          "type": "Number",
-          "optional": false,
-          "description": "The interpolation factor in the closed interval `[0, 1]`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "className": "Matrix4",
+      "methodName": "transpose",
+      "description": "Transposes this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> in place.",
+      "parameters": [],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2817,34 +1354,12 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "slerpQuaternions",
-      "description": "Performs a <a href=\"https://en.wikipedia.org/wiki/Slerp\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">spherical <a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">linear interpolation</a></a> between the given quaternions and stores the result in this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-      "parameters": [
-        {
-          "name": "qa",
-          "type": "Quaternion",
-          "optional": false,
-          "description": "The source <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "qb",
-          "type": "Quaternion",
-          "optional": false,
-          "description": "The target <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "t",
-          "type": "Number",
-          "optional": false,
-          "description": "The interpolation factor in the closed interval `[0, 1]`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Quaternion",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
+      "className": "Matrix4",
+      "methodName": "invert",
+      "description": "Inverts this matrix, using the [analytic method](https://en.wikipedia.org/wiki/Invertible_matrix#Analytic_solution). You can not invert with a <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a> of zero. If you attempt this, the method produces a zero <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> instead.",
+      "parameters": [],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": true,
@@ -2854,49 +1369,100 @@
       }
     },
     {
-      "className": "Quaternion",
-      "methodName": "equals",
-      "description": "Returns `true` if this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> is equal with the given one.",
+      "className": "Matrix4",
+      "methodName": "scale",
+      "description": "Multiplies the columns of this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given vector.",
       "parameters": [
+        {
+          "name": "v",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The scale vector.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
+      "equationType": {
+        "isStatic": false,
+        "isMutatingInvoker": true,
+        "isMutatingParameter": false,
+        "isReturningInstance": true,
+        "isPureFunction": false
+      }
+    },
+    {
+      "className": "Matrix4",
+      "methodName": "compose",
+      "description": "Sets this matrix to the transformation composed of the given position, rotation (<a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>) and scale.",
+      "parameters": [
+        {
+          "name": "position",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The position vector.",
+          "isMutated": false
+        },
         {
           "name": "quaternion",
           "type": "Quaternion",
           "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> to test for equality.",
+          "description": "The rotation as a <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>.",
+          "isMutated": false
+        },
+        {
+          "name": "scale",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The scale vector.",
           "isMutated": false
         }
       ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a> is equal with the given one.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
+        "isReturningInstance": true,
+        "isPureFunction": false
       }
     },
     {
-      "className": "Euler",
-      "methodName": "equals",
-      "description": "Returns `true` if this Euler instance is equal with the given one.",
+      "className": "Matrix4",
+      "methodName": "decompose",
+      "description": "Decomposes this matrix into its position, <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> and scale components and provides the result in the given objects. Note: Not all matrices are decomposable in this way. For example, if an object has a non-uniformly scaled parent, then the object's world <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> may not be decomposable, and this method may not be appropriate.",
       "parameters": [
         {
-          "name": "euler",
-          "type": "Euler",
+          "name": "position",
+          "type": "Vector3",
           "optional": false,
-          "description": "The Euler instance to test for equality.",
-          "isMutated": false
+          "description": "The position vector.",
+          "isMutated": true
+        },
+        {
+          "name": "quaternion",
+          "type": "Quaternion",
+          "optional": false,
+          "description": "The rotation as a <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Quaternion</a>.",
+          "isMutated": true
+        },
+        {
+          "name": "scale",
+          "type": "Vector3",
+          "optional": false,
+          "description": "The scale vector.",
+          "isMutated": true
         }
       ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this Euler instance is equal with the given one.",
+      "returnType": "Matrix4",
+      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
         "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
+        "isMutatingParameter": true,
+        "isReturningInstance": true,
+        "isPureFunction": false
       }
     },
     {
@@ -3052,44 +1618,6 @@
     },
     {
       "className": "Matrix3",
-      "methodName": "multiplyScalar",
-      "description": "Multiplies every <a href=\"https://en.wikipedia.org/wiki/Euclidean_vector#Representations\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">component</a> of the matrix by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
-      "parameters": [
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "determinant",
-      "description": "Computes and returns the <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a> of this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "parameters": [],
-      "returnType": "number",
-      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "Matrix3",
       "methodName": "invert",
       "description": "Inverts this matrix, using the [analytic method](https://en.wikipedia.org/wiki/Invertible_matrix#Analytic_solution). You can not invert with a <a href=\"https://en.wikipedia.org/wiki/Determinant\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">determinant</a> of zero. If you attempt this, the method produces a zero <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> instead.",
       "parameters": [],
@@ -3139,822 +1667,6 @@
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "setUvTransform",
-      "description": "Sets the UV transform matrix from offset, repeat, <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a>, and center.",
-      "parameters": [
-        {
-          "name": "tx",
-          "type": "Number",
-          "optional": false,
-          "description": "Offset x.",
-          "isMutated": false
-        },
-        {
-          "name": "ty",
-          "type": "Number",
-          "optional": false,
-          "description": "Offset y.",
-          "isMutated": false
-        },
-        {
-          "name": "sx",
-          "type": "Number",
-          "optional": false,
-          "description": "Repeat x.",
-          "isMutated": false
-        },
-        {
-          "name": "sy",
-          "type": "Number",
-          "optional": false,
-          "description": "Repeat y.",
-          "isMutated": false
-        },
-        {
-          "name": "rotation",
-          "type": "Number",
-          "optional": false,
-          "description": "<a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Rotation</a>, in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>. Positive values rotate counterclockwise.",
-          "isMutated": false
-        },
-        {
-          "name": "cx",
-          "type": "Number",
-          "optional": false,
-          "description": "Center x of <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "cy",
-          "type": "Number",
-          "optional": false,
-          "description": "Center y of <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a>",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "scale",
-      "description": "Scales this matrix with the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> values.",
-      "parameters": [
-        {
-          "name": "sx",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to scale in the X <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "sy",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to scale in the Y <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "rotate",
-      "description": "Rotates this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> by the given angle.",
-      "parameters": [
-        {
-          "name": "theta",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "translate",
-      "description": "Translates this matrix by the given <a href=\"https://en.wikipedia.org/wiki/Scalar_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">scalar</a> values.",
-      "parameters": [
-        {
-          "name": "tx",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to translate in the X <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "ty",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to translate in the Y <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "makeTranslation",
-      "description": "Sets this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> as a 2D translation transform.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to translate in the X <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a> or alternatively a translation vector.",
-          "isMutated": false
-        },
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to translate in the Y <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "makeRotation",
-      "description": "Sets this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> as a 2D rotational transformation.",
-      "parameters": [
-        {
-          "name": "theta",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Rotation_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">rotation</a> in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "makeScale",
-      "description": "Sets this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> as a 2D scale transform.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to scale in the X <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The amount to scale in the Y <a href=\"https://en.wikipedia.org/wiki/Cartesian_coordinate_system#Axes\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">axis</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "Matrix3",
-      "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": true,
-        "isMutatingParameter": false,
-        "isReturningInstance": true,
-        "isPureFunction": false
-      }
-    },
-    {
-      "className": "Matrix3",
-      "methodName": "equals",
-      "description": "Returns `true` if this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
-      "parameters": [
-        {
-          "name": "matrix",
-          "type": "Matrix3",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> to test for equality.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "boolean",
-      "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
-      "equationType": {
-        "isStatic": false,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "clamp",
-      "description": "Clamps the given value between min and max.",
-      "parameters": [
-        {
-          "name": "value",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to <a href=\"https://en.wikipedia.org/wiki/Clamp_(function)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">clamp</a>.",
-          "isMutated": false
-        },
-        {
-          "name": "min",
-          "type": "Number",
-          "optional": false,
-          "description": "The min value.",
-          "isMutated": false
-        },
-        {
-          "name": "max",
-          "type": "Number",
-          "optional": false,
-          "description": "The max value.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The clamped value.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "euclideanModulo",
-      "description": "Computes the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> modulo of the given parameters that is `( ( n % m ) + m ) % m`.",
-      "parameters": [
-        {
-          "name": "n",
-          "type": "Number",
-          "optional": false,
-          "description": "The first parameter.",
-          "isMutated": false
-        },
-        {
-          "name": "m",
-          "type": "Number",
-          "optional": false,
-          "description": "The second parameter.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> modulo.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "mapLinear",
-      "description": "Performs a linear mapping from range `<a1, a2>` to range `<b1, b2>` for the given value.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to be mapped.",
-          "isMutated": false
-        },
-        {
-          "name": "a1",
-          "type": "Number",
-          "optional": false,
-          "description": "Minimum value for range A.",
-          "isMutated": false
-        },
-        {
-          "name": "a2",
-          "type": "Number",
-          "optional": false,
-          "description": "Maximum value for range A.",
-          "isMutated": false
-        },
-        {
-          "name": "b1",
-          "type": "Number",
-          "optional": false,
-          "description": "Minimum value for range B.",
-          "isMutated": false
-        },
-        {
-          "name": "b2",
-          "type": "Number",
-          "optional": false,
-          "description": "Maximum value for range B.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The mapped value.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "inverseLerp",
-      "description": "Returns the percentage in the closed interval `[0, 1]` of the given value between the start and end point.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The start point",
-          "isMutated": false
-        },
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The end point.",
-          "isMutated": false
-        },
-        {
-          "name": "value",
-          "type": "Number",
-          "optional": false,
-          "description": "A value between start and end.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The interpolation factor.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "lerp",
-      "description": "Returns a value linearly interpolated from two known points based on the given interval - `t = 0` will return `x` and `t = 1` will return `y`.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The start point",
-          "isMutated": false
-        },
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The end point.",
-          "isMutated": false
-        },
-        {
-          "name": "t",
-          "type": "Number",
-          "optional": false,
-          "description": "The interpolation factor in the closed interval `[0, 1]`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The interpolated value.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "damp",
-      "description": "Smoothly interpolate a number from `x` to `y` in  a spring-like manner using a delta time to maintain frame rate independent movement. For details, see [Frame rate independent damping using <a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">lerp</a>](http://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-<a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">lerp</a>/). and a lower value will make the movement more gradual.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The current point.",
-          "isMutated": false
-        },
-        {
-          "name": "y",
-          "type": "Number",
-          "optional": false,
-          "description": "The target point.",
-          "isMutated": false
-        },
-        {
-          "name": "lambda",
-          "type": "Number",
-          "optional": false,
-          "description": "A higher lambda value will make the movement more sudden,",
-          "isMutated": false
-        },
-        {
-          "name": "dt",
-          "type": "Number",
-          "optional": false,
-          "description": "Delta time in seconds.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The interpolated value.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "pingpong",
-      "description": "Returns a value that alternates between `0` and the given `length` parameter.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to pingpong.",
-          "isMutated": false
-        },
-        {
-          "name": "length",
-          "type": "Number",
-          "optional": true,
-          "defaultValue": 1,
-          "description": "The positive value the function will pingpong to.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The alternated value.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "smoothstep",
-      "description": "Returns a value in the range `[0,1]` that represents the percentage that `x` has moved between `min` and `max`, but smoothed or slowed down the closer `x` is to the `min` and `max`. See [Smoothstep](http://en.wikipedia.org/wiki/Smoothstep) for more details.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to evaluate based on its position between min and max.",
-          "isMutated": false
-        },
-        {
-          "name": "min",
-          "type": "Number",
-          "optional": false,
-          "description": "The min value. Any x value below min will be `0`.",
-          "isMutated": false
-        },
-        {
-          "name": "max",
-          "type": "Number",
-          "optional": false,
-          "description": "The max value. Any x value above max will be `1`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The alternated value.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "smootherstep",
-      "description": "A [variation on smoothstep](https://en.wikipedia.org/wiki/Smoothstep#Variations) that has zero 1st and 2nd order derivatives at x=0 and x=1.",
-      "parameters": [
-        {
-          "name": "x",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to evaluate based on its position between min and max.",
-          "isMutated": false
-        },
-        {
-          "name": "min",
-          "type": "Number",
-          "optional": false,
-          "description": "The min value. Any x value below min will be `0`.",
-          "isMutated": false
-        },
-        {
-          "name": "max",
-          "type": "Number",
-          "optional": false,
-          "description": "The max value. Any x value above max will be `1`.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The alternated value.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "randInt",
-      "description": "Returns a random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> from `<low, high>` interval.",
-      "parameters": [
-        {
-          "name": "low",
-          "type": "Number",
-          "optional": false,
-          "description": "The lower value boundary.",
-          "isMutated": false
-        },
-        {
-          "name": "high",
-          "type": "Number",
-          "optional": false,
-          "description": "The upper value boundary",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "A random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a>.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "randFloat",
-      "description": "Returns a random float from `<low, high>` interval.",
-      "parameters": [
-        {
-          "name": "low",
-          "type": "Number",
-          "optional": false,
-          "description": "The lower value boundary.",
-          "isMutated": false
-        },
-        {
-          "name": "high",
-          "type": "Number",
-          "optional": false,
-          "description": "The upper value boundary",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "A random float.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "randFloatSpread",
-      "description": "Returns a random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> from `<-range/2, range/2>` interval.",
-      "parameters": [
-        {
-          "name": "range",
-          "type": "Number",
-          "optional": false,
-          "description": "Defines the value range.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "A random float.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "seededRandom",
-      "description": "Returns a deterministic pseudo-random float in the interval `[0, 1]`.",
-      "parameters": [
-        {
-          "name": "s",
-          "type": "Number",
-          "optional": false,
-          "description": "The <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> seed.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "A random float.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "degToRad",
-      "description": "Converts degrees to <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "parameters": [
-        {
-          "name": "degrees",
-          "type": "Number",
-          "optional": false,
-          "description": "A value in <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The converted value in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "radToDeg",
-      "description": "Converts <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a> to <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
-      "parameters": [
-        {
-          "name": "radians",
-          "type": "Number",
-          "optional": false,
-          "description": "A value in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The converted value in <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "isPowerOfTwo",
-      "description": "Returns `true` if the given number is a <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a>.",
-      "parameters": [
-        {
-          "name": "value",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to check.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "boolean",
-      "returnDescription": "Whether the given number is a <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> or not.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "ceilPowerOfTwo",
-      "description": "Returns the smallest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is greater than or equal to the given number.",
-      "parameters": [
-        {
-          "name": "value",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to find a POT for.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The smallest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is greater than or equal to the given number.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
-      }
-    },
-    {
-      "className": "MathUtils",
-      "methodName": "floorPowerOfTwo",
-      "description": "Returns the largest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is less than or equal to the given number.",
-      "parameters": [
-        {
-          "name": "value",
-          "type": "Number",
-          "optional": false,
-          "description": "The value to find a POT for.",
-          "isMutated": false
-        }
-      ],
-      "returnType": "number",
-      "returnDescription": "The largest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is less than or equal to the given number.",
-      "equationType": {
-        "isStatic": true,
-        "isMutatingInvoker": false,
-        "isMutatingParameter": false,
-        "isReturningInstance": false,
-        "isPureFunction": true
       }
     }
   ]

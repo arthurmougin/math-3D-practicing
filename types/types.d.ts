@@ -37,8 +37,8 @@ export enum ValueTypeName {
   Euler = "Euler",
   Matrix4 = "Matrix4",
   Matrix3 = "Matrix3",
-  Number = "Number",
-  Boolean = "Boolean",
+ // Number = "Number", // Missing Visualization
+ // Boolean = "Boolean",
 } 
 
 export type ClassNames = "MathUtils" | Exclude<ValueTypeName, "Number">;

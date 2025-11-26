@@ -112,16 +112,15 @@ function parseJSDoc(jsDocComment: string): Partial<EquationSignatureCandidate> {
         .split("=") || [typeAndName[1]];
       // nameAndDefault[0] = "update" || "m"; nameAndDefault[1] = "true" || undefined
 
-      console.log(parameterSegment, nameSection, nameAndDefault);  
       const name = nameAndDefault[0].trim();
 
       let defaultValue = undefined;
-      if(nameAndDefault[1]) {
+      if (nameAndDefault[1]) {
         try {
-        const trimmedDefault = nameAndDefault[1].trim();
-        defaultValue = nameAndDefault[1]
-          ? JSON.parse(trimmedDefault)
-          : undefined;
+          const trimmedDefault = nameAndDefault[1].trim();
+          defaultValue = nameAndDefault[1]
+            ? JSON.parse(trimmedDefault)
+            : undefined;
         } catch (e) {
           console.warn(
             `⚠️  Warning: Could not parse default value for parameter "${name}": ${nameAndDefault[1]}`
@@ -170,17 +169,19 @@ function parseJSDoc(jsDocComment: string): Partial<EquationSignatureCandidate> {
   };
 }
 
-function generateRandomValue(type: ValueTypeName, shift: number, className: ClassNames): ValueType {
+function generateRandomValue(
+  type: ValueTypeName,
+  shift: number,
+  className: ClassNames
+): ValueType {
   switch (type) {
     case "Number":
       const val = Math.round(Math.random() * 10 + shift);
       //handle setComponent for vectors (take value between 0 and dimension-1)
-      if(className==="Vector2")
-        return val % 2;
-      if(className==="Vector3")
-        return val % 3;
-      if(className==="Vector4")
-        return val % 4;
+      if (className === "Vector2") return val % 2;
+      if (className === "Vector3") return val % 3;
+      // @ts-ignore
+      if (className === "Vector4") return val % 4;
       return val;
     case "Vector2":
       return new Vector2(
@@ -193,6 +194,7 @@ function generateRandomValue(type: ValueTypeName, shift: number, className: Clas
         Math.random() * 10 + shift,
         Math.random() * 10 + shift
       );
+    // @ts-ignore
     case "Vector4":
       return new Vector4(
         Math.random() * 10 + shift,
@@ -306,7 +308,9 @@ async function extractMethodsFromFile(
   return methods;
 }
 
-function methodActuallyRuns(candidate: EquationSignatureCandidate): EquationSignature | null {
+function methodActuallyRuns(
+  candidate: EquationSignatureCandidate
+): EquationSignature | null {
   const className = candidate.className;
   const methodName = candidate.methodName;
   // Classify method type
@@ -419,10 +423,11 @@ function mapTypeToSupported(type: string): ValueTypeName | null {
     .replace(/\[/g, "")
     .replace(/\]/g, "");
 
-  if (cleaned === "number" || cleaned === "float" || cleaned === "integer") {
+  //TODO   
+  if (ValueTypeName?.Number && (cleaned === "number" || cleaned === "float" || cleaned === "integer")) {
     return ValueTypeName.Number;
   }
-  if (cleaned === "boolean" || cleaned === "bool") {
+  if (ValueTypeName?.Boolean && ( cleaned === "boolean" || cleaned === "bool")) {
     return ValueTypeName.Boolean;
   }
   //use ValueTypeName enums
@@ -480,9 +485,9 @@ async function generateEnhancedDatabase() {
         await extractMethodsFromFile(filePath, className);
       const supportedMethods: Array<EquationSignatureCandidate> =
         methods.filter(hasAllTypesSupported) as Array<EquationSignature>;
-      const fullMethods: Array<EquationSignature> = supportedMethods.map((m) =>
-        methodActuallyRuns(m)
-      ).filter((m): m is EquationSignature => m !== null);
+      const fullMethods: Array<EquationSignature> = supportedMethods
+        .map((m) => methodActuallyRuns(m))
+        .filter((m): m is EquationSignature => m !== null);
 
       console.log(
         `   Found ${methods.length} methods, ${fullMethods.length} useful`
