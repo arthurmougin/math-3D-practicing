@@ -32,7 +32,7 @@ export type ValueType =
 export enum ValueTypeName {
   Vector3 = "Vector3",
   Vector2 = "Vector2",
-  Vector4 = "Vector4",
+ // Vector4 = "Vector4", // Vector4 type is currently not supported due to unclear mathematical representation implementation
   Quaternion = "Quaternion",
   Euler = "Euler",
   Matrix4 = "Matrix4",
