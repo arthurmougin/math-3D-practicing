@@ -58,6 +58,11 @@ export function findNonOverlappingPosition(
       const position = new Vector3(...(pos as [number, number, number]));
       const overlapping = parameters.some((param) => {
         switch (param.type) {
+          case "Vector4":
+            return (
+              new Vector3().copy(param.value as Vector4).distanceTo(position) <
+              PARAMETER_BREATHING_ROOM
+            );
           case "Vector3":
             return (
               (param.value as Vector3).distanceTo(position) <

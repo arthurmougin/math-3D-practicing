@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "type": "node-terminal",
+      "name": "Exécuter le script : generate-from-source (math-3D-practicing)",
+      "request": "launch",
+      "command": "npm run generate-from-source",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

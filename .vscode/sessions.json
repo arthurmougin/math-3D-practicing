@@ -1,0 +1,33 @@
+{
+  "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v11/terminal-keeper.json",
+  "theme": "tribe",
+  "active": "default",
+  "activateOnStartup": true,
+  "keepExistingTerminals": false,
+  "sessions": {
+    "default": [
+      [
+        {
+          "name": "Vite server",
+          "icon": "browser",
+          "autoExecuteCommands": true,
+          "commands": [
+            "npm run dev"
+          ]
+        },
+        {
+          "name": "Git and stuff",
+          "icon": "library",
+          "shellPath": "C:\\Program Files\\Git\\bin\\bash.exe",
+          "shellArgs": [
+            "--init-file",
+            "c:\\Users\\Arthur Mougin\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\out\\vs\\workbench\\contrib\\terminal\\common\\scripts\\shellIntegration-bash.sh"
+          ],
+          "commands": [
+            "npm run lib:watch"
+          ]
+        }
+      ]
+    ]
+  }
+}

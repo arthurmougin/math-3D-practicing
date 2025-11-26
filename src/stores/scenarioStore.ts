@@ -84,7 +84,17 @@ export function generateRepresentationFromType(
   const color = findNonOverlappingColor(allParams);
 
   switch (type) {
+    case "Vector4":
+      return {
+        type: "vertex",
+        color,
+      };
     case "Vector3":
+      return {
+        type: "vertex",
+        color,
+      };
+    case "Vector2":
       return {
         type: "vertex",
         color,
@@ -100,6 +110,11 @@ export function generateRepresentationFromType(
         color,
       };
     case "Matrix4":
+      return {
+        type: "cube",
+        color,
+      };
+    case "Matrix3":
       return {
         type: "cube",
         color,
@@ -134,11 +149,48 @@ export function generateRepresentationFromType(
 
 export function computeScenarioEquation(scenario: MathScenario) {
   try {
-    //TODO : Handle non-cloneable values
+    console.log("Computing scenario:", scenario.title);
+
+    // Building the list of parameters to pass to the function
     const params = scenario.parameters.map((p) => {
-      p.value.clone();
+      if (!p.isMutated) 
+        return p.value;
+
+      // If the parameter is mutated, we dont want the visualized parameter to move. 
+      // So we trigger the function with a clone of it.
+      // Tthis tertiary handles most common three.js types with clone or copy methods.
+      return p.value.clone
+        ? p.value.clone()
+        : p.value.copy
+        ? new p.value.constructor().copy(p.value)
+        : new p.value.constructor(p.value);
     });
-    const invoker = scenario.invoker ? scenario.invoker.value : null;
+
+    // Handling invoker type and mutation
+    // If there are no invoker, then it's a pure function
+    let invoker = scenario.invoker?.value;
+    console.log("Invoker before mutation check:", scenario.invoker);
+    // If the invoker is mutated, we create a clone to avoid moving the visualized invoker
+    if(invoker && scenario.invoker?.isMutated) {
+      console.log("Invoker is mutated, creating clone or using result value");
+      // To gain performance, we will use the result value as invoker. 
+      if(scenario.result.value != null) {
+        console.log("Using result value as invoker");
+        invoker = scenario.result.value;
+        invoker.copy
+          ? invoker.copy(scenario.invoker.value)
+          : null;
+      } else {
+        console.log("Cloning invoker value");
+        // The first time, the result is null, so we clone the invoker value.
+        invoker = scenario.invoker.value.clone
+          ? scenario.invoker.value.clone()
+          : scenario.invoker.value.copy
+          ? new scenario.invoker.value.constructor().copy(scenario.invoker.value)
+          : new scenario.invoker.value.constructor(scenario.invoker.value);
+      }
+    } 
+
     const equationName = scenario.equation;
     let method;
     if (invoker != null) {
@@ -150,7 +202,7 @@ export function computeScenarioEquation(scenario: MathScenario) {
     }
 
     if (typeof method === "function") {
-      scenario.result.value = method.apply(invoker.clone(), params);
+      scenario.result.value = method.apply(invoker, params);
     } else {
       throw new Error(`Method ${equationName} not found on invoker`);
     }
@@ -264,6 +316,7 @@ export const useScenarioStore = create<ScenarioStore>((set, get) => ({
     }),
   addScenarioUsingMethod: (equationSignature: EquationSignature) => {
     // Implementation for adding a scenario using a method signature
+    console.log("Adding scenario using method:", equationSignature);
 
     const parameters: MathScenario["parameters"] = [];
     let invoker = null;

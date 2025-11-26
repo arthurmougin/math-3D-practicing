@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2025-11-24T22:55:56.284Z",
-  "source": "Three.js source code analysis",
+  "generatedAt": "2025-11-26T22:17:06.192Z",
+  "source": " js source code analysis",
   "methods": [
     {
       "className": "Vector3",
@@ -119,7 +119,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -165,7 +165,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -218,7 +218,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -248,7 +248,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -271,7 +271,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -324,7 +324,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -347,7 +347,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -400,7 +400,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -423,7 +423,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -453,7 +453,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -476,7 +476,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -499,7 +499,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -522,7 +522,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -545,7 +545,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -568,7 +568,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -614,7 +614,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -660,7 +660,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -690,7 +690,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -750,7 +750,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -765,7 +765,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -780,7 +780,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -795,7 +795,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -810,7 +810,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -825,7 +825,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -908,7 +908,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -931,7 +931,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -998,7 +998,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1021,7 +1021,7 @@
       "returnDescription": "The result of the <a href=\"https://en.wikipedia.org/wiki/Cross_product\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">cross product</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1051,7 +1051,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1074,7 +1074,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1097,7 +1097,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1120,7 +1120,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1309,7 +1309,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1415,7 +1415,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1537,7 +1537,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1583,7 +1583,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1636,7 +1636,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1689,7 +1689,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1712,7 +1712,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": true,
+        "isMutatingInvoker": false,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1742,7 +1742,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1765,7 +1765,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1834,7 +1834,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1857,7 +1857,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1880,7 +1880,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1903,7 +1903,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1933,7 +1933,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -1993,7 +1993,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2008,7 +2008,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2023,7 +2023,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2038,7 +2038,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2053,7 +2053,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2068,7 +2068,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2174,7 +2174,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2304,7 +2304,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2371,7 +2371,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2424,7 +2424,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2569,7 +2569,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2797,7 +2797,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2843,7 +2843,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -2958,7 +2958,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3004,7 +3004,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3034,7 +3034,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3109,7 +3109,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3124,7 +3124,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3139,7 +3139,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3154,7 +3154,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3252,7 +3252,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3305,7 +3305,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3342,7 +3342,7 @@
       "returnDescription": "A reference to this vector.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3396,7 +3396,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3449,7 +3449,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3479,7 +3479,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3532,7 +3532,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3547,7 +3547,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3562,7 +3562,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3577,7 +3577,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3645,7 +3645,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3668,7 +3668,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3691,7 +3691,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3721,7 +3721,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3751,7 +3751,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3788,7 +3788,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Quaternion\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">quaternion</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3849,7 +3849,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3909,7 +3909,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3932,7 +3932,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3955,7 +3955,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -3985,7 +3985,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -4038,7 +4038,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -4053,7 +4053,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -4076,7 +4076,7 @@
       "returnDescription": "A reference to this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a>.",
       "equationType": {
         "isStatic": false,
-        "isMutatingInvoker": false,
+        "isMutatingInvoker": true,
         "isMutatingParameter": false,
         "isReturningInstance": true,
         "isPureFunction": false
@@ -4330,6 +4330,568 @@
       "returnDescription": "Whether this <a href=\"https://en.wikipedia.org/wiki/Matrix_(mathematics)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">matrix</a> is equal with the given one.",
       "equationType": {
         "isStatic": false,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "clamp",
+      "description": "Clamps the given value between min and max.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to <a href=\"https://en.wikipedia.org/wiki/Clamp_(function)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">clamp</a>.",
+          "isMutated": false
+        },
+        {
+          "name": "min",
+          "type": "Number",
+          "optional": false,
+          "description": "The min value.",
+          "isMutated": false
+        },
+        {
+          "name": "max",
+          "type": "Number",
+          "optional": false,
+          "description": "The max value.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The clamped value.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "euclideanModulo",
+      "description": "Computes the <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> modulo of the given parameters that is `( ( n % m ) + m ) % m`.",
+      "parameters": [
+        {
+          "name": "n",
+          "type": "Number",
+          "optional": false,
+          "description": "The first parameter.",
+          "isMutated": false
+        },
+        {
+          "name": "m",
+          "type": "Number",
+          "optional": false,
+          "description": "The second parameter.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The <a href=\"https://en.wikipedia.org/wiki/Euclidean_distance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">Euclidean</a> modulo.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "mapLinear",
+      "description": "Performs a linear mapping from range `<a1, a2>` to range `<b1, b2>` for the given value.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to be mapped.",
+          "isMutated": false
+        },
+        {
+          "name": "a1",
+          "type": "Number",
+          "optional": false,
+          "description": "Minimum value for range A.",
+          "isMutated": false
+        },
+        {
+          "name": "a2",
+          "type": "Number",
+          "optional": false,
+          "description": "Maximum value for range A.",
+          "isMutated": false
+        },
+        {
+          "name": "b1",
+          "type": "Number",
+          "optional": false,
+          "description": "Minimum value for range B.",
+          "isMutated": false
+        },
+        {
+          "name": "b2",
+          "type": "Number",
+          "optional": false,
+          "description": "Maximum value for range B.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The mapped value.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "inverseLerp",
+      "description": "Returns the percentage in the closed interval `[0, 1]` of the given value between the start and end point.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "Number",
+          "optional": false,
+          "description": "The start point",
+          "isMutated": false
+        },
+        {
+          "name": "y",
+          "type": "Number",
+          "optional": false,
+          "description": "The end point.",
+          "isMutated": false
+        },
+        {
+          "name": "value",
+          "type": "Number",
+          "optional": false,
+          "description": "A value between start and end.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The interpolation factor.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "lerp",
+      "description": "Returns a value linearly interpolated from two known points based on the given interval - `t = 0` will return `x` and `t = 1` will return `y`.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "Number",
+          "optional": false,
+          "description": "The start point",
+          "isMutated": false
+        },
+        {
+          "name": "y",
+          "type": "Number",
+          "optional": false,
+          "description": "The end point.",
+          "isMutated": false
+        },
+        {
+          "name": "t",
+          "type": "Number",
+          "optional": false,
+          "description": "The interpolation factor in the closed interval `[0, 1]`.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The interpolated value.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "damp",
+      "description": "Smoothly interpolate a number from `x` to `y` in  a spring-like manner using a delta time to maintain frame rate independent movement. For details, see [Frame rate independent damping using <a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">lerp</a>](http://www.rorydriscoll.com/2016/03/07/frame-rate-independent-damping-using-<a href=\"https://en.wikipedia.org/wiki/Linear_interpolation\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">lerp</a>/). and a lower value will make the movement more gradual.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "Number",
+          "optional": false,
+          "description": "The current point.",
+          "isMutated": false
+        },
+        {
+          "name": "y",
+          "type": "Number",
+          "optional": false,
+          "description": "The target point.",
+          "isMutated": false
+        },
+        {
+          "name": "lambda",
+          "type": "Number",
+          "optional": false,
+          "description": "A higher lambda value will make the movement more sudden,",
+          "isMutated": false
+        },
+        {
+          "name": "dt",
+          "type": "Number",
+          "optional": false,
+          "description": "Delta time in seconds.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The interpolated value.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "pingpong",
+      "description": "Returns a value that alternates between `0` and the given `length` parameter.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to pingpong.",
+          "isMutated": false
+        },
+        {
+          "name": "length",
+          "type": "Number",
+          "optional": true,
+          "defaultValue": 1,
+          "description": "The positive value the function will pingpong to.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The alternated value.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "smoothstep",
+      "description": "Returns a value in the range `[0,1]` that represents the percentage that `x` has moved between `min` and `max`, but smoothed or slowed down the closer `x` is to the `min` and `max`. See [Smoothstep](http://en.wikipedia.org/wiki/Smoothstep) for more details.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to evaluate based on its position between min and max.",
+          "isMutated": false
+        },
+        {
+          "name": "min",
+          "type": "Number",
+          "optional": false,
+          "description": "The min value. Any x value below min will be `0`.",
+          "isMutated": false
+        },
+        {
+          "name": "max",
+          "type": "Number",
+          "optional": false,
+          "description": "The max value. Any x value above max will be `1`.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The alternated value.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "smootherstep",
+      "description": "A [variation on smoothstep](https://en.wikipedia.org/wiki/Smoothstep#Variations) that has zero 1st and 2nd order derivatives at x=0 and x=1.",
+      "parameters": [
+        {
+          "name": "x",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to evaluate based on its position between min and max.",
+          "isMutated": false
+        },
+        {
+          "name": "min",
+          "type": "Number",
+          "optional": false,
+          "description": "The min value. Any x value below min will be `0`.",
+          "isMutated": false
+        },
+        {
+          "name": "max",
+          "type": "Number",
+          "optional": false,
+          "description": "The max value. Any x value above max will be `1`.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The alternated value.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "randInt",
+      "description": "Returns a random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> from `<low, high>` interval.",
+      "parameters": [
+        {
+          "name": "low",
+          "type": "Number",
+          "optional": false,
+          "description": "The lower value boundary.",
+          "isMutated": false
+        },
+        {
+          "name": "high",
+          "type": "Number",
+          "optional": false,
+          "description": "The upper value boundary",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a>.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "randFloat",
+      "description": "Returns a random float from `<low, high>` interval.",
+      "parameters": [
+        {
+          "name": "low",
+          "type": "Number",
+          "optional": false,
+          "description": "The lower value boundary.",
+          "isMutated": false
+        },
+        {
+          "name": "high",
+          "type": "Number",
+          "optional": false,
+          "description": "The upper value boundary",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A random float.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "randFloatSpread",
+      "description": "Returns a random <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> from `<-range/2, range/2>` interval.",
+      "parameters": [
+        {
+          "name": "range",
+          "type": "Number",
+          "optional": false,
+          "description": "Defines the value range.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A random float.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "seededRandom",
+      "description": "Returns a deterministic pseudo-random float in the interval `[0, 1]`.",
+      "parameters": [
+        {
+          "name": "s",
+          "type": "Number",
+          "optional": false,
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Integer\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">integer</a> seed.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "A random float.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "degToRad",
+      "description": "Converts degrees to <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "parameters": [
+        {
+          "name": "degrees",
+          "type": "Number",
+          "optional": false,
+          "description": "A value in <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The converted value in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "radToDeg",
+      "description": "Converts <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a> to <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
+      "parameters": [
+        {
+          "name": "radians",
+          "type": "Number",
+          "optional": false,
+          "description": "A value in <a href=\"https://en.wikipedia.org/wiki/Radian\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">radians</a>.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The converted value in <a href=\"https://en.wikipedia.org/wiki/Degree_(angle)\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">degrees</a>.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "isPowerOfTwo",
+      "description": "Returns `true` if the given number is a <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a>.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to check.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "boolean",
+      "returnDescription": "Whether the given number is a <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> or not.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "ceilPowerOfTwo",
+      "description": "Returns the smallest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is greater than or equal to the given number.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to find a POT for.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The smallest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is greater than or equal to the given number.",
+      "equationType": {
+        "isStatic": true,
+        "isMutatingInvoker": false,
+        "isMutatingParameter": false,
+        "isReturningInstance": false,
+        "isPureFunction": true
+      }
+    },
+    {
+      "className": "MathUtils",
+      "methodName": "floorPowerOfTwo",
+      "description": "Returns the largest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is less than or equal to the given number.",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "Number",
+          "optional": false,
+          "description": "The value to find a POT for.",
+          "isMutated": false
+        }
+      ],
+      "returnType": "number",
+      "returnDescription": "The largest <a href=\"https://en.wikipedia.org/wiki/Power_of_two\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"wiki-link\">power of two</a> that is less than or equal to the given number.",
+      "equationType": {
+        "isStatic": true,
         "isMutatingInvoker": false,
         "isMutatingParameter": false,
         "isReturningInstance": false,
