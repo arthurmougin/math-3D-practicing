@@ -1,6 +1,6 @@
 import { useTexture } from "@react-three/drei";
 import type { ThreeElements } from "@react-three/fiber";
-import { forwardRef, useRef, Suspense } from "react";
+import { forwardRef, Suspense } from "react";
 import { type Color, type Mesh } from "three";
 
 const BoxMesh = forwardRef<
@@ -9,8 +9,7 @@ const BoxMesh = forwardRef<
     color?: string | Color;
     type?: "wall" | "linoleum" | "denim";
   }
->(({ color = "white", type = "wall", ...props }, ref) => {
-
+>(({ color = "white", type = "wall", ...props }) => {
   const getTexturePaths = () => {
     switch (type) {
       case "wall":
@@ -66,11 +65,7 @@ const BoxMesh = forwardRef<
 
   return (
     <>
-      <mesh
-        castShadow
-        receiveShadow
-        {...props}
-      >
+      <mesh castShadow receiveShadow {...props}>
         <boxGeometry args={[1, 1, 1, 100, 100, 100]} />
         <meshPhysicalMaterial color={color} {...materialProps} />
       </mesh>

@@ -74,6 +74,7 @@ export function findNonOverlappingPosition(
               (param.value as Vector2).distanceTo(position) <
               PARAMETER_BREATHING_ROOM
             );
+          // @ts-ignore
           case "Number":
             return (
               Math.abs((param.value as number) - position.x) <
@@ -205,10 +206,12 @@ export function valueToMatrix4(value: ValueType, type: ValueTypeName): Matrix4 {
       const euler = value as Euler;
       matrix.makeRotationFromEuler(euler);
       return matrix;
+    // @ts-ignore
     case "Number":
       const num = value as number;
       matrix.makeTranslation(num, 0, 0);
       return matrix;
+    // @ts-ignore
     case "Boolean":
       const boolNum = (value as boolean) ? 1 : 0;
       matrix.makeTranslation(boolNum, 0, 0);
@@ -254,9 +257,11 @@ export function matrix4ToValue(
       const euler = value as Euler;
       euler.setFromRotationMatrix(matrix);
       return euler;
+    // @ts-ignore
     case "Number":
       const posNum = new Vector3().setFromMatrixPosition(matrix);
       return posNum.x;
+    // @ts-ignore
     case "Boolean":
       const posBool = new Vector3().setFromMatrixPosition(matrix);
       return posBool.x !== 0;

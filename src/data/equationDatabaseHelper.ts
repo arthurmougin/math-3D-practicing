@@ -1,7 +1,10 @@
-
-import { type EnhancedEquationDatabase, type ValueType, type EquationSignature, ValueTypeName } from "../../types/types";
+import {
+  type EnhancedEquationDatabase,
+  type ValueType,
+  type EquationSignature,
+  ValueTypeName,
+} from "../../types/types";
 import equationDatabase from "./equationDatabase.source.json";
-
 
 // Type-safe cast of the imported JSON
 const db = equationDatabase as EnhancedEquationDatabase;
@@ -10,7 +13,8 @@ const db = equationDatabase as EnhancedEquationDatabase;
  * Get the type name from a ValueType value
  */
 export function getTypeName(value: ValueType): ValueTypeName {
-  if (typeof value === "number") return  ValueTypeName.Number;
+  // @ts-ignore
+  if (typeof value === "number") return ValueTypeName.Number;
   return value.constructor.name as ValueTypeName;
 }
 

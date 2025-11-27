@@ -19,25 +19,30 @@ interface ParameterProps {
  * Uses Matrix4 under the hood for all transformations regardless of value type
  */
 export function Parameter({ parameter, onClick }: ParameterProps) {
-  const { representation, value, type } = parameter;  
-  
-  if(!representation) {
+  const { representation, value, type } = parameter;
+
+  if (!representation) {
     return null;
   }
 
   const meshRef = useRef<Mesh>(null);
   const scenarioStore = useScenarioStore();
-  const { disableCameraControl, enableCameraControl } = useCameraControlHandlers();
+  const { disableCameraControl, enableCameraControl } =
+    useCameraControlHandlers();
 
   // Convert value to matrix
   const matrix = valueToMatrix4(value, type);
-  function updateParameter(newMatrix: Matrix4){
+  function updateParameter(newMatrix: Matrix4) {
     const newValue = matrix4ToValue(newMatrix, value, type);
-    scenarioStore.updateParameter(scenarioStore.getCurrentScenario()?.id ?? "", parameter.id, newValue);
+    scenarioStore.updateParameter(
+      scenarioStore.getCurrentScenario()?.id ?? "",
+      parameter.id,
+      newValue
+    );
   }
 
   /** Allows you to switch individual axes off */
-  const activeAxes : [boolean, boolean, boolean] = [true, true, true]; 
+  const activeAxes: [boolean, boolean, boolean] = [true, true, true];
   /** Allows you to disable translation via axes arrows */
   let disableAxes: boolean = false;
   /** Allows you to disable translation via axes planes */
@@ -59,6 +64,7 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
       disableRotations = true;
       disableScaling = true;
       break;
+    // @ts-ignore
     case "Vector4":
       // Disable rotation and scaling for Vector4
       disableRotations = true;
@@ -77,7 +83,9 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
       // Disable scaling for matrices
       disableScaling = true;
       break;
+    // @ts-ignore
     case "Number":
+    // @ts-ignore
     case "Boolean":
       // Disable all but one axis for numbers and booleans
       activeAxes[1] = false;
@@ -88,7 +96,6 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
     default:
       throw new Error(`Unsupported parameter type for visualization: ${type}`);
   }
-
 
   // Render based on representation type
   switch (representation.type) {
@@ -108,11 +115,7 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
         >
           <ParameterLabel
             text={parameter.name}
-            position={[
-              0,
-              0.9,
-              0,
-            ]}
+            position={[0, 0.9, 0]}
             borderColor={representation.color}
             useSuspense={false}
           />
@@ -140,11 +143,7 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
         >
           <ParameterLabel
             text={parameter.name}
-            position={[
-              0.5,
-              0.5,
-              0.5,
-            ]}
+            position={[0.5, 0.5, 0.5]}
             borderColor={representation.color}
             useSuspense={true}
           />

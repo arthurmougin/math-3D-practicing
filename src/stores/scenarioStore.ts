@@ -56,6 +56,7 @@ export function mapEquationParamToScenario(
       );
       value = new Matrix3().setFromMatrix4(m4);
       break;
+    // @ts-ignore
     case "Number":
       value = 0;
       break;
@@ -121,6 +122,7 @@ export function generateRepresentationFromType(
         type: "cube",
         color,
       };
+    // @ts-ignore
     case "Number":
       return {
         type: "cube",
@@ -151,7 +153,6 @@ export function generateRepresentationFromType(
 
 export function computeScenarioEquation(scenario: MathScenario) {
   try {
-
     // Building the list of parameters to pass to the function
     const params = scenario.parameters.map((p) => {
       if (!p.isMutated) return p.value;
