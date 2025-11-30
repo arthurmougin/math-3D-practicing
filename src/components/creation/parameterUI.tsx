@@ -13,7 +13,7 @@ import {
 import { ChevronDown, ChevronRight, Trash2 } from "@react-three/uikit-lucide";
 import { ValueTypeName, type RepresentationType } from "../../../types/types";
 import { useState } from "react";
-import { useScenarioStore } from "../../stores/scenarioStore";
+import { useScenarioStore } from "../../stores/scenarioManagerStore";
 import {
   getParameterValues,
   parameterValueToMathType,

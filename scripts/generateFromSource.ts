@@ -175,6 +175,7 @@ function generateRandomValue(
   className: ClassNames
 ): ValueType {
   switch (type) {
+    // @ts-ignore
     case "Number":
       const val = Math.round(Math.random() * 10 + shift);
       //handle setComponent for vectors (take value between 0 and dimension-1)
@@ -234,6 +235,7 @@ function generateRandomValue(
           )
         )
       );
+    // @ts-ignore
     case "Boolean":
       return Math.random() > 0.5;
     default:
@@ -423,11 +425,18 @@ function mapTypeToSupported(type: string): ValueTypeName | null {
     .replace(/\[/g, "")
     .replace(/\]/g, "");
 
-  //TODO   
-  if (ValueTypeName?.Number && (cleaned === "number" || cleaned === "float" || cleaned === "integer")) {
+  //TODO
+  // @ts-ignore
+  if (
+    ValueTypeName?.Number &&
+    (cleaned === "number" || cleaned === "float" || cleaned === "integer")
+  ) {
+    // @ts-ignore
     return ValueTypeName.Number;
   }
-  if (ValueTypeName?.Boolean && ( cleaned === "boolean" || cleaned === "bool")) {
+  // @ts-ignore
+  if (ValueTypeName?.Boolean && (cleaned === "boolean" || cleaned === "bool")) {
+    // @ts-ignore
     return ValueTypeName.Boolean;
   }
   //use ValueTypeName enums

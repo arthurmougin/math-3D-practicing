@@ -6,8 +6,8 @@ import { ParameterLabel } from "../common/ParameterLabel";
 import { PivotControls } from "@react-three/drei";
 import { useCameraControlHandlers } from "../../utils/cameraControl";
 import { matrix4ToValue, valueToMatrix4 } from "../../utils/parameterHelpers";
-import type { Matrix4 } from "three";
-import { useScenarioStore } from "../../stores/scenarioStore";
+import { Matrix4 } from "three";
+import { useScenarioStore } from "../../stores/scenarioManagerStore";
 
 interface ParameterProps {
   parameter: ScenarioParameter;
@@ -20,6 +20,7 @@ interface ParameterProps {
  */
 export function Parameter({ parameter, onClick }: ParameterProps) {
   const { representation, value, type } = parameter;
+  const matrix = new Matrix4();
 
   if (!representation) {
     return null;
@@ -31,7 +32,7 @@ export function Parameter({ parameter, onClick }: ParameterProps) {
     useCameraControlHandlers();
 
   // Convert value to matrix
-  const matrix = valueToMatrix4(value, type);
+  valueToMatrix4(value, matrix, type);
   function updateParameter(newMatrix: Matrix4) {
     const newValue = matrix4ToValue(newMatrix, value, type);
     scenarioStore.updateParameter(

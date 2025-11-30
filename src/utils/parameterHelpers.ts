@@ -92,7 +92,11 @@ export function findNonOverlappingPosition(
             const matrixPos = new Vector3().setFromMatrixPosition(m4);
             return matrixPos.distanceTo(position) < PARAMETER_BREATHING_ROOM;
           }
-          //case "Euler":
+          case "Euler":
+          case "Quaternion": {
+            // Rotational types don't have a clear position, skip overlap check
+            return false;
+          }
           default:
             throw new Error(
               `inImplemented parameter type for position overlap check: ${param.type}`
@@ -175,47 +179,47 @@ export function findNonOverlappingColor(
  * const matrix2 = valueToMatrix4(quat); // Rotation matrix
  * ```
  */
-export function valueToMatrix4(value: ValueType, type: ValueTypeName): Matrix4 {
-  const matrix = new Matrix4();
-
+export function valueToMatrix4(
+  value: ValueType,
+  matrix: Matrix4,
+  type: ValueTypeName
+): void {
   switch (type) {
     case "Matrix4":
-      return (value as Matrix4).clone();
+      matrix.copy(value as Matrix4);
+      return;
     case "Matrix3":
-      const m4 = new Matrix4();
-      (value as Matrix3).getNormalMatrix(m4);
-      return m4;
+      (value as Matrix3).getNormalMatrix(matrix);
+      return;
     case "Vector3":
       const vec = value as Vector3;
       matrix.makeTranslation(vec.x, vec.y, vec.z);
-      return matrix;
+      return;
     case "Vector2":
       const vec2 = value as Vector2;
       matrix.makeTranslation(vec2.x, vec2.y, 0);
-      return matrix;
+      return;
     // @ts-ignore
     case "Vector4":
       const vec4 = value as Vector4;
       matrix.makeTranslation(vec4.x, vec4.y, vec4.z);
-      return matrix;
+      return;
     case "Quaternion":
-      const quat = value as Quaternion;
-      matrix.makeRotationFromQuaternion(quat);
-      return matrix;
+      matrix.makeRotationFromQuaternion(value as Quaternion);
+      return;
     case "Euler":
-      const euler = value as Euler;
-      matrix.makeRotationFromEuler(euler);
-      return matrix;
+      matrix.makeRotationFromEuler(value as Euler);
+      return;
     // @ts-ignore
     case "Number":
       const num = value as number;
       matrix.makeTranslation(num, 0, 0);
-      return matrix;
+      return;
     // @ts-ignore
     case "Boolean":
       const boolNum = (value as boolean) ? 1 : 0;
       matrix.makeTranslation(boolNum, 0, 0);
-      return matrix;
+      return;
     default:
       throw new Error(`Unsupported value type for matrix conversion: ${type}`);
   }

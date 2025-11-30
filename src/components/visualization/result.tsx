@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Color, Vector3, type Mesh } from "three";
+import { Color, Matrix4, Vector3, type Mesh } from "three";
 import { AMBox } from "../box";
 import type { ScenarioResult } from "../../../types/types";
 import { ParameterLabel } from "../common/ParameterLabel";
@@ -19,31 +19,25 @@ interface resultProps {
 export function Result({ result, onClick, opacity = 1 }: resultProps) {
   const { representation, value, type } = result;
   const meshRef = useRef<Mesh>(null);
-
-  if(!representation) {
+  const matrix = new Matrix4();
+  if (!representation) {
     return null;
   }
 
   // Convert value to matrix
-  const matrix = valueToMatrix4(value, type);
+  valueToMatrix4(value, matrix, type);
 
   // Render based on representation type
   switch (representation.type) {
     case "cube":
       return (
-        <group 
-            matrix={matrix}
-            matrixAutoUpdate={false}>
+        <group matrix={matrix} matrixAutoUpdate={false}>
           <ParameterLabel
-              text="Result"
-              position={[
-                0,
-                0.8,
-                0,
-              ]}
-              borderColor={representation.color}
-              useSuspense={false}
-            />
+            text="Result"
+            position={[0, 0.8, 0]}
+            borderColor={representation.color}
+            useSuspense={false}
+          />
           <AMBox
             ref={meshRef}
             color={representation.color}
@@ -60,23 +54,16 @@ export function Result({ result, onClick, opacity = 1 }: resultProps) {
       );
 
     case "vertex":
-    const representationColor = new Color(representation.color);
-    const dimmedColor = representationColor.multiplyScalar(0.2);
+      const representationColor = new Color(representation.color);
+      const dimmedColor = representationColor.multiplyScalar(0.2);
       const xColor = new Color(0xff0000).add(dimmedColor);
       const yColor = new Color(0x00ff00).add(dimmedColor);
       const zColor = new Color(0x0000ff).add(dimmedColor);
       return (
- <group
-          matrix={matrix}
-          matrixAutoUpdate={false}
-        >
+        <group matrix={matrix} matrixAutoUpdate={false}>
           <ParameterLabel
             text="Result"
-            position={[
-              0,
-              0.3,
-              0,
-            ]}
+            position={[0, 0.3, 0]}
             borderColor={representation.color}
             useSuspense={true}
           />

@@ -7,7 +7,7 @@ import type {
   EquationSignature,
   EnhancedEquationDatabase,
 } from "../../../types/types.d.ts";
-import { useScenarioStore } from "../../stores/scenarioStore";
+import { useScenarioStore } from "../../stores/scenarioManagerStore.ts";
 import { EquationDetailedView } from "./EquationDetailedView.tsx";
 import { EQUATION_TYPE_NICENAMES } from "../../constants/equationTypeConstants.ts";
 
@@ -348,24 +348,33 @@ export function EquationDatabaseBrowserHTML() {
                             ? ` (${filteredMethods.length})`
                             : ""}
                         </button>
-                        {filteredMethods.length > 0 && (
-                          Object.keys(samepleEquationType) as (keyof EquationType)[]
-                        ).map((typeKey) => {
-                          const count = filteredMethods.filter(m => m.equationType[typeKey] === true).length;
-                          return (
-                            <button
-                            className={`${
-                                selectedEquationType === typeKey
-                                  ? "active"
-                                  : ""
-                              } ${count === 0 ? "disabled" : ""}`}
-                              onClick={() => setSelectedEquationType(typeKey)}
-                            >
-                              {EQUATION_TYPE_NICENAMES[typeKey as keyof typeof EQUATION_TYPE_NICENAMES]}
-                              {count > 0 ? ` (${count})` : ""}
-                            </button>
-                          );
-                        })}
+                        {filteredMethods.length > 0 &&
+                          (
+                            Object.keys(
+                              samepleEquationType
+                            ) as (keyof EquationType)[]
+                          ).map((typeKey) => {
+                            const count = filteredMethods.filter(
+                              (m) => m.equationType[typeKey] === true
+                            ).length;
+                            return (
+                              <button
+                                className={`${
+                                  selectedEquationType === typeKey
+                                    ? "active"
+                                    : ""
+                                } ${count === 0 ? "disabled" : ""}`}
+                                onClick={() => setSelectedEquationType(typeKey)}
+                              >
+                                {
+                                  EQUATION_TYPE_NICENAMES[
+                                    typeKey as keyof typeof EQUATION_TYPE_NICENAMES
+                                  ]
+                                }
+                                {count > 0 ? ` (${count})` : ""}
+                              </button>
+                            );
+                          })}
                       </div>
                     </div>
                   </div>
