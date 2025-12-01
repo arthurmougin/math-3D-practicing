@@ -1,7 +1,11 @@
 import { Suspense } from "react";
-import { useScenarioStore } from "../../stores/scenarioManagerStore";
 import { Result } from "./result";
 import { Parameter } from "./parameter";
+import type { MathScenario } from "../../../types/types";
+import {
+  useIndividualScenarioStore,
+  type ScenarioStore,
+} from "../../stores/individualScenarioStore";
 /**
  * TODO List of all types of representation to implement
  * - Position (free vertex for vector2, vector3)
@@ -30,8 +34,8 @@ interface ScenarioVisualizationProps {
 export function ScenarioVisualization({
   resultOpacity = 0.3,
 }: ScenarioVisualizationProps) {
-  const currentScenario = useScenarioStore((state) =>
-    state.getCurrentScenario()
+  const currentScenario: MathScenario | null = useIndividualScenarioStore(
+    (state: ScenarioStore) => state.scenario
   );
 
   // No scenario selected

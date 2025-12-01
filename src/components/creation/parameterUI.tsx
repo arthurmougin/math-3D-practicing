@@ -13,7 +13,7 @@ import {
 import { ChevronDown, ChevronRight, Trash2 } from "@react-three/uikit-lucide";
 import { ValueTypeName, type RepresentationType } from "../../../types/types";
 import { useState } from "react";
-import { useScenarioStore } from "../../stores/scenarioManagerStore";
+import { useIndividualScenarioStore } from "../../stores/scenarioManagerStore";
 import {
   getParameterValues,
   parameterValueToMathType,
@@ -28,8 +28,8 @@ export function ParameterUI({
   scenarioId: string;
   parameterId: string;
 }) {
-  const scenarioStore = useScenarioStore();
-  const param = scenarioStore
+  const individualScenarioStore = useIndividualScenarioStore();
+  const param = individualScenarioStore
     .getScenario(scenarioId)
     ?.parameters.find((param) => param.id === parameterId);
 
@@ -57,21 +57,23 @@ export function ParameterUI({
     if (!scenarioId) return;
 
     const newValue = parameterValueToMathType(paramValue);
-    scenarioStore.updateParameter(scenarioId, parameterId, { value: newValue });
+    individualScenarioStore.updateParameter(scenarioId, parameterId, {
+      value: newValue,
+    });
   };
 
   const onChangeParameter = (type: ValueTypeName, paramId: string) => {
     // Change type with default values
     const defaults = getDefaultParameterValues();
     if (scenarioId) {
-      scenarioStore.updateParameter(scenarioId, paramId, {
+      individualScenarioStore.updateParameter(scenarioId, paramId, {
         value: defaults[type],
       });
     }
   };
   const handleRemoveParameter = (parameterId: string) => {
     if (!scenarioId) return;
-    scenarioStore.removeParameter(scenarioId, parameterId);
+    individualScenarioStore.removeParameter(scenarioId, parameterId);
   };
 
   const paramValues = getParameterValues(param);
@@ -97,7 +99,7 @@ export function ParameterUI({
             value={param.name}
             onValueChange={(value) =>
               scenarioId &&
-              scenarioStore.updateParameter(scenarioId, param.id, {
+              individualScenarioStore.updateParameter(scenarioId, param.id, {
                 name: value,
               })
             }
@@ -130,12 +132,16 @@ export function ParameterUI({
                   }
                   onClick={() =>
                     scenarioId &&
-                    scenarioStore.updateParameter(scenarioId, param.id, {
-                      representation: {
-                        ...param.representation,
-                        type,
-                      },
-                    })
+                    individualScenarioStore.updateParameter(
+                      scenarioId,
+                      param.id,
+                      {
+                        representation: {
+                          ...param.representation,
+                          type,
+                        },
+                      }
+                    )
                   }
                   flexGrow={1}
                 >
@@ -164,12 +170,16 @@ export function ParameterUI({
                   value={param.representation.color}
                   onValueChange={(value) =>
                     scenarioId &&
-                    scenarioStore.updateParameter(scenarioId, param.id, {
-                      representation: {
-                        ...param.representation,
-                        color: value,
-                      },
-                    })
+                    individualScenarioStore.updateParameter(
+                      scenarioId,
+                      param.id,
+                      {
+                        representation: {
+                          ...param.representation,
+                          color: value,
+                        },
+                      }
+                    )
                   }
                   placeholder="#ff0000"
                 />

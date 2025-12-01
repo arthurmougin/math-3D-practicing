@@ -8,6 +8,7 @@ import {
   Vector4,
 } from "three";
 import type {
+  MathScenario,
   ScenarioParameter,
   ValueType,
   ValueTypeName,
@@ -94,8 +95,16 @@ export function findNonOverlappingPosition(
           }
           case "Euler":
           case "Quaternion": {
-            // Rotational types don't have a clear position, skip overlap check
-            return false;
+            if (param.position) {
+              return (
+                param.position.distanceTo(position) < PARAMETER_BREATHING_ROOM
+              );
+            } else {
+              console.warn(
+                `Parameter ${param.name} of type ${param.type} is missing position for overlap check.`
+              );
+              return false;
+            }
           }
           default:
             throw new Error(
@@ -271,5 +280,62 @@ export function matrix4ToValue(
       return posBool.x !== 0;
     default:
       throw new Error(`Unsupported value type for matrix conversion: ${type}`);
+  }
+}
+
+export function computeScenarioEquation(scenario: MathScenario) {
+  try {
+    // Building the list of parameters to pass to the function
+    const params = scenario.parameters.map((p) => {
+      if (!p.isMutated) return p.value;
+
+      // If the parameter is mutated, we dont want the visualized parameter to move.
+      // So we trigger the function with a clone of it.
+      // Tthis tertiary handles most common three.js types with clone or copy methods.
+      return p.value.clone
+        ? p.value.clone()
+        : p.value.copy
+        ? new p.value.constructor().copy(p.value)
+        : new p.value.constructor(p.value);
+    });
+
+    // Handling invoker type and mutation
+    // If there are no invoker, then it's a pure function
+    let invoker = scenario.invoker?.value;
+    // If the invoker is mutated, we create a clone to avoid moving the visualized invoker
+    if (invoker && scenario.invoker?.isMutated) {
+      // To gain performance, we will use the result value as invoker.
+      if (scenario.result.value != null) {
+        invoker = scenario.result.value;
+        invoker.copy ? invoker.copy(scenario.invoker.value) : null;
+      } else {
+        // The first time, the result is null, so we clone the invoker value.
+        invoker = scenario.invoker.value.clone
+          ? scenario.invoker.value.clone()
+          : scenario.invoker.value.copy
+          ? new scenario.invoker.value.constructor().copy(
+              scenario.invoker.value
+            )
+          : new scenario.invoker.value.constructor(scenario.invoker.value);
+      }
+    }
+
+    const equationName = scenario.equation;
+    let method;
+    if (invoker != null) {
+      // Method called on an object
+      method = (invoker as any)[equationName];
+    } else {
+      // Any standalone function can be called this way
+      method = (window as any)[equationName];
+    }
+
+    if (typeof method === "function") {
+      scenario.result.value = method.apply(invoker, params);
+    } else {
+      throw new Error(`Method ${equationName} not found on invoker`);
+    }
+  } catch (e) {
+    console.error("Error computing result:", e);
   }
 }

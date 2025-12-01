@@ -7,9 +7,9 @@ import type {
   EquationSignature,
   EnhancedEquationDatabase,
 } from "../../../types/types.d.ts";
-import { useScenarioStore } from "../../stores/scenarioManagerStore.ts";
 import { EquationDetailedView } from "./EquationDetailedView.tsx";
 import { EQUATION_TYPE_NICENAMES } from "../../constants/equationTypeConstants.ts";
+import { useScenarioManagerStore } from "../../stores/scenarioManagerStore.ts";
 
 /**
  * Equation Database Browser Component (HTML Version)
@@ -70,7 +70,7 @@ export function EquationDatabaseBrowserHTML() {
       (m) => `${m.className}.${m.methodName}` === selectedMethodName
     );
     if (method) {
-      useScenarioStore
+      useScenarioManagerStore
         .getState()
         .addScenarioUsingMethod(method as EquationSignature);
     }

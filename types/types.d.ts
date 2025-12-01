@@ -32,14 +32,14 @@ export type ValueType =
 export enum ValueTypeName {
   Vector3 = "Vector3",
   Vector2 = "Vector2",
- // Vector4 = "Vector4", // Vector4 type is currently not supported due to unclear mathematical representation implementation
+  // Vector4 = "Vector4", // Vector4 type is currently not supported due to unclear mathematical representation implementation
   Quaternion = "Quaternion",
   Euler = "Euler",
   Matrix4 = "Matrix4",
   Matrix3 = "Matrix3",
- // Number = "Number", // Missing Visualization
- // Boolean = "Boolean",
-} 
+  // Number = "Number", // Missing Visualization
+  // Boolean = "Boolean",
+}
 
 export type ClassNames = "MathUtils" | Exclude<ValueTypeName, "Number">;
 /**
@@ -52,15 +52,6 @@ export type ClassNames = "MathUtils" | Exclude<ValueTypeName, "Number">;
 export interface ParameterRepresentation {
   type: RepresentationType;
   color: string;
-}
-
-/**
- * Scenario parameter definition
- */
-export interface ScenarioParameter extends EquationParameter {
-  id: string;
-  value: ValueType;
-  representation: ParameterRepresentation;
 }
 
 export interface ScenarioResult {
@@ -83,7 +74,6 @@ export interface MathScenario {
   timelineProgress: number; // 0 to 1 for lerp visualization
 }
 
-
 /**
  * Method parameter from source analysis
  */
@@ -97,6 +87,16 @@ export interface EquationParameter {
 }
 
 /**
+ * Scenario parameter definition
+ */
+export interface ScenarioParameter extends EquationParameter {
+  id: string;
+  value: ValueType;
+  position?: Vector3;
+  representation: ParameterRepresentation;
+}
+
+/**
  * Method type classification
  */
 export interface EquationType {
@@ -105,7 +105,7 @@ export interface EquationType {
   isMutatingParameter: boolean; // true if the method mutates any of its parameters, false otherwise
   isReturningInstance: boolean; // true if the method returns the instance (this), false otherwise
   isPureFunction: boolean; // true if the method does not mutate any input and returns a new value, false otherwise
-};
+}
 
 /**
  * Method signature with documentation (NEW FORMAT)
