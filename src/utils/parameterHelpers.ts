@@ -39,13 +39,14 @@ import {
  * ```
  */
 export function findNonOverlappingPosition(
-  parameters: ScenarioParameter[]
+  parameters: ScenarioParameter[],
+  isPositional: boolean = true
 ): Vector3 {
   let shift = 0;
 
   do {
     // Predefined positions close to origin for up to 8 parameters
-    const predefinedPositions = [
+    let predefinedPositions = [
       [PARAMETER_SPACING + shift, 0, 0], // Second on X axis
       [0 + shift, PARAMETER_SPACING, 0], // Third on Y axis
       [0 + shift, 0, PARAMETER_SPACING], // Fourth on Z axis
@@ -54,6 +55,11 @@ export function findNonOverlappingPosition(
       [0 + shift, PARAMETER_SPACING, PARAMETER_SPACING], // Seventh diagonal YZ
       [PARAMETER_SPACING + shift, PARAMETER_SPACING, PARAMETER_SPACING], // Eighth corner
     ];
+
+    if (!isPositional) {
+      //only on X and Z in the negative X space
+      predefinedPositions = [[0, 0, -PARAMETER_SPACING - shift]];
+    }
 
     for (const pos of predefinedPositions) {
       const position = new Vector3(...(pos as [number, number, number]));
@@ -72,8 +78,9 @@ export function findNonOverlappingPosition(
             );
           case "Vector2":
             return (
-              (param.value as Vector2).distanceTo(position) <
-              PARAMETER_BREATHING_ROOM
+              (param.value as Vector2).distanceTo(
+                new Vector2(position.x, position.y)
+              ) < PARAMETER_BREATHING_ROOM
             );
           // @ts-ignore
           case "Number":
@@ -159,11 +166,15 @@ export function findNonOverlappingName(
  * Cycles through predefined high-contrast colors
  */
 export function findNonOverlappingColor(
-  parameters: ScenarioParameter[]
+  parameters: ScenarioParameter[],
+  isInvoker: boolean = false,
+  isReturn: boolean = false
 ): string {
   const existingColors = new Set(
     parameters.map((param) => param.representation.color)
   );
+  if (isInvoker) return "green";
+  if (isReturn) return "#ff00ff";
   for (const color of PARAMETER_COLORS) {
     if (!existingColors.has(color)) {
       return color;
@@ -191,7 +202,8 @@ export function findNonOverlappingColor(
 export function valueToMatrix4(
   value: ValueType,
   matrix: Matrix4,
-  type: ValueTypeName
+  type: ValueTypeName,
+  position?: Vector3
 ): void {
   switch (type) {
     case "Matrix4":
@@ -206,7 +218,7 @@ export function valueToMatrix4(
       return;
     case "Vector2":
       const vec2 = value as Vector2;
-      matrix.makeTranslation(vec2.x, vec2.y, 0);
+      matrix.makeTranslation(vec2.x, 0, vec2.y);
       return;
     // @ts-ignore
     case "Vector4":
@@ -215,18 +227,22 @@ export function valueToMatrix4(
       return;
     case "Quaternion":
       matrix.makeRotationFromQuaternion(value as Quaternion);
+      matrix.setPosition(position || new Vector3(0, 0, 0));
       return;
     case "Euler":
       matrix.makeRotationFromEuler(value as Euler);
+      matrix.setPosition(position || new Vector3(0, 0, 0));
       return;
     // @ts-ignore
     case "Number":
       const num = value as number;
+      matrix.setPosition(position || new Vector3(0, 0, 0));
       matrix.makeTranslation(num, 0, 0);
       return;
     // @ts-ignore
     case "Boolean":
       const boolNum = (value as boolean) ? 1 : 0;
+      matrix.setPosition(position || new Vector3(0, 0, 0));
       matrix.makeTranslation(boolNum, 0, 0);
       return;
     default:
@@ -237,7 +253,8 @@ export function valueToMatrix4(
 export function matrix4ToValue(
   matrix: Matrix4,
   value: ValueType,
-  type: ValueTypeName
+  type: ValueTypeName,
+  position?: Vector3
 ): ValueType {
   switch (type) {
     case "Matrix4":
@@ -253,8 +270,8 @@ export function matrix4ToValue(
       return vec;
     case "Vector2":
       const vec2 = value as Vector2;
-      const pos2 = new Vector3().setFromMatrixPosition(matrix);
-      vec2.set(pos2.x, pos2.y);
+      const pos3 = new Vector3().setFromMatrixPosition(matrix);
+      vec2.set(pos3.x, pos3.z);
       return vec2;
     // @ts-ignore
     case "Vector4":

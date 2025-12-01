@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Color, Matrix4, Vector3, type Mesh } from "three";
 import { AMBox } from "../box";
 import type { ScenarioResult } from "../../../types/types";
-import { ParameterLabel } from "../common/ParameterLabel";
+import { TextLabel } from "../common/TextLabel";
 import { valueToMatrix4 } from "../../utils/parameterHelpers";
 
 interface resultProps {
@@ -32,7 +32,7 @@ export function Result({ result, onClick, opacity = 1 }: resultProps) {
     case "cube":
       return (
         <group matrix={matrix} matrixAutoUpdate={false}>
-          <ParameterLabel
+          <TextLabel
             text="Result"
             position={[0, 0.8, 0]}
             borderColor={representation.color}
@@ -61,7 +61,7 @@ export function Result({ result, onClick, opacity = 1 }: resultProps) {
       const zColor = new Color(0x0000ff).add(dimmedColor);
       return (
         <group matrix={matrix} matrixAutoUpdate={false}>
-          <ParameterLabel
+          <TextLabel
             text="Result"
             position={[0, 0.3, 0]}
             borderColor={representation.color}

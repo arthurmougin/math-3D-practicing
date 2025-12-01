@@ -8,7 +8,7 @@ import { useCameraStore } from "../../stores/cameraStore";
 // Extend R3F with RoundedPlaneGeometry
 extend({ RoundedPlaneGeometry: geometry.RoundedPlaneGeometry });
 
-interface ParameterLabelProps {
+interface TextLabelProps {
   /**
    * The text to display on the label
    */
@@ -31,22 +31,22 @@ interface ParameterLabelProps {
  * A 3D billboard label component that always faces the camera
  * Features a white background with colored border
  * Automatically calculates width based on text length
- * 
+ *
  * @example
  * ```tsx
- * <ParameterLabel
+ * <TextLabel
  *   text="Vector A"
  *   position={[1, 2, 3]}
  *   borderColor="#ff0000"
  * />
  * ```
  */
-export function ParameterLabel({
+export function TextLabel({
   text,
   position,
   borderColor,
   useSuspense = true,
-}: ParameterLabelProps) {
+}: TextLabelProps) {
   const meshRef = useRef<Mesh>(null);
   const cameraStore = useCameraStore();
   const textRef = useRef<Mesh>(null);
@@ -71,20 +71,20 @@ export function ParameterLabel({
         color="black"
         anchorX="center"
         anchorY="middle"
+        depthOffset={-1}
       >
         {text}
       </Text>
       {/* White background */}
-      <mesh position={[0, 0, -0.01]}>
+      <mesh position={[0, 0, 0]}>
         {/* @ts-ignore - roundedPlaneGeometry is extended */}
-        <roundedPlaneGeometry
-          args={[labelWidth, labelHeight, borderRadius]}
-        />
+        <roundedPlaneGeometry args={[labelWidth, labelHeight, borderRadius]} />
         <meshBasicMaterial color="white" transparent opacity={0.95} />
       </mesh>
       {/* Colored border */}
-      <mesh ref={meshRef} position={[0, 0, -0.011]}
-      
+      <mesh
+        ref={meshRef}
+        position={[0, 0, -0.01]}
         onDoubleClick={(e) =>
           cameraStore.setTarget(e.object.getWorldPosition(new Vector3()))
         }

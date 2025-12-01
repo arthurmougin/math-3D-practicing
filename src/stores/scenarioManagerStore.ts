@@ -20,31 +20,33 @@ import { useIndividualScenarioStore } from "./individualScenarioStore";
 
 export function mapEquationParamToScenario(
   param: EquationParameter,
-  allParams: ScenarioParameter[]
+  allParams: ScenarioParameter[],
+  isInvoker: boolean = false,
+  isReturn: boolean = false
 ): ScenarioParameter {
   let value: ValueType = 0;
   let position = undefined;
-  let newPosition;
+  let tempPosition;
 
   switch (param.type) {
     case "Vector3":
       value = findNonOverlappingPosition(allParams);
       break;
     case "Vector2":
-      newPosition = findNonOverlappingPosition(allParams);
-      value = new Vector2(newPosition.x, newPosition.y);
+      tempPosition = findNonOverlappingPosition(allParams);
+      value = new Vector2(tempPosition.x, tempPosition.y);
       break;
     // @ts-ignore
     case "Vector4":
-      newPosition = findNonOverlappingPosition(allParams);
-      value = new Vector4(newPosition.x, newPosition.y, newPosition.z, 0);
+      tempPosition = findNonOverlappingPosition(allParams);
+      value = new Vector4(tempPosition.x, tempPosition.y, tempPosition.z, 0);
       break;
     case "Euler":
       value = new Euler();
-      position = findNonOverlappingPosition(allParams);
+      position = findNonOverlappingPosition(allParams, false);
       break;
     case "Quaternion":
-      position = findNonOverlappingPosition(allParams);
+      position = findNonOverlappingPosition(allParams, false);
       value = new Quaternion().identity();
       break;
     case "Matrix4":
@@ -60,7 +62,7 @@ export function mapEquationParamToScenario(
       break;
     // @ts-ignore
     case "Number":
-      position = findNonOverlappingPosition(allParams);
+      position = findNonOverlappingPosition(allParams, false);
       value = 0;
       break;
     default:
@@ -75,19 +77,26 @@ export function mapEquationParamToScenario(
     value,
     position,
     optional: param.optional,
-    representation: generateRepresentationFromType(param.type, allParams),
+    representation: generateRepresentationFromType(
+      param.type,
+      allParams,
+      isInvoker,
+      isReturn
+    ),
     isMutated: param.isMutated,
   };
 }
 
 export function generateRepresentationFromType(
   type: ValueTypeName,
-  allParams: ScenarioParameter[]
+  allParams: ScenarioParameter[],
+  isInvoker: boolean = false,
+  isReturn: boolean = false
 ): ParameterRepresentation {
   if (!type) {
     throw new Error("Type is required to generate ScenarioResult");
   }
-  const color = findNonOverlappingColor(allParams);
+  const color = findNonOverlappingColor(allParams, isInvoker, isReturn);
 
   switch (type) {
     // @ts-ignore
@@ -184,7 +193,9 @@ export const useScenarioManagerStore = create<ScenarioManagerStore>(
             optional: false,
             isMutated: equationSignature.equationType.isMutatingInvoker,
           },
-          parameters
+          parameters,
+          true,
+          false
         );
       }
 
@@ -201,7 +212,9 @@ export const useScenarioManagerStore = create<ScenarioManagerStore>(
         type: equationSignature.returnType,
         representation: generateRepresentationFromType(
           equationSignature.returnType,
-          parameters.concat(invoker ? [invoker] : [])
+          parameters.concat(invoker ? [invoker] : []),
+          false,
+          true
         ),
       };
 
