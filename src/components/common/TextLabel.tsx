@@ -55,7 +55,7 @@ export function TextLabel({
   const txtBBx = textRef.current?.geometry.boundingBox?.max.x;
   const widthByMath = text.length * 0.09;
   let textWidth = widthByMath;
-  if (txtBBx && txtBBx * 2 < widthByMath) {
+  if (txtBBx && txtBBx > 0 && txtBBx * 2 < widthByMath) {
     textWidth = txtBBx * 2;
   }
 

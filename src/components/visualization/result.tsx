@@ -43,13 +43,7 @@ export function Result({ result, onClick, opacity = 1 }: resultProps) {
             color={representation.color}
             onClick={onClick}
             scale={0.5}
-          >
-            <meshStandardMaterial
-              color={representation.color}
-              transparent={opacity < 1}
-              opacity={opacity}
-            />
-          </AMBox>
+          ></AMBox>
         </group>
       );
 
